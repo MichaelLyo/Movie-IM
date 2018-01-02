@@ -8,11 +8,13 @@
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/highcharts.js"></script>
 <script src="js/data.js"></script>
-<link href="css/stickup.css" rel="stylesheet">
-<link href="css/navigation.css" rel="stylesheet">
+<script src="js/stickUp.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/stickup.css"/>
+<link rel="stylesheet" type="text/css" href="css/navigation.css"/>
 <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css" />
 <link rel="stylesheet" type="text/css" href="css/button.css"/>
-<body>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<body bgcolor=#f2f2f2>
 <div class="navbar-wrapper" id="animenu">
     <nav class="animenu">
         <button class="animenu__toggle">
@@ -40,7 +42,10 @@
                 <a onClick="toggle('category')">电影类别查询</a>
             </li>
             <li>
-                <a onClick="toggle('combination')">组合查询</a>
+                <a onClick="toggle('comment')">电影评论查询</a>
+            </li>
+            <li>
+                <a onClick="toggle('combination')">高级查询</a>
             </li>
         </ul>
     </nav>
@@ -49,15 +54,55 @@
 <!-- END NAVBAR -->
 <!--Start 按照时间进行查询统计-->
 <div class="search bar6" id="search-time" style="display: none">
-    <div style="margin-left: 50px;margin-top: 30px;float: left;">
-        <form>
-            <label for="starttime">请输入时间：</label><input id="starttime" type="date">
-            <label for="endtime">---</label><input style="margin-top: -34px;float: left;margin-left: 270px;" id="endtime" type="date">
-            <button style="left: 420px;border-radius:0;top:-5px;"  type="button" onclick="Table('time')"></button>
+    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
+    <div style="margin-left: 50px;margin-top: 30px;height:260px;">
+        <label style="font-size: 40px;">根据时间查询</label>
+        <form style="margin: 0;top:10px;width: 100%">
+        <div style="color: rgba(0, 0, 0, 0.541176);font-size: 26px;">年份</div><select style="margin-top:10px;height:30px;width:70px" id="myYear"></select>
+            <div style="top:40px;">
+                <div style="color: rgba(0, 0, 0, 0.541176);font-size: 26px;margin-top: 10px;">查询条件</div>
+                <input id="search-season" name="time" type="radio" value="按季度查询" onclick="Time()"/>按季度查询
+                <input id="search-month" name="time" type="radio" value="按月份查询" onclick="Time()"/>按月份查询
+                <input id="search-day" name="time" type="radio" value="按天查询" onclick="Time()"/>按天查询
+                <input id="search-date" name="time" type="radio" value="具体日期查询" checked onclick="Time()"/>具体日期查询
+            </div>
+            <button type="button" onclick="Table('time')" style="border-radius: 0;right: 1100px;"></button>
+            <div style="top:40px;display:none" id="season">
+                <input name="season" type="checkbox" value="" />春
+                <input name="season" type="checkbox" value="" />夏
+                <input name="season" type="checkbox" value="" />秋
+                <input name="season" type="checkbox" value="" />冬
+            </div>
+            <div style="top:40px;display:none" id="month">
+                <input name="month" type="checkbox" value="" />1
+                <input name="month" type="checkbox" value="" />2
+                <input name="month" type="checkbox" value="" />3
+                <input name="month" type="checkbox" value="" />4
+                <input name="month" type="checkbox" value="" />5
+                <input name="month" type="checkbox" value="" />6
+                <input name="month" type="checkbox" value="" />7
+                <input name="month" type="checkbox" value="" />8
+                <input name="month" type="checkbox" value="" />9
+                <input name="month" type="checkbox" value="" />10
+                <input name="month" type="checkbox" value="" />11
+                <input name="month" type="checkbox" value="" />12
+            </div>
+            <div style="top:40px;display:none" id="day">
+                <input name="day" type="checkbox" value="" />周日
+                <input name="day" type="checkbox" value="" />周一
+                <input name="day" type="checkbox" value="" />周二
+                <input name="day" type="checkbox" value="" />周三
+                <input name="day" type="checkbox" value="" />周四
+                <input name="day" type="checkbox" value="" />周五
+                <input name="day" type="checkbox" value="" />周六
+            </div>
+            <div style="top:40px;display:none" id="date">
+
+            </div>
         </form>
     </div>
-    <div id="timeTable" style="display: none;">
-        <div id="container" style="margin: 0 auto;height: 300px;width: 500px;float: right;"></div>
+    <div id="timeTable" style="display: none;margin:30px;">
+        <div id="container" style="height: 300px;width: 500px;float: right;margin-top:-130px;"></div>
         <table id="datatable" style="display: none">
             <thead>
             <tr>
@@ -74,46 +119,51 @@
             </tr>
             </tbody>
         </table>
-        <p style="float: left;margin-top: 20px;margin-left: 45px;">使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-        <p style="float: left;margin-top: 5px;margin-left: 45px;">使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-        <p style="float: left;margin-top: 5px;margin-left: 45px;">本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        <div style="float:left;margin-left: 20px;">
+            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
+            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
+            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        </div>
         <table id="time" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
-        <th>时间</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th data-orderable="false">Start date</th>
-        <th>Salary</th>
+        <th>电影名</th>
+        <th>上映时间</th>
+        <th>电影风格</th>
+        <th>电影导演</th>
+        <th>电影演员</th>
+        <th>电影版本</th>
     </tr>
     </thead>
     <tfoot>
     <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
+        <th>电影名</th>
+        <th>上映时间</th>
+        <th>电影风格</th>
+        <th>电影导演</th>
+        <th>电影演员</th>
+        <th>电影版本</th>
     </tr>
     </tfoot>
     <tbody></tbody>
 </table>
     </div>
+    </div>
 </div>
 <!--End 按照时间进行查询统计-->
 <!--Start 按照电影名进行查询统计-->
 <div  class="search bar6" id="search-name" style="display: none">
-    <div style="margin-left: 50px;margin-top: 30px;float: left;">
-        <form>
+    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
+    <div style="margin-left: 50px;margin-top: 30px;height:130px;">
+        <label style="font-size: 40px;">根据电影名查询</label>
+        <form style="margin: 0;top:30px">
             <input type="text" placeholder="请输入电影名" style="width: 80%;height: 36px;"/>
             <button type="button" onclick="Table('name')"></button>
         </form>
     </div>
-    <div id="nameTable" style="display: none;">
-        <div id="namecontainer" style="margin: 0 auto;height: 300px;width: 500px;float: right;"></div>
-        <table id="namedatatable" style="display: none">
+    <div id="nameTable" style="display: none;margin: 30px;">
+        <div id="namecontainer" style="height: 300px;width: 500px;float: right;margin-top:-130px"></div>
+        <table id="namedatatable" style="display: none;margin:30px">
             <thead>
             <tr>
                 <th></th>
@@ -129,46 +179,51 @@
             </tr>
             </tbody>
         </table>
-        <p style="float: left;margin-top: 20px;margin-left: 45px;">使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-        <p style="float: left;margin-top: 5px;margin-left: 45px;">使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-        <p style="float: left;margin-top: 5px;margin-left: 45px;">本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        <div style="float:left;margin-left: 20px;">
+            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
+            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
+            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        </div>
         <table id="name" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
         <th>电影名</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th data-orderable="false">Start date</th>
-        <th>Salary</th>
+        <th>上映时间</th>
+        <th>电影风格</th>
+        <th>电影导演</th>
+        <th>电影演员</th>
+        <th>电影版本</th>
     </tr>
     </thead>
     <tfoot>
     <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
+        <th>电影名</th>
+        <th>上映时间</th>
+        <th>电影风格</th>
+        <th>电影导演</th>
+        <th>电影演员</th>
+        <th>电影版本</th>
     </tr>
     </tfoot>
     <tbody>
     </tbody>
 </table>
     </div>
+    </div>
 </div>
 <!--End 按照电影名进行查询统计-->
 <!--Start 按照导演进行查询统计-->
 <div  class="search bar6" id="search-director" style="display: none">
-    <div style="margin-left: 50px;margin-top: 30px;float: left;">
-        <form>
+    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
+        <div style="margin-left: 50px;margin-top: 30px;height:130px;">
+            <label style="font-size: 40px;">根据导演名查询</label>
+        <form style="margin: 0;top:30px">
             <input type="text" placeholder="请输入导演名" style="width: 80%;height: 36px;"/>
             <button type="button" onclick="Table('director')"></button>
         </form>
     </div>
-    <div id="directorTable" style="display: none;">
-        <div id="directorcontainer" style="margin: 0 auto;height: 300px;width: 500px;float: right;"></div>
+    <div id="directorTable" style="display: none;margin:30px;">
+        <div id="directorcontainer" style="height: 300px;width: 500px;float: right;margin-top:-130px"></div>
         <table id="directordatatable" style="display: none">
             <thead>
             <tr>
@@ -185,15 +240,17 @@
             </tr>
             </tbody>
         </table>
-        <p style="float: left;margin-top: 20px;margin-left: 45px;">使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-        <p style="float: left;margin-top: 5px;margin-left: 45px;">使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-        <p style="float: left;margin-top: 5px;margin-left: 45px;">本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        <div style="float:left;margin-left: 20px;">
+            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
+            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
+            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        </div>
         <table id="director" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
         <th>导演名</th>
-        <th>Position</th>
-        <th>Office</th>
+        <th>电影名</th>
+        <th>演员名</th>
         <th>Age</th>
         <th data-orderable="false">Start date</th>
         <th>Salary</th>
@@ -213,18 +270,21 @@
     </tbody>
 </table>
     </div>
+    </div>
 </div>
 <!--End 按照导演进行查询统计-->
 <!--Start 按照演员进行查询统计-->
 <div  class="search bar6" id="search-actor" style="display: none">
-    <div style="margin-left: 50px;margin-top: 30px;float: left;">
-        <form>
+    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
+        <div style="margin-left: 50px;margin-top: 30px;height:130px;">
+            <label style="font-size: 40px;">根据演员名查询</label>
+        <form style="margin: 0;top:30px">
             <input type="text" placeholder="请输入演员名" style="width: 80%;height: 36px;"/>
             <button type="button" onclick="Table('actor')"></button>
         </form>
     </div>
-    <div id="actorTable" style="display: none;">
-        <div id="actorcontainer" style="margin: 0 auto;height: 300px;width: 500px;float: right;"></div>
+    <div id="actorTable" style="display: none;margin:30px;">
+        <div id="actorcontainer" style="height: 300px;width: 500px;float: right;margin-top:-130px"></div>
         <table id="actordatatable" style="display: none">
             <thead>
             <tr>
@@ -241,9 +301,11 @@
             </tr>
             </tbody>
         </table>
-        <p style="float: left;margin-top: 20px;margin-left: 45px;">使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-        <p style="float: left;margin-top: 5px;margin-left: 45px;">使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-        <p style="float: left;margin-top: 5px;margin-left: 45px;">本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        <div style="float:left;margin-left: 20px;">
+            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
+            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
+            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        </div>
         <table id="actor" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
@@ -269,18 +331,21 @@
     </tbody>
 </table>
     </div>
+    </div>
 </div>
 <!--End 按照演员进行查询统计-->
 <!--Start 按照电影类别进行查询统计-->
 <div  class="search bar6" id="search-category" style="display: none">
-    <div style="margin-left: 50px;margin-top: 30px;float: left;">
-        <form>
+    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
+        <div style="margin-left: 50px;margin-top: 30px;height:130px;">
+            <label style="font-size: 40px;">根据电影类别查询</label>
+        <form style="margin: 0;top:30px">
             <input type="text" placeholder="请输入电影类别名" style="width: 80%;height: 36px;"/>
             <button type="button" onclick="Table('category')"></button>
         </form>
     </div>
-    <div id="categoryTable" style="display: none;">
-        <div id="categorycontainer" style="margin: 0 auto;height: 300px;width: 500px;float: right;"></div>
+    <div id="categoryTable" style="display: none;margin:30px;">
+        <div id="categorycontainer" style="height: 300px;width: 500px;float: right;margin-top:-130px"></div>
         <table id="categorydatatable" style="display: none">
             <thead>
             <tr>
@@ -297,9 +362,11 @@
             </tr>
             </tbody>
         </table>
-        <p style="float: left;margin-top: 20px;margin-left: 45px;">使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-        <p style="float: left;margin-top: 5px;margin-left: 45px;">使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-        <p style="float: left;margin-top: 5px;margin-left: 45px;">本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        <div style="float:left;margin-left: 20px;">
+            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
+            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
+            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        </div>
         <table id="category" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
             <thead>
             <tr>
@@ -325,15 +392,79 @@
             </tbody>
         </table>
     </div>
+    </div>
 </div>
 <!--End 按照电影类别进行查询统计-->
+<!--Start 电影评论进行查询统计-->
+<div  class="search bar6" id="search-comment" style="display: none">
+    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
+        <div style="margin-left: 50px;margin-top: 30px;height:130px;">
+            <label style="font-size: 40px;">根据电影名查询评价</label>
+        <form style="margin: 0;top:30px">
+            <input type="text" placeholder="请输入电影名" style="width: 80%;height: 36px;"/>
+            <button type="button" onclick="Table('comment')"></button>
+        </form>
+    </div>
+    <div id="commentTable" style="display: none;margin:30px;">
+        <div id="commentcontainer" style="height: 300px;width: 500px;float: right;margin-top:-130px"></div>
+        <table id="commentdatatable" style="display: none">
+            <thead>
+            <tr>
+                <th></th>
+                <th>关系型数据仓库存储数据模型</th>
+                <th>混合型存储数据模型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>执行时间</th>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            </tbody>
+        </table>
+        <div style="float:left;margin-left: 20px;">
+            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
+            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
+            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        </div>
+        <table id="comment" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+            <thead>
+            <tr>
+                <th>演员名</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th data-orderable="false">Start date</th>
+                <th>Salary</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+            </tfoot>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+<!--End 电影评论进行查询统计-->
 <!--Start 组合查询进行查询统计-->
 <div  class="search bar6" id="search-combination" style="display: none">
-    <div style="margin-left: 50px;margin-top: 10px;float: left;">
-        <form>
-            <label for="starttime2" style="float: left;margin-top: 10px;margin-left: -30px;">请输入时间：</label><input id="starttime2" type="date">
-            <label for="endtime2">---</label><input style="margin-top: -34px;float: left;margin-left: 240px;" id="endtime2" type="date">
-            <label style="float: left;margin-top: 20px;">电影名：</label>
+    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
+        <div style="margin-left: 50px;margin-top: 30px;height:380px;">
+            <label style="font-size: 40px;">高级查询</label>
+        <form style="margin: 0;top:10px;right:40px;">
+            <label style="float: left;margin-top: 20px;margin-left: 38px;">年份：</label>
+            <input type="text" placeholder="请输入上映年份" style="margin-top:10px;width: 50%;height: 36px;"/>
+            <label style="float: left;margin-top: 20px;margin-left: 22px;">电影名：</label>
             <input type="text" placeholder="请输入电影名" style="margin-top:10px;width: 50%;height: 36px;"/>
             <label style="float: left;margin-top: 75px;margin-left: -65px;">导演名：</label>
             <input type="text" placeholder="请输入导演名" style="margin-top:10px;width: 50%;height: 36px;"/>
@@ -341,11 +472,11 @@
             <input type="text" placeholder="请输入演员名" style="margin-top:10px;width: 50%;height: 36px;"/>
             <label style="float: left;margin-top: 75px;margin-left: -80px;">电影类别：</label>
             <input type="text" placeholder="请输入电影类别" style="margin-top:10px;width: 50%;height: 36px;"/>
-            <button style="float:left;margin-top: 200px;border-radius:0;" type="button" onclick="Table('combination')"></button>
+            <button style="float: left;margin-top: 270px;margin-right: 50px;border-radius: 0;width: 167px;" type="button" onclick="Table('combination')"></button>
         </form>
     </div>
-    <div id="combinationTable" style="display: none;">
-        <div id="combinationcontainer" style="margin: 0 auto;height: 300px;width: 500px;float: right;"></div>
+    <div id="combinationTable" style="display: none;margin:30px;">
+        <div id="combinationcontainer" style="margin: 0 auto;height: 300px;width: 500px;float: right;margin-top:-130px"></div>
         <table id="combinationdatatable" style="display: none">
             <thead>
             <tr>
@@ -362,9 +493,11 @@
             </tr>
             </tbody>
         </table>
-        <p style="float:left;margin-top:20px;margin-left: 30px;">使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-        <p style="float:left;margin-top:45px;margin-left: -455px;">使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-        <p style="float:left;margin-top:70px;margin-left: -455px;">本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        <div style="float:left;margin-left: 20px;">
+        <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
+        <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
+        <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+        </div>
         <table id="combination" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
             <thead>
             <tr>
@@ -389,6 +522,7 @@
             <tbody>
             </tbody>
         </table>
+    </div>
     </div>
 </div>
 <!--End 组合查询进行查询统计-->
@@ -442,12 +576,34 @@
         var actor=document.getElementById('search-actor');
         var category=document.getElementById('search-category');
         var combination=document.getElementById('search-combination');
-        if(id==='time') {combination.style.display='none';category.style.display='none';name.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='block';}
-        if(id==='name') {combination.style.display='none';category.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='none';name.style.display='block';}
-        if(id==='director') {combination.style.display='none';category.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';director.style.display='block';}
-        if(id==='actor'){combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='block';}
-        if(id==='category'){combination.style.display='none';category.style.display='block';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
-        if(id==='combination'){combination.style.display='block';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+        var comment=document.getElementById('search-comment');
+        if(id==='time') {comment.style.display='none';combination.style.display='none';category.style.display='none';name.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='block';}
+        if(id==='name') {comment.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='none';name.style.display='block';}
+        if(id==='director') {comment.style.display='none';combination.style.display='none';category.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';director.style.display='block';}
+        if(id==='actor'){comment.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='block';}
+        if(id==='category'){comment.style.display='none';combination.style.display='none';category.style.display='block';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+        if(id==='combination'){comment.style.display='none';combination.style.display='block';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+        if(id==='comment'){comment.style.display='block';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+    }
+</script>
+<!--时间选择-->
+<script type="text/javascript">
+    function Time(){
+        var season=document.getElementById('season');
+        var month=document.getElementById('month');
+        var day=document.getElementById('day');
+        var date=document.getElementById('date');
+        if(document.getElementById("search-season").checked) {month.style.display='none';
+        day.style.display='none';
+        date.style.display='none';
+        season.style.display='block';}
+        else if(document.getElementById("search-month").checked) {
+            month.style.display='block';day.style.display='none';date.style.display='none';season.style.display='none';}
+        else if(document.getElementById("search-day").checked){
+            month.style.display='none';day.style.display='block';date.style.display='none';season.style.display='none';}
+        else if(document.getElementById("search-date").checked){
+            month.style.display='none';day.style.display='none';date.style.display='block';season.style.display='none';}
+
     }
 </script>
 <!--不同表格展示-->
@@ -459,6 +615,7 @@
         var actor=document.getElementById('actorTable');
         var category=document.getElementById('categoryTable');
         var combination=document.getElementById('combinationTable');
+        var comment=document.getElementById('commentTable');
         if(id==='time') {
             time.style.display='block';
             $.fn.dataTable.ext.errMode = 'throw';
@@ -586,6 +743,29 @@
             });}
         if(id==='combination'){combination.style.display='block';            $.fn.dataTable.ext.errMode = 'throw';
             $('#combination').DataTable({
+                "bPaginage": true,
+                "sPaginationType": "full_numbers",
+                "sAjaxSource": "/graph_manag.action",
+                "oLanguage": {
+                    "sLengthMenu": "每页显示 _MENU_ 条",
+                    "sZeroRecords": "没有找到符合条件的数据",
+                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+                    "sInfoEmpty": "没有记录",
+                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
+                    "sSearch": "搜索",
+                    "sProcessing": "数据加载中...",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上一页",
+                        "sNext": "下一页",
+                        "sLast": "尾页"
+                    }
+                }
+            });}
+        if(id==='comment'){
+            comment.style.display='block';
+            $.fn.dataTable.ext.errMode = 'throw';
+            $('#comment').DataTable({
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "sAjaxSource": "/graph_manag.action",
@@ -764,6 +944,56 @@ $(function () {
         }
     });
 });
+$(function () {
+        $('#commentcontainer').highcharts({
+            data: {
+                table: 'commentdatatable'
+            },
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: '两种模型执行时间比较'
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: 's',
+                    rotation: 0
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        this.point.y + 's ' + this.point.name.toLowerCase();
+                }
+            }
+        });
+    });
+</script>
+<script language="javascript" type="text/javascript">
+    window.onload=function(){
+//设置年份的选择
+        var myDate= new Date();
+        var startYear=myDate.getFullYear()-130;//起始年份
+        var endYear=myDate.getFullYear()+10;//结束年份
+        var obj=document.getElementById('myYear');
+        for (var i=startYear;i<=endYear;i++)
+        {
+            obj.options.add(new Option(i,i));
+        }
+        obj.options[obj.options.length-51].selected=1;
+    }
+</script>
+<script type="text/javascript">
+    //initiating jQuery
+    jQuery(function($) {
+        $(document).ready( function() {
+            //enabling stickUp on the '.navbar-wrapper' class
+            $('.navbar-wrapper').stickUp();
+        });
+    });
+
 </script>
 </body>
 </html>
