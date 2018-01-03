@@ -9,6 +9,9 @@
 <script src="js/highcharts.js"></script>
 <script src="js/data.js"></script>
 <script src="js/stickUp.min.js"></script>
+<script src="js/flatpickr.js"></script>
+<script src="js/index.js"></script>
+<link rel="stylesheet" type="text/css" href="css/flatpickr.min.css">
 <link rel="stylesheet" type="text/css" href="css/stickup.css"/>
 <link rel="stylesheet" type="text/css" href="css/navigation.css"/>
 <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css" />
@@ -55,54 +58,91 @@
 <!--Start 按照时间进行查询统计-->
 <div class="search bar6" id="search-time" style="display: none">
     <div class="container">
-    <div class="inquirebox" style="height:300px;">
+    <div class="inquirebox" style="height:360px;">
         <label class="title">根据时间查询</label>
         <form class="search-form" style="top:15px;width: 100%">
         <div class="year">年份</div><select class="select" id="myYear"></select>
-            <div>
-                <div class="year" style="margin-top: 10px;">查询条件</div>
-                <input id="search-season" name="time" type="radio" value="按季度查询" onclick="Time()"/>按季度查询
-                <input id="search-month" name="time" type="radio" value="按月份查询" onclick="Time()"/>按月份查询
-                <input id="search-day" name="time" type="radio" value="按天查询" onclick="Time()"/>按天查询
-                <input id="search-date" name="time" type="radio" value="具体日期查询" checked onclick="Time()"/>具体日期查询
+            <div class="year" style="margin-top: 20px;margin-bottom: 20px;">查询条件</div>
+            <div class="form-item">
+                <div class="dream-controls">
+                    <div class="ui-radio">
+                        <input type="radio" name="timetype" id="publicationdate" />
+                        <span class="radio-label">
+                            <label class="radio" for="publicationdate"></label>
+                            <label for="publicationdate">电影出版日期</label>
+                        </span>
+                        <input type="radio" name="timetype" id="releasdate" />
+                        <span class="radio-label">
+                            <label class="radio" for="releasdate"></label>
+                            <label for="releasdate">电影上映日期</label>
+                        </span>
+                    </div>
+                </div>
             </div>
-            <button type="button" onclick="Table('time')" style="border-radius: 0;right: 1100px;top:190px;"></button>
-            <div style="display:none" id="season">
-                <input name="season" type="checkbox" value="" />春
-                <input name="season" type="checkbox" value="" />夏
-                <input name="season" type="checkbox" value="" />秋
-                <input name="season" type="checkbox" value="" />冬
+            <div class="form-item">
+                <div class="dream-controls">
+                    <div class="ui-radio">
+                        <input type="radio" onclick="Time()" name="time" id="search-season" />
+                        <span class="radio-label">
+                            <label class="radio" for="search-season"></label>
+                            <label for="search-season">按季度查询</label>
+                        </span>
+                        <input type="radio" onclick="Time()" name="time" id="search-month" />
+                        <span class="radio-label">
+                            <label class="radio" for="search-month"></label>
+                            <label for="search-month">按月份查询</label>
+                        </span>
+                        <input type="radio" onclick="Time()" name="time" id="search-day" />
+                        <span class="radio-label">
+                            <label class="radio" for="search-day"></label>
+                            <label for="search-day">按天查询</label>
+                        </span>
+                        <input type="radio" onclick="Time()" name="time" id="search-date" />
+                        <span class="radio-label">
+                            <label class="radio" for="search-date"></label>
+                            <label for="search-date">具体日期查询</label>
+                        </span>
+                    </div>
+                </div>
             </div>
-            <div style="display:none" id="month">
-                <input name="month" type="checkbox" value="" />1
-                <input name="month" type="checkbox" value="" />2
-                <input name="month" type="checkbox" value="" />3
-                <input name="month" type="checkbox" value="" />4
-                <input name="month" type="checkbox" value="" />5
-                <input name="month" type="checkbox" value="" />6
-                <input name="month" type="checkbox" value="" />7
-                <input name="month" type="checkbox" value="" />8
-                <input name="month" type="checkbox" value="" />9
-                <input name="month" type="checkbox" value="" />10
-                <input name="month" type="checkbox" value="" />11
-                <input name="month" type="checkbox" value="" />12
+            <button type="button" onclick="Table('time')" style="border-radius: 0;right: 1100px;top:240px;"></button>
+
+            <div class="dream-controls" style="display:none" id="season">
+                <label class="ui-checkbox"><input type="checkbox" name="season"><span> 春</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="season"><span> 夏</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="season"><span> 秋</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="season"><span> 冬</span></label>
             </div>
-            <div style="display:none" id="day">
-                <input name="day" type="checkbox" value="" />周日
-                <input name="day" type="checkbox" value="" />周一
-                <input name="day" type="checkbox" value="" />周二
-                <input name="day" type="checkbox" value="" />周三
-                <input name="day" type="checkbox" value="" />周四
-                <input name="day" type="checkbox" value="" />周五
-                <input name="day" type="checkbox" value="" />周六
+            <div class="dream-controls" style="display:none" id="month">
+                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 1</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 2</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 3</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 4</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 5</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 6</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 7</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 8</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 9</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 10</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 11</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 12</span></label>
+            </div>
+            <div class="dream-controls" style="display:none" id="day">
+                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周日</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周一</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周二</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周三</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周四</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周五</span></label>
+                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周六</span></label>
             </div>
             <div style="display:none" id="date">
-
+                <input id="myID">
             </div>
         </form>
     </div>
     <div id="timeTable" class="table-display">
-        <div id="container" class="result-container"></div>
+        <div id="container" class="result-container" style="margin-top: -90px"></div>
         <table id="datatable" class="table-display">
             <thead>
             <tr>
@@ -461,22 +501,22 @@
     <div class="container">
         <div class="inquirebox" style="height:380px;">
             <label class="title">高级查询</label>
-        <form style="margin: 0;top:10px;right:40px;">
-            <label style="float: left;margin-top: 20px;margin-left: 38px;">年份：</label>
+        <form style="margin: 0;top:10px;width: 500px">
+            <label style="float:left;margin-top: 22px;">年份：</label>
             <input type="text" placeholder="请输入上映年份" class="combination-search"/>
-            <label style="float: left;margin-top: 20px;margin-left: 22px;">电影名：</label>
+            <label style="float: left;margin-left: -63px;margin-top: 70px;">电影名：</label>
             <input type="text" placeholder="请输入电影名" class="combination-search"/>
-            <label style="float: left;margin-top: 75px;margin-left: -65px;">导演名：</label>
+            <label style="float: left;margin-left: -63px;margin-top: 70px;">导演名：</label>
             <input type="text" placeholder="请输入导演名" class="combination-search"/>
-            <label style="float: left;margin-top: 75px;margin-left: -65px;">演员名：</label>
+            <label style="float: left;margin-left: -63px;margin-top: 70px;">演员名：</label>
             <input type="text" placeholder="请输入演员名" class="combination-search"/>
-            <label style="float: left;margin-top: 75px;margin-left: -80px;">电影类别：</label>
+            <label style="float: left;margin-left: -80px;margin-top: 70px;">电影类别：</label>
             <input type="text" placeholder="请输入电影类别" class="combination-search"/>
-            <button style="float: left;margin-top: 270px;margin-right: 50px;border-radius: 0;width: 167px;" type="button" onclick="Table('combination')"></button>
+            <button style="float: left;margin-top: 270px;margin-right: 280px;border-radius: 0;width: 167px;" type="button" onclick="Table('combination')"></button>
         </form>
     </div>
     <div id="combinationTable" class="table-display">
-        <div id="combinationcontainer" class="result-container"></div>
+        <div id="combinationcontainer" class="result-container" style="margin-top: -380px"></div>
         <table id="combinationdatatable" class="table-display">
             <thead>
             <tr>
@@ -526,451 +566,6 @@
     </div>
 </div>
 <!--End 组合查询进行查询统计-->
-<!--加载不同表格-->
-<!--<script>
-    $(document).ready(function() {
-        $.fn.dataTable.ext.errMode = 'throw';
-        $('#time').DataTable({
-            "bPaginage": true,
-            "sPaginationType": "full_numbers",
-            "sAjaxSource": "/graph_manag.action",
-            "oLanguage": {
-                "sLengthMenu": "每页显示 _MENU_ 条",
-                "sZeroRecords": "没有找到符合条件的数据",
-                "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-                "sInfoEmpty": "没有记录",
-                "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
-                "sSearch": "搜索",
-                "sProcessing": "数据加载中...",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "上一页",
-                    "sNext": "下一页",
-                    "sLast": "尾页"
-                }
-            }
-        });
-    } );
-    $(document).ready(function() {
-        $('#name').DataTable();
-    } );
-    $(document).ready(function() {
-        $('#director').DataTable();
-    } );
-    $(document).ready(function() {
-        $('#actor').DataTable();
-    } );
-    $(document).ready(function() {
-        $('#category').DataTable();
-    } );
-    $(document).ready(function() {
-        $('#combination').DataTable();
-    } );
-</script>-->
-<!--不同界面展示-->
-<script type="text/javascript">
-    function toggle(id){
-        var time=document.getElementById('search-time');
-        var name=document.getElementById('search-name');
-        var director=document.getElementById('search-director');
-        var actor=document.getElementById('search-actor');
-        var category=document.getElementById('search-category');
-        var combination=document.getElementById('search-combination');
-        var comment=document.getElementById('search-comment');
-        if(id==='time') {comment.style.display='none';combination.style.display='none';category.style.display='none';name.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='block';}
-        if(id==='name') {comment.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='none';name.style.display='block';}
-        if(id==='director') {comment.style.display='none';combination.style.display='none';category.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';director.style.display='block';}
-        if(id==='actor'){comment.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='block';}
-        if(id==='category'){comment.style.display='none';combination.style.display='none';category.style.display='block';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
-        if(id==='combination'){comment.style.display='none';combination.style.display='block';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
-        if(id==='comment'){comment.style.display='block';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
-    }
-</script>
-<!--时间选择-->
-<script type="text/javascript">
-    function Time(){
-        var season=document.getElementById('season');
-        var month=document.getElementById('month');
-        var day=document.getElementById('day');
-        var date=document.getElementById('date');
-        if(document.getElementById("search-season").checked) {month.style.display='none';
-        day.style.display='none';
-        date.style.display='none';
-        season.style.display='block';}
-        else if(document.getElementById("search-month").checked) {
-            month.style.display='block';day.style.display='none';date.style.display='none';season.style.display='none';}
-        else if(document.getElementById("search-day").checked){
-            month.style.display='none';day.style.display='block';date.style.display='none';season.style.display='none';}
-        else if(document.getElementById("search-date").checked){
-            month.style.display='none';day.style.display='none';date.style.display='block';season.style.display='none';}
-
-    }
-</script>
-<!--不同表格展示-->
-<script type="text/javascript">
-    function Table(id){
-        var time=document.getElementById('timeTable');
-        var name=document.getElementById('nameTable');
-        var director=document.getElementById('directorTable');
-        var actor=document.getElementById('actorTable');
-        var category=document.getElementById('categoryTable');
-        var combination=document.getElementById('combinationTable');
-        var comment=document.getElementById('commentTable');
-        if(id==='time') {
-            time.style.display='block';
-            $.fn.dataTable.ext.errMode = 'throw';
-            /*            var dtname = $('#time').DataTable({ajax: "data.json"});
-            setInterval( function () {
-                dtname.ajax.reload();
-            } );*/
-            var dtname;
-            dtname = $('#time').DataTable({
-                    "data": [
-                        [ "Tiger Nixon", "System Architect", "$3,120", "2011/04/25", "Edinburgh", 5421 ],
-                        [ "Garrett Winters", "Director", "$8,422", "2011/07/25", "Edinburgh", 8422 ],
-                        // 获得数据
-                    ],
-                "bPaginage": true,
-                "sPaginationType": "full_numbers",
-                "sAjaxSource": "/graph_manag.action",
-                "oLanguage": {
-                    "sLengthMenu": "每页显示 _MENU_ 条",
-                    "sZeroRecords": "没有找到符合条件的数据",
-                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-                    "sInfoEmpty": "没有记录",
-                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
-                    "sSearch": "搜索",
-                    "sProcessing": "数据加载中...",
-                    "oPaginate": {
-                        "sFirst": "首页",
-                        "sPrevious": "上一页",
-                        "sNext": "下一页",
-                        "sLast": "尾页"
-                    }
-                }
-            }
-            )
-
-        }
-        if(id==='name') {
-            name.style.display='block';
-            $.fn.dataTable.ext.errMode = 'throw';
-            $('#name').DataTable({
-                "bPaginage": true,
-                "sPaginationType": "full_numbers",
-                "sAjaxSource": "/graph_manag.action",
-                "oLanguage": {
-                    "sLengthMenu": "每页显示 _MENU_ 条",
-                    "sZeroRecords": "没有找到符合条件的数据",
-                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-                    "sInfoEmpty": "没有记录",
-                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
-                    "sSearch": "搜索",
-                    "sProcessing": "数据加载中...",
-                    "oPaginate": {
-                        "sFirst": "首页",
-                        "sPrevious": "上一页",
-                        "sNext": "下一页",
-                        "sLast": "尾页"
-                    }
-                }
-            });
-        }
-        if(id==='director') {director.style.display='block';
-            $.fn.dataTable.ext.errMode = 'throw';
-            $('#director').DataTable({
-                "bPaginage": true,
-                "sPaginationType": "full_numbers",
-                "sAjaxSource": "/graph_manag.action",
-                "oLanguage": {
-                    "sLengthMenu": "每页显示 _MENU_ 条",
-                    "sZeroRecords": "没有找到符合条件的数据",
-                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-                    "sInfoEmpty": "没有记录",
-                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
-                    "sSearch": "搜索",
-                    "sProcessing": "数据加载中...",
-                    "oPaginate": {
-                        "sFirst": "首页",
-                        "sPrevious": "上一页",
-                        "sNext": "下一页",
-                        "sLast": "尾页"
-                    }
-                }
-            });}
-        if(id==='actor'){actor.style.display='block';
-            $.fn.dataTable.ext.errMode = 'throw';
-            $('#actor').DataTable({
-                "bPaginage": true,
-                "sPaginationType": "full_numbers",
-                "sAjaxSource": "/graph_manag.action",
-                "oLanguage": {
-                    "sLengthMenu": "每页显示 _MENU_ 条",
-                    "sZeroRecords": "没有找到符合条件的数据",
-                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-                    "sInfoEmpty": "没有记录",
-                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
-                    "sSearch": "搜索",
-                    "sProcessing": "数据加载中...",
-                    "oPaginate": {
-                        "sFirst": "首页",
-                        "sPrevious": "上一页",
-                        "sNext": "下一页",
-                        "sLast": "尾页"
-                    }
-                }
-            });}
-        if(id==='category'){category.style.display='block';            $.fn.dataTable.ext.errMode = 'throw';
-            $('#category').DataTable({
-                "bPaginage": true,
-                "sPaginationType": "full_numbers",
-                "sAjaxSource": "/graph_manag.action",
-                "oLanguage": {
-                    "sLengthMenu": "每页显示 _MENU_ 条",
-                    "sZeroRecords": "没有找到符合条件的数据",
-                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-                    "sInfoEmpty": "没有记录",
-                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
-                    "sSearch": "搜索",
-                    "sProcessing": "数据加载中...",
-                    "oPaginate": {
-                        "sFirst": "首页",
-                        "sPrevious": "上一页",
-                        "sNext": "下一页",
-                        "sLast": "尾页"
-                    }
-                }
-            });}
-        if(id==='combination'){combination.style.display='block';            $.fn.dataTable.ext.errMode = 'throw';
-            $('#combination').DataTable({
-                "bPaginage": true,
-                "sPaginationType": "full_numbers",
-                "sAjaxSource": "/graph_manag.action",
-                "oLanguage": {
-                    "sLengthMenu": "每页显示 _MENU_ 条",
-                    "sZeroRecords": "没有找到符合条件的数据",
-                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-                    "sInfoEmpty": "没有记录",
-                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
-                    "sSearch": "搜索",
-                    "sProcessing": "数据加载中...",
-                    "oPaginate": {
-                        "sFirst": "首页",
-                        "sPrevious": "上一页",
-                        "sNext": "下一页",
-                        "sLast": "尾页"
-                    }
-                }
-            });}
-        if(id==='comment'){
-            comment.style.display='block';
-            $.fn.dataTable.ext.errMode = 'throw';
-            $('#comment').DataTable({
-                "bPaginage": true,
-                "sPaginationType": "full_numbers",
-                "sAjaxSource": "/graph_manag.action",
-                "oLanguage": {
-                    "sLengthMenu": "每页显示 _MENU_ 条",
-                    "sZeroRecords": "没有找到符合条件的数据",
-                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-                    "sInfoEmpty": "没有记录",
-                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
-                    "sSearch": "搜索",
-                    "sProcessing": "数据加载中...",
-                    "oPaginate": {
-                        "sFirst": "首页",
-                        "sPrevious": "上一页",
-                        "sNext": "下一页",
-                        "sLast": "尾页"
-                    }
-                }
-            });}
-    }
-</script>
-<script>
-    $(function () {
-    $('#container').highcharts({
-        data: {
-            table: 'datatable'
-        },
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '两种模型执行时间比较'
-        },
-        yAxis: {
-            allowDecimals: false,
-            title: {
-                text: 's',
-                rotation: 0
-            }
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.point.y + 's ' + this.point.name.toLowerCase();
-            }
-        }
-    });
-});
-$(function () {
-    $('#actorcontainer').highcharts({
-        data: {
-            table: 'actordatatable'
-        },
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '两种模型执行时间比较'
-        },
-        yAxis: {
-            allowDecimals: false,
-            title: {
-                text: 's',
-                rotation: 0
-            }
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.point.y + 's ' + this.point.name.toLowerCase();
-            }
-        }
-    });
-});
-$(function () {
-    $('#directorcontainer').highcharts({
-        data: {
-            table: 'directordatatable'
-        },
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '两种模型执行时间比较'
-        },
-        yAxis: {
-            allowDecimals: false,
-            title: {
-                text: 's',
-                rotation: 0
-            }
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.point.y + 's ' + this.point.name.toLowerCase();
-            }
-        }
-    });
-});
-$(function () {
-    $('#combinationcontainer').highcharts({
-        data: {
-            table: 'combinationdatatable'
-        },
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '两种模型执行时间比较'
-        },
-        yAxis: {
-            allowDecimals: false,
-            title: {
-                text: 's',
-                rotation: 0
-            }
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.point.y + 's ' + this.point.name.toLowerCase();
-            }
-        }
-    });
-});
-$(function () {
-    $('#categorycontainer').highcharts({
-        data: {
-            table: 'categorydatatable'
-        },
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '两种模型执行时间比较'
-        },
-        yAxis: {
-            allowDecimals: false,
-            title: {
-                text: 's',
-                rotation: 0
-            }
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.point.y + 's ' + this.point.name.toLowerCase();
-            }
-        }
-    });
-});
-$(function () {
-    $('#namecontainer').highcharts({
-        data: {
-            table: 'namedatatable'
-        },
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '两种模型执行时间比较'
-        },
-        yAxis: {
-            allowDecimals: false,
-            title: {
-                text: 's',
-                rotation: 0
-            }
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.point.y + 's ' + this.point.name.toLowerCase();
-            }
-        }
-    });
-});
-$(function () {
-        $('#commentcontainer').highcharts({
-            data: {
-                table: 'commentdatatable'
-            },
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: '两种模型执行时间比较'
-            },
-            yAxis: {
-                allowDecimals: false,
-                title: {
-                    text: 's',
-                    rotation: 0
-                }
-            },
-            tooltip: {
-                formatter: function () {
-                    return '<b>' + this.series.name + '</b><br/>' +
-                        this.point.y + 's ' + this.point.name.toLowerCase();
-                }
-            }
-        });
-    });
-</script>
 <script language="javascript" type="text/javascript">
     window.onload=function(){
 //设置年份的选择
@@ -993,7 +588,7 @@ $(function () {
             $('.navbar-wrapper').stickUp();
         });
     });
-
+    document.getElementById("myID").flatpickr();
 </script>
 </body>
 </html>
