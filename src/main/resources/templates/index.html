@@ -54,26 +54,26 @@
 <!-- END NAVBAR -->
 <!--Start 按照时间进行查询统计-->
 <div class="search bar6" id="search-time" style="display: none">
-    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
-    <div style="margin-left: 50px;margin-top: 30px;height:260px;">
-        <label style="font-size: 40px;">根据时间查询</label>
-        <form style="margin: 0;top:10px;width: 100%">
-        <div style="color: rgba(0, 0, 0, 0.541176);font-size: 26px;">年份</div><select style="margin-top:10px;height:30px;width:70px" id="myYear"></select>
-            <div style="top:40px;">
-                <div style="color: rgba(0, 0, 0, 0.541176);font-size: 26px;margin-top: 10px;">查询条件</div>
+    <div class="container">
+    <div class="inquirebox" style="height:300px;">
+        <label class="title">根据时间查询</label>
+        <form class="search-form" style="top:15px;width: 100%">
+        <div class="year">年份</div><select class="select" id="myYear"></select>
+            <div>
+                <div class="year" style="margin-top: 10px;">查询条件</div>
                 <input id="search-season" name="time" type="radio" value="按季度查询" onclick="Time()"/>按季度查询
                 <input id="search-month" name="time" type="radio" value="按月份查询" onclick="Time()"/>按月份查询
                 <input id="search-day" name="time" type="radio" value="按天查询" onclick="Time()"/>按天查询
                 <input id="search-date" name="time" type="radio" value="具体日期查询" checked onclick="Time()"/>具体日期查询
             </div>
-            <button type="button" onclick="Table('time')" style="border-radius: 0;right: 1100px;"></button>
-            <div style="top:40px;display:none" id="season">
+            <button type="button" onclick="Table('time')" style="border-radius: 0;right: 1100px;top:190px;"></button>
+            <div style="display:none" id="season">
                 <input name="season" type="checkbox" value="" />春
                 <input name="season" type="checkbox" value="" />夏
                 <input name="season" type="checkbox" value="" />秋
                 <input name="season" type="checkbox" value="" />冬
             </div>
-            <div style="top:40px;display:none" id="month">
+            <div style="display:none" id="month">
                 <input name="month" type="checkbox" value="" />1
                 <input name="month" type="checkbox" value="" />2
                 <input name="month" type="checkbox" value="" />3
@@ -87,7 +87,7 @@
                 <input name="month" type="checkbox" value="" />11
                 <input name="month" type="checkbox" value="" />12
             </div>
-            <div style="top:40px;display:none" id="day">
+            <div style="display:none" id="day">
                 <input name="day" type="checkbox" value="" />周日
                 <input name="day" type="checkbox" value="" />周一
                 <input name="day" type="checkbox" value="" />周二
@@ -96,14 +96,14 @@
                 <input name="day" type="checkbox" value="" />周五
                 <input name="day" type="checkbox" value="" />周六
             </div>
-            <div style="top:40px;display:none" id="date">
+            <div style="display:none" id="date">
 
             </div>
         </form>
     </div>
-    <div id="timeTable" style="display: none;margin:30px;">
-        <div id="container" style="height: 300px;width: 500px;float: right;margin-top:-130px;"></div>
-        <table id="datatable" style="display: none">
+    <div id="timeTable" class="table-display">
+        <div id="container" class="result-container"></div>
+        <table id="datatable" class="table-display">
             <thead>
             <tr>
                 <th></th>
@@ -119,7 +119,7 @@
             </tr>
             </tbody>
         </table>
-        <div style="float:left;margin-left: 20px;">
+        <div class="result-text">
             <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
             <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
             <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
@@ -153,17 +153,17 @@
 <!--End 按照时间进行查询统计-->
 <!--Start 按照电影名进行查询统计-->
 <div  class="search bar6" id="search-name" style="display: none">
-    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
-    <div style="margin-left: 50px;margin-top: 30px;height:130px;">
-        <label style="font-size: 40px;">根据电影名查询</label>
-        <form style="margin: 0;top:30px">
-            <input type="text" placeholder="请输入电影名" style="width: 80%;height: 36px;"/>
+    <div class="container">
+    <div class="inquirebox">
+        <label class="title">根据电影名查询</label>
+        <form class="search-form">
+            <input type="text" placeholder="请输入电影名" class="input-button"/>
             <button type="button" onclick="Table('name')"></button>
         </form>
     </div>
-    <div id="nameTable" style="display: none;margin: 30px;">
-        <div id="namecontainer" style="height: 300px;width: 500px;float: right;margin-top:-130px"></div>
-        <table id="namedatatable" style="display: none;margin:30px">
+    <div id="nameTable" class="table-display">
+        <div id="namecontainer" class="result-container"></div>
+        <table id="namedatatable" class="table-display">
             <thead>
             <tr>
                 <th></th>
@@ -179,7 +179,7 @@
             </tr>
             </tbody>
         </table>
-        <div style="float:left;margin-left: 20px;">
+        <div class="result-text">
             <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
             <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
             <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
@@ -214,17 +214,17 @@
 <!--End 按照电影名进行查询统计-->
 <!--Start 按照导演进行查询统计-->
 <div  class="search bar6" id="search-director" style="display: none">
-    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
-        <div style="margin-left: 50px;margin-top: 30px;height:130px;">
-            <label style="font-size: 40px;">根据导演名查询</label>
-        <form style="margin: 0;top:30px">
-            <input type="text" placeholder="请输入导演名" style="width: 80%;height: 36px;"/>
+    <div class="container">
+        <div class="inquirebox">
+            <label class="title">根据导演名查询</label>
+        <form class="search-form">
+            <input type="text" placeholder="请输入导演名" class="input-button"/>
             <button type="button" onclick="Table('director')"></button>
         </form>
     </div>
-    <div id="directorTable" style="display: none;margin:30px;">
-        <div id="directorcontainer" style="height: 300px;width: 500px;float: right;margin-top:-130px"></div>
-        <table id="directordatatable" style="display: none">
+    <div id="directorTable" class="table-display">
+        <div id="directorcontainer" class="result-container"></div>
+        <table id="directordatatable" class="table-display">
             <thead>
             <tr>
                 <th></th>
@@ -240,7 +240,7 @@
             </tr>
             </tbody>
         </table>
-        <div style="float:left;margin-left: 20px;">
+        <div class="result-text">
             <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
             <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
             <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
@@ -275,17 +275,17 @@
 <!--End 按照导演进行查询统计-->
 <!--Start 按照演员进行查询统计-->
 <div  class="search bar6" id="search-actor" style="display: none">
-    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
-        <div style="margin-left: 50px;margin-top: 30px;height:130px;">
-            <label style="font-size: 40px;">根据演员名查询</label>
-        <form style="margin: 0;top:30px">
-            <input type="text" placeholder="请输入演员名" style="width: 80%;height: 36px;"/>
+    <div class="container">
+        <div class="inquirebox">
+            <label class="title">根据演员名查询</label>
+        <form class="search-form">
+            <input type="text" placeholder="请输入演员名" class="input-button"/>
             <button type="button" onclick="Table('actor')"></button>
         </form>
     </div>
-    <div id="actorTable" style="display: none;margin:30px;">
-        <div id="actorcontainer" style="height: 300px;width: 500px;float: right;margin-top:-130px"></div>
-        <table id="actordatatable" style="display: none">
+    <div id="actorTable" class="table-display">
+        <div id="actorcontainer" class="result-container"></div>
+        <table id="actordatatable" class="table-display">
             <thead>
             <tr>
                 <th></th>
@@ -301,7 +301,7 @@
             </tr>
             </tbody>
         </table>
-        <div style="float:left;margin-left: 20px;">
+        <div class="result-text">
             <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
             <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
             <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
@@ -336,17 +336,17 @@
 <!--End 按照演员进行查询统计-->
 <!--Start 按照电影类别进行查询统计-->
 <div  class="search bar6" id="search-category" style="display: none">
-    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
-        <div style="margin-left: 50px;margin-top: 30px;height:130px;">
-            <label style="font-size: 40px;">根据电影类别查询</label>
-        <form style="margin: 0;top:30px">
-            <input type="text" placeholder="请输入电影类别名" style="width: 80%;height: 36px;"/>
+    <div class="container">
+        <div class="inquirebox">
+            <label class="title">根据电影类别查询</label>
+        <form class="search-form">
+            <input type="text" placeholder="请输入电影类别名" class="input-button"/>
             <button type="button" onclick="Table('category')"></button>
         </form>
     </div>
-    <div id="categoryTable" style="display: none;margin:30px;">
-        <div id="categorycontainer" style="height: 300px;width: 500px;float: right;margin-top:-130px"></div>
-        <table id="categorydatatable" style="display: none">
+    <div id="categoryTable" class="table-display">
+        <div id="categorycontainer" class="result-container"></div>
+        <table id="categorydatatable" class="table-display">
             <thead>
             <tr>
                 <th></th>
@@ -362,7 +362,7 @@
             </tr>
             </tbody>
         </table>
-        <div style="float:left;margin-left: 20px;">
+        <div class="result-text">
             <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
             <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
             <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
@@ -397,17 +397,17 @@
 <!--End 按照电影类别进行查询统计-->
 <!--Start 电影评论进行查询统计-->
 <div  class="search bar6" id="search-comment" style="display: none">
-    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
-        <div style="margin-left: 50px;margin-top: 30px;height:130px;">
-            <label style="font-size: 40px;">根据电影名查询评价</label>
-        <form style="margin: 0;top:30px">
-            <input type="text" placeholder="请输入电影名" style="width: 80%;height: 36px;"/>
+    <div class="container">
+        <div class="inquirebox">
+            <label class="title">根据电影名查询评价</label>
+        <form class="search-form">
+            <input type="text" placeholder="请输入电影名" class="input-button"/>
             <button type="button" onclick="Table('comment')"></button>
         </form>
     </div>
-    <div id="commentTable" style="display: none;margin:30px;">
-        <div id="commentcontainer" style="height: 300px;width: 500px;float: right;margin-top:-130px"></div>
-        <table id="commentdatatable" style="display: none">
+    <div id="commentTable" class="table-display">
+        <div id="commentcontainer" class="result-container"></div>
+        <table id="commentdatatable" class="table-display">
             <thead>
             <tr>
                 <th></th>
@@ -423,7 +423,7 @@
             </tr>
             </tbody>
         </table>
-        <div style="float:left;margin-left: 20px;">
+        <div class="result-text">
             <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
             <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
             <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
@@ -458,26 +458,26 @@
 <!--End 电影评论进行查询统计-->
 <!--Start 组合查询进行查询统计-->
 <div  class="search bar6" id="search-combination" style="display: none">
-    <div style="font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;margin: 20px;">
-        <div style="margin-left: 50px;margin-top: 30px;height:380px;">
-            <label style="font-size: 40px;">高级查询</label>
+    <div class="container">
+        <div class="inquirebox" style="height:380px;">
+            <label class="title">高级查询</label>
         <form style="margin: 0;top:10px;right:40px;">
             <label style="float: left;margin-top: 20px;margin-left: 38px;">年份：</label>
-            <input type="text" placeholder="请输入上映年份" style="margin-top:10px;width: 50%;height: 36px;"/>
+            <input type="text" placeholder="请输入上映年份" class="combination-search"/>
             <label style="float: left;margin-top: 20px;margin-left: 22px;">电影名：</label>
-            <input type="text" placeholder="请输入电影名" style="margin-top:10px;width: 50%;height: 36px;"/>
+            <input type="text" placeholder="请输入电影名" class="combination-search"/>
             <label style="float: left;margin-top: 75px;margin-left: -65px;">导演名：</label>
-            <input type="text" placeholder="请输入导演名" style="margin-top:10px;width: 50%;height: 36px;"/>
+            <input type="text" placeholder="请输入导演名" class="combination-search"/>
             <label style="float: left;margin-top: 75px;margin-left: -65px;">演员名：</label>
-            <input type="text" placeholder="请输入演员名" style="margin-top:10px;width: 50%;height: 36px;"/>
+            <input type="text" placeholder="请输入演员名" class="combination-search"/>
             <label style="float: left;margin-top: 75px;margin-left: -80px;">电影类别：</label>
-            <input type="text" placeholder="请输入电影类别" style="margin-top:10px;width: 50%;height: 36px;"/>
+            <input type="text" placeholder="请输入电影类别" class="combination-search"/>
             <button style="float: left;margin-top: 270px;margin-right: 50px;border-radius: 0;width: 167px;" type="button" onclick="Table('combination')"></button>
         </form>
     </div>
-    <div id="combinationTable" style="display: none;margin:30px;">
-        <div id="combinationcontainer" style="margin: 0 auto;height: 300px;width: 500px;float: right;margin-top:-130px"></div>
-        <table id="combinationdatatable" style="display: none">
+    <div id="combinationTable" class="table-display">
+        <div id="combinationcontainer" class="result-container"></div>
+        <table id="combinationdatatable" class="table-display">
             <thead>
             <tr>
                 <th></th>
@@ -493,7 +493,7 @@
             </tr>
             </tbody>
         </table>
-        <div style="float:left;margin-left: 20px;">
+        <div class="result-text">
         <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
         <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
         <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
@@ -505,7 +505,7 @@
                 <th>Position</th>
                 <th>Office</th>
                 <th>Age</th>
-                <th data-orderable="false">Start date</th>
+                <th>Start date</th>
                 <th>Salary</th>
             </tr>
             </thead>

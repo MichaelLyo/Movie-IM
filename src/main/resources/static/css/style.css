@@ -1,0 +1,50 @@
+.container{
+    font-family: Roboto, sans-serif;background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    margin: 20px;
+}
+.inquirebox{
+    margin-left: 50px;
+    margin-top: 30px;
+    height:130px;
+    padding-top: 20px;
+}
+.title{
+    font-size: 40px;
+}
+.search-form{
+    margin: 0;
+    top:30px
+}
+.input-button{
+    width: 80%;
+    height: 36px;
+}
+.result-container{
+    height: 300px;
+    width: 500px;
+    float: right;
+    margin-top:-130px
+}
+.result-text{
+    float:left;
+    margin-left: 20px;
+}
+.table-display{
+    display: none;
+    margin: 30px;
+}
+.combination-search{
+    margin-top:10px;
+    width: 50%;
+    height: 36px;
+}
+.year{
+    color: rgba(0, 0, 0, 0.541176);
+    font-size: 26px;
+}
+.select{
+    margin-top:10px;
+    height:30px;
+    width:70px
+}
