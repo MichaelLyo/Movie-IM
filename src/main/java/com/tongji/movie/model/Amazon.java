@@ -31,44 +31,12 @@ public class Amazon {
         this.publicationDate = publicationDate;
     }
 
-    public String getActors() {
-        return actors;
+    public String getLanguageId() {
+        return languageId;
     }
 
-    public void setActors(String actors) {
-        this.actors = actors;
-    }
-
-    public String getStarring() {
-        return starring;
-    }
-
-    public void setStarring(String starring) {
-        this.starring = starring;
-    }
-
-    public String getGenres() {
-        return genres;
-    }
-
-    public void setGenres(String genres) {
-        this.genres = genres;
-    }
-
-    public String getDirectors() {
-        return directors;
-    }
-
-    public void setDirectors(String directors) {
-        this.directors = directors;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setLanguageId(String languageId) {
+        this.languageId = languageId;
     }
 
     public String getEdition() {
@@ -125,15 +93,7 @@ public class Amazon {
 
     private String publicationDate;
 
-    private String actors;
-
-    private String starring;
-
-    private String genres;
-
-    private String directors;
-
-    private String language;
+    private String languageId;
 
     private String edition;
 
@@ -146,4 +106,6 @@ public class Amazon {
     private String runTime;
 
     private String studio;
+
 }
+
