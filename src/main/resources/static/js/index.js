@@ -83,18 +83,18 @@ function toggle(id){
             } );*/
             var dtname;
             dtname = $('#time').DataTable({
-                "aoColumns": [
-                    /*{"mData": "name"},
+/*                "aoColumns": [
+                    /!*{"mData": "name"},
                     {"mData": "time"},
                     {"mData": "genre"},
                     {"mData": "director"},
                     {"mData": "actor"},
-                    {"mData": "version"}*/
+                    {"mData": "version"}*!/
                     {"mData": "id"},
                     {"mData": "graphname"},
                     {"mData": "storageSize"},
                     {"mData": "iscluster"}
-                    ],
+                    ],*/
                     /*"data": [
                         [ "Tiger Nixon", "System Architect", "$3,120", "2011/04/25", "Edinburgh", 5421 ],
                         [ "Garrett Winters", "Director", "$8,422", "2011/07/25", "Edinburgh", 8422 ],
@@ -120,7 +120,7 @@ function toggle(id){
                     }
                 }
             );
-            $.ajax({
+/*            $.ajax({
                 type: "get",
                 url: "/time.action",
                 async: false,
@@ -132,7 +132,7 @@ function toggle(id){
                 error: function (data) {
                     alert("删除失败");
                 }
-            });
+            });*/
         }
         if(id==='name') {
             name.style.display='block';
