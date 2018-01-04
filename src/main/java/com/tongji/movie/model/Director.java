@@ -6,6 +6,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Director")
 public class Director {
+
+    private String movieId;
+
+    private String name;
+
     public String getMovieId() {
         return movieId;
     }
@@ -14,15 +19,11 @@ public class Director {
         this.movieId = movieId;
     }
 
-    public String getDirectorName() {
-        return directorName;
+    public String getName() {
+        return name;
     }
 
-    public void setDirectorName(String directorName) {
-        this.directorName = directorName;
+    public void setName(String name) {
+        this.name = name;
     }
-
-    private String movieId;
-
-    private String directorName;
 }

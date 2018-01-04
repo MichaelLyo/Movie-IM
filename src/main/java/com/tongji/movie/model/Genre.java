@@ -6,6 +6,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Genre")
 public class Genre {
+
     public String getMovieId() {
         return movieId;
     }
@@ -14,15 +15,15 @@ public class Genre {
         this.movieId = movieId;
     }
 
-    public String getGenreType() {
-        return genreType;
+    public String getName() {
+        return name;
     }
 
-    public void setGenreType(String genreType) {
-        this.genreType = genreType;
+    public void setName(String name) {
+        this.name = name;
     }
 
     private String movieId;
 
-    private String genreType;
+    private String name;
 }

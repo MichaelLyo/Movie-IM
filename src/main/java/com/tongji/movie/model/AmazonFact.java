@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Amazon")
-public class Amazon {
+@Table(name="AmazonFact")
+public class AmazonFact {
 
     public String getMovieId() {
         return movieId;
@@ -29,14 +29,6 @@ public class Amazon {
 
     public void setPublicationDate(String publicationDate) {
         this.publicationDate = publicationDate;
-    }
-
-    public String getLanguageId() {
-        return languageId;
-    }
-
-    public void setLanguageId(String languageId) {
-        this.languageId = languageId;
     }
 
     public String getEdition() {
@@ -92,8 +84,6 @@ public class Amazon {
     private String releaseDate;
 
     private String publicationDate;
-
-    private String languageId;
 
     private String edition;
 

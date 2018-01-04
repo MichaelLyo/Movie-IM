@@ -6,6 +6,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Starring")
 public class Starring {
+
     public String getMovieId() {
         return movieId;
     }
@@ -14,15 +15,15 @@ public class Starring {
         this.movieId = movieId;
     }
 
-    public String getStarringName() {
-        return starringName;
+    public String getName() {
+        return name;
     }
 
-    public void setStarringName(String starringName) {
-        this.starringName = starringName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     private String movieId;
 
-    private String starringName;
+    private String name;
 }
