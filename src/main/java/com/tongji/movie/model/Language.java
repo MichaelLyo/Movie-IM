@@ -6,20 +6,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Language")
 public class Language {
-    public String getLanguageId() {
-        return languageId;
+
+    public String getMovieId() {
+        return movieId;
     }
 
-    public void setLanguageId(String languageId) {
-        this.languageId = languageId;
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
     }
 
-    public String getLanguageName() {
-        return languageName;
+    public String getName() {
+        return name;
     }
 
-    public void setLanguageName(String languageName) {
-        this.languageName = languageName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
@@ -30,9 +31,9 @@ public class Language {
         this.type = type;
     }
 
-    private String languageId;
+    private String movieId;
 
-    private String languageName;
+    private String name;
 
     private String type;
 }

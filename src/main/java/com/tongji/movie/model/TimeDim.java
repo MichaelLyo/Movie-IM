@@ -4,8 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Time")
-public class Time {
+@Table(name="TimeDim")
+public class TimeDim {
+
+    public String getTimeId() {
+        return timeId;
+    }
+
+    public void setTimeId(String timeId) {
+        this.timeId = timeId;
+    }
+
+    private String timeId;
+
     private int year;
 
     private int month;
