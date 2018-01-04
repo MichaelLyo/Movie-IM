@@ -62,7 +62,7 @@ public class HiveTest {
     public void createDB() throws SQLException{
         Connection con = getConnection();
         Statement stmt = con.createStatement();
-        String createAmazonFact = "create table if not exists AmazonFact ( movieId  String  ,releaseDate String , publicationDate String , languageId String ,edition String ,title String ,format String ,publisher String ,runTime String ,studio String  )" +
+        String createAmazonFact = "create table if not exists AmazonFact ( movieId  String  ,releaseDate String , publicationDate String , edition String ,title String ,format String ,publisher String ,runTime String ,studio String  )" +
                 "comment 'fact table'" +
                 "row format delimited " +
                 "fields terminated by ','" +

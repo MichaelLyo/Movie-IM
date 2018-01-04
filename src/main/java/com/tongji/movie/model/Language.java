@@ -1,6 +1,7 @@
 package com.tongji.movie.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +32,7 @@ public class Language {
         this.type = type;
     }
 
+    @Id
     private String movieId;
 
     private String name;

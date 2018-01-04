@@ -1,12 +1,14 @@
 package com.tongji.movie.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Actor")
 public class Actor {
 
+    @Id
     private String movieId;
 
     public String getMovieId() {
