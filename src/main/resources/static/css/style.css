@@ -24,11 +24,11 @@
     height: 300px;
     width: 500px;
     float: right;
-    margin-top:-130px
 }
 .result-text{
     float:left;
-    margin-left: 20px;
+    margin-left: 30px;
+    margin-top: 60px;
 }
 .table-display{
     display: none;
@@ -128,3 +128,4 @@
 
 .form-item,
 .dream-label { margin-bottom: 10px;}
+.dream-controls{margin-top:10px;}

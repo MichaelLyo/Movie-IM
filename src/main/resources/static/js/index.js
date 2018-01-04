@@ -1,63 +1,70 @@
 <!--不同界面展示-->
-
-    function toggle(id){
-        var time=document.getElementById('search-time');
-        var name=document.getElementById('search-name');
-        var director=document.getElementById('search-director');
-        var actor=document.getElementById('search-actor');
-        var category=document.getElementById('search-category');
-        var combination=document.getElementById('search-combination');
-        var comment=document.getElementById('search-comment');
-        if(id==='time') {comment.style.display='none';combination.style.display='none';category.style.display='none';name.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='block';}
-        if(id==='name') {comment.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='none';name.style.display='block';}
-        if(id==='director') {comment.style.display='none';combination.style.display='none';category.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';director.style.display='block';}
-        if(id==='actor'){comment.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='block';}
-        if(id==='category'){comment.style.display='none';combination.style.display='none';category.style.display='block';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
-        if(id==='combination'){comment.style.display='none';combination.style.display='block';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
-        if(id==='comment'){comment.style.display='block';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+function Time () {
+    var season=document.getElementsByName('season');
+    var month=document.getElementsByName('month');
+    for (var i = 0; i <  season.length ; i++) {
+        if (season[i].checked) {
+            for (var j = 0; j <  month.length ; j++) {
+                month[j].checked = false;
+                month[j].disabled = true;
+            }
+        }
+    }
+    for (var i = 0; i <  season.length ; i++) {
+        if (!season[i].checked) {
+            if(i===3){
+                for (var j = 0; j <  month.length ; j++) {
+                    month[j].disabled = false;
+                }
+            }
+        }
+        else{break;}
+    }
+    for (var i = 0; i <  month.length ; i++) {
+        if (month[i].checked) {
+            for (var j = 0; j <  month.length ; j++) {
+                season[j].checked = false;
+                season[j].disabled = true;
+            }
+        }
+    }
+    for (var i = 0; i <  month.length ; i++) {
+        if (!month[i].checked) {
+            if(i===11){
+                for (var j = 0; j <  season.length ; j++) {
+                    season[j].disabled = false;
+                }
+            }
+        }
+        else{break;}
+    }
+    if(document.getElementById("search-date").checked){
+        for (var i = 0; i <  document.getElementsByName('date').length ; i++) {
+            if (document.getElementsByName('date')[i].checked) {
+                document.getElementsByName('date')[i].checked=false;
+                document.getElementsByName('date')[i].disabled=true;
+            }
+        }
     }
 
-    function Time(){
-        var season=document.getElementById('season');
-        var month=document.getElementById('month');
-        var day=document.getElementById('day');
-        var date=document.getElementById('date');
-        if(document.getElementById("search-season").checked) {month.style.display='none';
-            day.style.display='none';
-            date.style.display='none';
-            season.style.display='block';
-            for (var i = 0; i <  document.getElementsByName('season').length ; i++) {
-                if (document.getElementsByName('season')[i].checked) {
-                    document.getElementsByName('season')[i].checked=false;
-                }
-            }
-        }
-        else if(document.getElementById("search-month").checked) {
-            month.style.display='block';day.style.display='none';date.style.display='none';season.style.display='none';
-            for (var i = 0; i <  document.getElementsByName('month').length ; i++) {
-                if (document.getElementsByName('month')[i].checked) {
-                    document.getElementsByName('month')[i].checked=false;
-                }
-            }
-        }
-        else if(document.getElementById("search-day").checked){
-            month.style.display='none';day.style.display='block';date.style.display='none';season.style.display='none';
-            for (var i = 0; i <  document.getElementsByName('day').length ; i++) {
-                if (document.getElementsByName('day')[i].checked) {
-                    document.getElementsByName('day')[i].checked=false;
-                }
-            }
-        }
-        else if(document.getElementById("search-date").checked){
-            month.style.display='none';day.style.display='none';date.style.display='block';season.style.display='none';
-            for (var i = 0; i <  document.getElementsByName('date').length ; i++) {
-                if (document.getElementsByName('date')[i].checked) {
-                    document.getElementsByName('date')[i].checked=false;
-                }
-            }
-        }
+}
+function toggle(id){
+    var time=document.getElementById('search-time');
+    var name=document.getElementById('search-name');
+    var director=document.getElementById('search-director');
+    var actor=document.getElementById('search-actor');
+    var category=document.getElementById('search-category');
+    var combination=document.getElementById('search-combination');
+    var comment=document.getElementById('search-comment');
+    if(id==='time') {comment.style.display='none';combination.style.display='none';category.style.display='none';name.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='block';}
+    if(id==='name') {comment.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='none';name.style.display='block';}
+    if(id==='director') {comment.style.display='none';combination.style.display='none';category.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';director.style.display='block';}
+    if(id==='actor'){comment.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='block';}
+    if(id==='category'){comment.style.display='none';combination.style.display='none';category.style.display='block';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+    if(id==='combination'){comment.style.display='none';combination.style.display='block';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+    if(id==='comment'){comment.style.display='block';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+}
 
-    }
 
     function Table(id){
         var time=document.getElementById('timeTable');
@@ -76,14 +83,26 @@
             } );*/
             var dtname;
             dtname = $('#time').DataTable({
-                    "data": [
+                "aoColumns": [
+                    /*{"mData": "name"},
+                    {"mData": "time"},
+                    {"mData": "genre"},
+                    {"mData": "director"},
+                    {"mData": "actor"},
+                    {"mData": "version"}*/
+                    {"mData": "id"},
+                    {"mData": "graphname"},
+                    {"mData": "storageSize"},
+                    {"mData": "iscluster"}
+                    ],
+                    /*"data": [
                         [ "Tiger Nixon", "System Architect", "$3,120", "2011/04/25", "Edinburgh", 5421 ],
                         [ "Garrett Winters", "Director", "$8,422", "2011/07/25", "Edinburgh", 8422 ],
                         // 获得数据
-                    ],
+                    ],*/
                     "bPaginage": true,
                     "sPaginationType": "full_numbers",
-                    "sAjaxSource": "/graph_manag.action",
+                    "sAjaxSource": "/",//这是要请求json数据的url
                     "oLanguage": {
                         "sLengthMenu": "每页显示 _MENU_ 条",
                         "sZeroRecords": "没有找到符合条件的数据",
@@ -100,13 +119,33 @@
                         }
                     }
                 }
-            )
-
+            );
+            $.ajax({
+                type: "get",
+                url: "/time.action",
+                async: false,
+                data: {name: "d"},
+                dataType: "json",
+                success: function (data) {
+                    alert("删除成功");
+                },
+                error: function (data) {
+                    alert("删除失败");
+                }
+            });
         }
         if(id==='name') {
             name.style.display='block';
             $.fn.dataTable.ext.errMode = 'throw';
             $('#name').DataTable({
+                "aoColumns": [
+                    {"mData": "name"},
+                    {"mData": "time"},
+                    {"mData": "genre"},
+                    {"mData": "director"},
+                    {"mData": "actor"},
+                    {"mData": "version"}
+                ],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "sAjaxSource": "/graph_manag.action",
@@ -130,6 +169,14 @@
         if(id==='director') {director.style.display='block';
             $.fn.dataTable.ext.errMode = 'throw';
             $('#director').DataTable({
+                "aoColumns": [
+                    {"mData": "name"},
+                    {"mData": "time"},
+                    {"mData": "genre"},
+                    {"mData": "director"},
+                    {"mData": "actor"},
+                    {"mData": "version"}
+                ],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "sAjaxSource": "/graph_manag.action",
@@ -152,6 +199,14 @@
         if(id==='actor'){actor.style.display='block';
             $.fn.dataTable.ext.errMode = 'throw';
             $('#actor').DataTable({
+                "aoColumns": [
+                    {"mData": "name"},
+                    {"mData": "time"},
+                    {"mData": "genre"},
+                    {"mData": "director"},
+                    {"mData": "actor"},
+                    {"mData": "version"}
+                ],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "sAjaxSource": "/graph_manag.action",
@@ -173,6 +228,14 @@
             });}
         if(id==='category'){category.style.display='block';            $.fn.dataTable.ext.errMode = 'throw';
             $('#category').DataTable({
+                "aoColumns": [
+                    {"mData": "name"},
+                    {"mData": "time"},
+                    {"mData": "genre"},
+                    {"mData": "director"},
+                    {"mData": "actor"},
+                    {"mData": "version"}
+                ],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "sAjaxSource": "/graph_manag.action",
@@ -194,6 +257,14 @@
             });}
         if(id==='combination'){combination.style.display='block';            $.fn.dataTable.ext.errMode = 'throw';
             $('#combination').DataTable({
+                "aoColumns": [
+                    {"mData": "name"},
+                    {"mData": "time"},
+                    {"mData": "genre"},
+                    {"mData": "director"},
+                    {"mData": "actor"},
+                    {"mData": "version"}
+                ],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "sAjaxSource": "/graph_manag.action",
@@ -217,6 +288,14 @@
             comment.style.display='block';
             $.fn.dataTable.ext.errMode = 'throw';
             $('#comment').DataTable({
+                "aoColumns": [
+                    {"mData": "name"},
+                    {"mData": "time"},
+                    {"mData": "genre"},
+                    {"mData": "director"},
+                    {"mData": "actor"},
+                    {"mData": "version"}
+                ],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "sAjaxSource": "/graph_manag.action",

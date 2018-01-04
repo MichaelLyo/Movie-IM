@@ -12,13 +12,12 @@
 <script src="js/flatpickr.js"></script>
 <script src="js/index.js"></script>
 <link rel="stylesheet" type="text/css" href="css/flatpickr.min.css">
-<link rel="stylesheet" type="text/css" href="css/stickup.css"/>
 <link rel="stylesheet" type="text/css" href="css/navigation.css"/>
 <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css" />
 <link rel="stylesheet" type="text/css" href="css/button.css"/>
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
-<body bgcolor=#f2f2f2>
-<div class="navbar-wrapper" id="animenu">
+<body bgcolor=#f2f2f2 style="margin: 0">
+<div class="navbar-wrapper" id="animenu" style="position:relative;top:-16px">
     <nav class="animenu">
         <button class="animenu__toggle">
             <span class="animenu__toggle__bar"></span>
@@ -58,11 +57,11 @@
 <!--Start 按照时间进行查询统计-->
 <div class="search bar6" id="search-time" style="display: none">
     <div class="container">
-    <div class="inquirebox" style="height:360px;">
+    <div class="inquirebox" style="height:600px;">
         <label class="title">根据时间查询</label>
-        <form class="search-form" style="top:15px;width: 100%">
+        <form class="search-form" style="top:15px;width: 800px">
         <div class="year">年份</div><select class="select" id="myYear"></select>
-            <div class="year" style="margin-top: 20px;margin-bottom: 20px;">查询条件</div>
+            <div class="year" style="margin-top: 10px;margin-bottom: 10px;">出版或上映</div>
             <div class="form-item">
                 <div class="dream-controls">
                     <div class="ui-radio">
@@ -82,67 +81,55 @@
             <div class="form-item">
                 <div class="dream-controls">
                     <div class="ui-radio">
-                        <input type="radio" onclick="Time()" name="time" id="search-season" />
-                        <span class="radio-label">
-                            <label class="radio" for="search-season"></label>
-                            <label for="search-season">按季度查询</label>
-                        </span>
-                        <input type="radio" onclick="Time()" name="time" id="search-month" />
-                        <span class="radio-label">
-                            <label class="radio" for="search-month"></label>
-                            <label for="search-month">按月份查询</label>
-                        </span>
-                        <input type="radio" onclick="Time()" name="time" id="search-day" />
-                        <span class="radio-label">
-                            <label class="radio" for="search-day"></label>
-                            <label for="search-day">按天查询</label>
-                        </span>
-                        <input type="radio" onclick="Time()" name="time" id="search-date" />
-                        <span class="radio-label">
-                            <label class="radio" for="search-date"></label>
-                            <label for="search-date">具体日期查询</label>
-                        </span>
+                        <div class="year" style="margin-top: 10px;margin-bottom: 10px;">季度</div>
+                        <div class="dream-controls" id="season">
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="season"><span> 春</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="season"><span> 夏</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="season"><span> 秋</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="season"><span> 冬</span></label>
+                        </div>
+                        <div class="year" style="margin-top: 10px;margin-bottom: 10px;">月份</div>
+                        <div class="dream-controls" id="month">
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 1</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 2</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 3</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 4</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 5</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 6</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 7</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 8</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 9</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 10</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 11</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 12</span></label>
+                        </div>
+                        <div class="year" style="margin-top: 10px;margin-bottom: 10px;">天</div>
+                        <div class="dream-controls" id="day">
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周日</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周一</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周二</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周三</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周四</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周五</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周六</span></label>
+                        </div>
+                        <div class="year" style="margin-top: 10px;margin-bottom: 10px;">具体日期</div>
+                        <div class="dream-controls">
+                            <input placeholder="点击输入具体日期" id="myID">
+                        </div>
                     </div>
                 </div>
             </div>
-            <button type="button" onclick="Table('time')" style="border-radius: 0;right: 1100px;top:240px;"></button>
-
-            <div class="dream-controls" style="display:none" id="season">
-                <label class="ui-checkbox"><input type="checkbox" name="season"><span> 春</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="season"><span> 夏</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="season"><span> 秋</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="season"><span> 冬</span></label>
-            </div>
-            <div class="dream-controls" style="display:none" id="month">
-                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 1</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 2</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 3</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 4</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 5</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 6</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 7</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 8</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 9</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 10</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 11</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="month"><span> 12</span></label>
-            </div>
-            <div class="dream-controls" style="display:none" id="day">
-                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周日</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周一</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周二</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周三</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周四</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周五</span></label>
-                <label class="ui-checkbox"><input type="checkbox" name="day"><span> 周六</span></label>
-            </div>
-            <div style="display:none" id="date">
-                <input id="myID">
-            </div>
+            <button type="button" onclick="Table('time')" style="border-radius: 0;left:0;top:480px;"></button>
         </form>
     </div>
+    </div>
+    <div class="container">
     <div id="timeTable" class="table-display">
-        <div id="container" class="result-container" style="margin-top: -90px"></div>
+        <div style="margin-left: 20px;padding-top: 20px;">
+            <label class="title">查询结果</label>
+        </div>
+        <div id="container" class="result-container"></div>
         <table id="datatable" class="table-display">
             <thead>
             <tr>
@@ -201,7 +188,12 @@
             <button type="button" onclick="Table('name')"></button>
         </form>
     </div>
+    </div>
+    <div class="container">
     <div id="nameTable" class="table-display">
+        <div style="margin-left: 20px;padding-top: 20px;">
+        <label class="title">查询结果</label>
+        </div>
         <div id="namecontainer" class="result-container"></div>
         <table id="namedatatable" class="table-display">
             <thead>
@@ -262,7 +254,12 @@
             <button type="button" onclick="Table('director')"></button>
         </form>
     </div>
+    </div>
+    <div class="container">
     <div id="directorTable" class="table-display">
+        <div style="margin-left: 20px;padding-top: 20px;">
+            <label class="title">查询结果</label>
+        </div>
         <div id="directorcontainer" class="result-container"></div>
         <table id="directordatatable" class="table-display">
             <thead>
@@ -323,7 +320,12 @@
             <button type="button" onclick="Table('actor')"></button>
         </form>
     </div>
+    </div>
+    <div class="container">
     <div id="actorTable" class="table-display">
+        <div style="margin-left: 20px;padding-top: 20px;">
+            <label class="title">查询结果</label>
+        </div>
         <div id="actorcontainer" class="result-container"></div>
         <table id="actordatatable" class="table-display">
             <thead>
@@ -384,7 +386,12 @@
             <button type="button" onclick="Table('category')"></button>
         </form>
     </div>
+    </div>
+    <div class="container">
     <div id="categoryTable" class="table-display">
+        <div style="margin-left: 20px;padding-top: 20px;">
+            <label class="title">查询结果</label>
+        </div>
         <div id="categorycontainer" class="result-container"></div>
         <table id="categorydatatable" class="table-display">
             <thead>
@@ -439,13 +446,18 @@
 <div  class="search bar6" id="search-comment" style="display: none">
     <div class="container">
         <div class="inquirebox">
-            <label class="title">根据电影名查询评价</label>
+            <label class="title">根据电影名查询评论</label>
         <form class="search-form">
             <input type="text" placeholder="请输入电影名" class="input-button"/>
             <button type="button" onclick="Table('comment')"></button>
         </form>
     </div>
+    </div>
+    <div class="container">
     <div id="commentTable" class="table-display">
+        <div style="margin-left: 20px;padding-top: 20px;">
+            <label class="title">查询结果</label>
+        </div>
         <div id="commentcontainer" class="result-container"></div>
         <table id="commentdatatable" class="table-display">
             <thead>
@@ -515,8 +527,13 @@
             <button style="float: left;margin-top: 270px;margin-right: 280px;border-radius: 0;width: 167px;" type="button" onclick="Table('combination')"></button>
         </form>
     </div>
+    </div>
+    <div class="container">
     <div id="combinationTable" class="table-display">
-        <div id="combinationcontainer" class="result-container" style="margin-top: -380px"></div>
+        <div style="margin-left: 20px;padding-top: 20px;">
+            <label class="title">查询结果</label>
+        </div>
+        <div id="combinationcontainer" class="result-container"></div>
         <table id="combinationdatatable" class="table-display">
             <thead>
             <tr>
