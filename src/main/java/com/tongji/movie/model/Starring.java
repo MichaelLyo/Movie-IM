@@ -1,11 +1,16 @@
 package com.tongji.movie.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Starring")
 public class Starring {
+    @Id
+    private String movieId;
+
+    private String name;
 
     public String getMovieId() {
         return movieId;
@@ -23,7 +28,4 @@ public class Starring {
         this.name = name;
     }
 
-    private String movieId;
-
-    private String name;
 }
