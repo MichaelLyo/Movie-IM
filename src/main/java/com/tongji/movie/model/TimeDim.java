@@ -1,11 +1,21 @@
 package com.tongji.movie.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="TimeDim")
 public class TimeDim {
+
+    @Id
+    private String timeId;
+
+    private int year;
+
+    private int month;
+
+    private int day;
 
     public String getTimeId() {
         return timeId;
@@ -15,13 +25,6 @@ public class TimeDim {
         this.timeId = timeId;
     }
 
-    private String timeId;
-
-    private int year;
-
-    private int month;
-
-    private int day;
 
     public int getYear() {
         return year;
