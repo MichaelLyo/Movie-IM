@@ -7,6 +7,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name="AmazonFact")
 public class AmazonFact {
+    @Id
+    private String movieId;
+
+    private String releaseDate;
+
+    private String publicationDate;
+
+    private String edition;
+
+    private String title;
+
+    private String format;
+
+    private String publishier;
+
+    private String runTime;
+
+    private String studio;
 
     public String getMovieId() {
         return movieId;
@@ -80,24 +98,7 @@ public class AmazonFact {
         this.studio = studio;
     }
 
-    @Id
-    private String movieId;
 
-    private String releaseDate;
-
-    private String publicationDate;
-
-    private String edition;
-
-    private String title;
-
-    private String format;
-
-    private String publishier;
-
-    private String runTime;
-
-    private String studio;
 
 }
 

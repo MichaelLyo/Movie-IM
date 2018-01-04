@@ -11,6 +11,8 @@ public class Actor {
     @Id
     private String movieId;
 
+    private String name;
+
     public String getMovieId() {
         return movieId;
     }
@@ -27,5 +29,5 @@ public class Actor {
         this.name = name;
     }
 
-    private String name;
+
 }

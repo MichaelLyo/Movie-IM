@@ -8,14 +8,6 @@ import javax.persistence.Table;
 @Table(name="TimeDim")
 public class TimeDim {
 
-    public String getTimeId() {
-        return timeId;
-    }
-
-    public void setTimeId(String timeId) {
-        this.timeId = timeId;
-    }
-
     @Id
     private String timeId;
 
@@ -24,6 +16,15 @@ public class TimeDim {
     private int month;
 
     private int day;
+
+    public String getTimeId() {
+        return timeId;
+    }
+
+    public void setTimeId(String timeId) {
+        this.timeId = timeId;
+    }
+
 
     public int getYear() {
         return year;

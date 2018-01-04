@@ -7,6 +7,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Language")
 public class Language {
+    @Id
+    private String movieId;
+
+    private String name;
+
+    private String type;
 
     public String getMovieId() {
         return movieId;
@@ -32,10 +38,5 @@ public class Language {
         this.type = type;
     }
 
-    @Id
-    private String movieId;
 
-    private String name;
-
-    private String type;
 }

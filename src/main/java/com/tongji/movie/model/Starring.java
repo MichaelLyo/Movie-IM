@@ -7,6 +7,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Starring")
 public class Starring {
+    @Id
+    private String movieId;
+
+    private String name;
 
     public String getMovieId() {
         return movieId;
@@ -24,8 +28,5 @@ public class Starring {
         this.name = name;
     }
 
-    @Id
-    private String movieId;
 
-    private String name;
 }
