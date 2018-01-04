@@ -7,6 +7,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Actor")
 public class Actor {
+
     @Id
     private String movieId;
 
