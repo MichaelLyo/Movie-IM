@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ActorDim")
-public class ActorDim {
+@Table(name="Director")
+public class Director {
     public String getMovieId() {
         return movieId;
     }
@@ -14,15 +14,15 @@ public class ActorDim {
         this.movieId = movieId;
     }
 
-    public String getActorName() {
-        return actorName;
+    public String getDirectorName() {
+        return directorName;
     }
 
-    public void setActorName(String actorName) {
-        this.actorName = actorName;
+    public void setDirectorName(String directorName) {
+        this.directorName = directorName;
     }
 
     private String movieId;
 
-    private String actorName;
+    private String directorName;
 }

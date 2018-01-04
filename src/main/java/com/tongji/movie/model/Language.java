@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="LanguageDim")
-public class LanguageDim {
+@Table(name="Language")
+public class Language {
     public String getLanguageId() {
         return languageId;
     }

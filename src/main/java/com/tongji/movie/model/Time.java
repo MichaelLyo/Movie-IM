@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TimeDim")
-public class TimeDim {
+@Table(name="Time")
+public class Time {
     private int year;
 
     private int month;
