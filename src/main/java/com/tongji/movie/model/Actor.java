@@ -1,14 +1,17 @@
 package com.tongji.movie.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Actor")
 public class Actor {
 
+
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
+    @SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
+    private long id;
+
     private String movieId;
 
     private String name;
