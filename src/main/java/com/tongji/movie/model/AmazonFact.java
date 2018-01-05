@@ -6,7 +6,11 @@ import javax.persistence.*;
 @Table(name="AmazonFact")
 public class AmazonFact {
 
-    @Id
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
+	@SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
+	private long id;
+
     private String movieId;
 
     private String releaseDate;

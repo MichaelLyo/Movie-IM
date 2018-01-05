@@ -13,13 +13,13 @@ public class TimeDim {
     @Id
     private String timeId;
 
-    private int year;
+    private Integer year;
 
     @Column(nullable = true)
-    private int month;
+    private Integer month;
 
     @Column(nullable = true)
-    private int day;
+    private Integer day;
 
     public String getTimeId() {
         return timeId;

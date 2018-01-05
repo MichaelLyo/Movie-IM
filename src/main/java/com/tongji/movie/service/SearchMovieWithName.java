@@ -25,14 +25,14 @@ public class SearchMovieWithName {
         ResultSet set =  pstmt.executeQuery();
         while(set.next()){
             JSONObject movie = new JSONObject();
-            movie.put("name",set.getString("title"));
-            movie.put("time",set.getString("releaseDate"));
-            movie.put("genre",set.getString("runTime"));
-            movie.put("director",set.getString("studio"));
-            movie.put("actor",set.getString("publicationDate"));
-            movie.put("version",set.getString("publicationDate"));
+            movie.put("movieId",set.getString("movieId"));
+            movie.put("title",set.getString("title"));
+            movie.put("releaseDate",set.getString("releaseDate"));
+            movie.put("runTime",set.getString("runTime"));
+            movie.put("studio",set.getString("studio"));
+            movie.put("publicationDate",set.getString("publicationDate"));
+            movie.put("publisher",set.getString("publisher"));
             movies.add(movie);
-            System.out.println(set.getString("releaseDate"));
         }
         return movies;
     }

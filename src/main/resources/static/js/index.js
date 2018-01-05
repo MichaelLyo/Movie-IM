@@ -1,4 +1,5 @@
 <!--不同界面展示-->
+var mvNametb=null;
 function Time () {
     var season=document.getElementsByName('season');
     var month=document.getElementsByName('month');
@@ -121,67 +122,71 @@ function toggle(id){
                     alert("删除失败");
                 }
             });
+
+
         }
         if(id==='name') {
             name.style.display='block';
             $.fn.dataTable.ext.errMode = 'throw';
-            $.ajax({
-                type: "post",
-                url: "/movie/name/search?name=noformat",
-                async: false,
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    $('#name').DataTable({
-                        data:data,
-                        columns: [
-                            {data: "name"},
-                            {data: "time"},
-                            {data: "genre"},
-                            {data: "director"},
-                            {data: "actor"},
-                            {data: "version"}
-                        ],
-                        "bPaginage": true,
-                        "sPaginationType": "full_numbers",
-                        "sAjaxSource": "/graph_manag.action",
-                        "oLanguage": {
-                            "sLengthMenu": "每页显示 _MENU_ 条",
-                            "sZeroRecords": "没有找到符合条件的数据",
-                            "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-                            "sInfoEmpty": "没有记录",
-                            "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
-                            "sSearch": "搜索",
-                            "sProcessing": "数据加载中...",
-                            "oPaginate": {
-                                "sFirst": "首页",
-                                "sPrevious": "上一页",
-                                "sNext": "下一页",
-                                "sLast": "尾页"
-                            }
+            var moviename = $("#search-input").val();
+            if(mvNametb==null) {
+                mvNametb = $('#name').DataTable({
+                    ajax:{
+                        type:"post",
+                        url:"/movie/name/search?name="+moviename,
+                        dataSrc:""
+                    },
+                    columns: [
+                        {data: "movieId"},
+                        {data: "title"},
+                        {data: "releaseDate"},
+                        {data: "runTime"},
+                        {data: "studio"},
+                        {data:"publisher"}
+                    ],
+                    "bPaginage": true,
+                    "sPaginationType": "full_numbers",
+                    "oLanguage": {
+                        "sLengthMenu": "每页显示 _MENU_ 条",
+                        "sZeroRecords": "没有找到符合条件的数据",
+                        "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+                        "sInfoEmpty": "没有记录",
+                        "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
+                        "sSearch": "搜索",
+                        "sProcessing": "数据加载中...",
+                        "oPaginate": {
+                            "sFirst": "首页",
+                            "sPrevious": "上一页",
+                            "sNext": "下一页",
+                            "sLast": "尾页"
                         }
-                    });
-                },
-                error: function (data) {
-                    alert("删除失败");
-                }
-            });
+                    }
+                });
+
+            }
+            else
+            {
+                mvNametb.ajax.url("/movie/name/search?name="+moviename).load();
+                console.log("???");
+            }
+
 
         }
         if(id==='director') {director.style.display='block';
             $.fn.dataTable.ext.errMode = 'throw';
             $('#director').DataTable({
-                "aoColumns": [
-                    {"mData": "name"},
-                    {"mData": "time"},
-                    {"mData": "genre"},
-                    {"mData": "director"},
-                    {"mData": "actor"},
-                    {"mData": "version"}
-                ],
+                ajax:{
+                    url: '/movie/ajax/showdirector',
+                    dataSrc: ''
+                },
+                columns: [ {data:"movieName"},
+                    {data:"releaseTime"},
+                    {data:"genre"},
+                    {data:"director"},
+                    {data:"actor"},
+                    {data:"edition"}],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
-                "sAjaxSource": "/graph_manag.action",
                 "oLanguage": {
                     "sLengthMenu": "每页显示 _MENU_ 条",
                     "sZeroRecords": "没有找到符合条件的数据",
@@ -201,17 +206,18 @@ function toggle(id){
         if(id==='actor'){actor.style.display='block';
             $.fn.dataTable.ext.errMode = 'throw';
             $('#actor').DataTable({
-                "aoColumns": [
-                    {"mData": "name"},
-                    {"mData": "time"},
-                    {"mData": "genre"},
-                    {"mData": "director"},
-                    {"mData": "actor"},
-                    {"mData": "version"}
-                ],
+                ajax:{
+                    url: '/movie/ajax/showactor',
+                    dataSrc: ''
+                },
+                columns: [ {data:"movieName"},
+                    {data:"releaseTime"},
+                    {data:"genre"},
+                    {data:"director"},
+                    {data:"actor"},
+                    {data:"edition"}],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
-                "sAjaxSource": "/graph_manag.action",
                 "oLanguage": {
                     "sLengthMenu": "每页显示 _MENU_ 条",
                     "sZeroRecords": "没有找到符合条件的数据",
@@ -230,17 +236,18 @@ function toggle(id){
             });}
         if(id==='category'){category.style.display='block';            $.fn.dataTable.ext.errMode = 'throw';
             $('#category').DataTable({
-                "aoColumns": [
-                    {"mData": "name"},
-                    {"mData": "time"},
-                    {"mData": "genre"},
-                    {"mData": "director"},
-                    {"mData": "actor"},
-                    {"mData": "version"}
-                ],
+                ajax:{
+                    url: '/movie/ajax/showcategory',
+                    dataSrc: ''
+                },
+                columns: [ {data:"movieName"},
+                    {data:"releaseTime"},
+                    {data:"genre"},
+                    {data:"director"},
+                    {data:"actor"},
+                    {data:"edition"}],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
-                "sAjaxSource": "/graph_manag.action",
                 "oLanguage": {
                     "sLengthMenu": "每页显示 _MENU_ 条",
                     "sZeroRecords": "没有找到符合条件的数据",
@@ -259,17 +266,18 @@ function toggle(id){
             });}
         if(id==='combination'){combination.style.display='block';            $.fn.dataTable.ext.errMode = 'throw';
             $('#combination').DataTable({
-                "aoColumns": [
-                    {"mData": "name"},
-                    {"mData": "time"},
-                    {"mData": "genre"},
-                    {"mData": "director"},
-                    {"mData": "actor"},
-                    {"mData": "version"}
-                ],
+                ajax:{
+                    url: '/movie/ajax/showcombination',
+                    dataSrc: ''
+                },
+                columns: [ {data:"movieName"},
+                    {data:"releaseTime"},
+                    {data:"genre"},
+                    {data:"director"},
+                    {data:"actor"},
+                    {data:"edition"}],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
-                "sAjaxSource": "/graph_manag.action",
                 "oLanguage": {
                     "sLengthMenu": "每页显示 _MENU_ 条",
                     "sZeroRecords": "没有找到符合条件的数据",
@@ -290,17 +298,18 @@ function toggle(id){
             comment.style.display='block';
             $.fn.dataTable.ext.errMode = 'throw';
             $('#comment').DataTable({
-                "aoColumns": [
-                    {"mData": "name"},
-                    {"mData": "time"},
-                    {"mData": "genre"},
-                    {"mData": "director"},
-                    {"mData": "actor"},
-                    {"mData": "version"}
-                ],
+                ajax:{
+                    url: '/movie/ajax/showcomment',
+                    dataSrc: ''
+                },
+                columns: [ {data:"movieName"},
+                    {data:"releaseTime"},
+                    {data:"genre"},
+                    {data:"director"},
+                    {data:"actor"},
+                    {data:"edition"}],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
-                "sAjaxSource": "/graph_manag.action",
                 "oLanguage": {
                     "sLengthMenu": "每页显示 _MENU_ 条",
                     "sZeroRecords": "没有找到符合条件的数据",
@@ -570,4 +579,5 @@ $(function () {
         }
     });
 });
+
 
