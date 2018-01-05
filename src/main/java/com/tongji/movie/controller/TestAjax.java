@@ -3,9 +3,9 @@ package com.tongji.movie.controller;
 import com.sun.org.apache.regexp.internal.RE;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.apache.hadoop.metrics2.util.SampleStat;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +38,7 @@ public class TestAjax{
         jsonArray.appendElement(object1);
         return jsonArray;
     }
+
 
     @RequestMapping(value = "/showmovieName",method = RequestMethod.GET)
     public JSONArray movieNametest()
