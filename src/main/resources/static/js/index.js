@@ -83,27 +83,24 @@ function toggle(id){
             } );*/
             var dtname;
             dtname = $('#time').DataTable({
-/*                "aoColumns": [
-                    /!*{"mData": "name"},
-                    {"mData": "time"},
-                    {"mData": "genre"},
-                    {"mData": "director"},
-                    {"mData": "actor"},
-                    {"mData": "version"}*!/
-                    {"mData": "id"},
-                    {"mData": "graphname"},
-                    {"mData": "storageSize"},
-                    {"mData": "iscluster"}
-                    ],*/
-                    /*"data": [
-                        [ "Tiger Nixon", "System Architect", "$3,120", "2011/04/25", "Edinburgh", 5421 ],
-                        [ "Garrett Winters", "Director", "$8,422", "2011/07/25", "Edinburgh", 8422 ],
-                        // 获得数据
-                    ],*/
+                ajax:{
+                    url: '/movie/ajax/show',
+                    dataSrc: '',
+                },
+                columns: [ {data:"movieName"},
+                            {data:"releaseTime"},
+                            {data:"style"},
+                            {data:"director"},
+                            {data:"actor"},
+                            {data:"edition"}],
+
+
+         
                     "bPaginage": true,
                     "sPaginationType": "full_numbers",
                     "sAjaxSource": "/",//这是要请求json数据的url
                     "oLanguage": {
+
                         "sLengthMenu": "每页显示 _MENU_ 条",
                         "sZeroRecords": "没有找到符合条件的数据",
                         "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/movie/js/jquery-1.12.4.js"></script>
+    <script src="/movie/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/movie/css/jquery.dataTables.min.css" />
+</head>
+<body>
+<table id="mytable" name="mytable">
+   <tr id="first" name="first">
+       <td id="firstValue" placeholder="jonathan"></td>
+   </tr>
+</table>
+</body>
+
+
+<script>
+    var table = $("#mytable").DataTable({
+        ajax:{
+            url: '/movie/ajax/show',
+                dataSrc: '',
+        },
+        columns: [ {data:"first"}],
+    });
+</script>
+</html>
