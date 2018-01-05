@@ -3,9 +3,9 @@ package com.tongji.movie.controller;
 import com.sun.org.apache.regexp.internal.RE;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.apache.hadoop.metrics2.util.SampleStat;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,5 +38,27 @@ public class TestAjax{
         jsonArray.appendElement(object1);
         return jsonArray;
     }
+    private class dateType{
+        private String name;
 
+        public dateType(String name){
+            this.name = name;
+        }
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+    @RequestMapping(value = "/page",method = {RequestMethod.GET,RequestMethod.POST})
+    public JSONArray page(String name){
+        System.out.println("enheng");
+        System.out.println(name);
+        JSONArray jsonArray = new JSONArray();
+        JSONObject object = new JSONObject();
+        object.put("name","sjw");
+        return jsonArray;
+    }
 }
