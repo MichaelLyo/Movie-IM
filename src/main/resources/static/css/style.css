@@ -33,6 +33,7 @@
 .table-display{
     display: none;
     margin: 30px;
+    text-align: center;
 }
 .combination-search{
     margin-top:10px;
