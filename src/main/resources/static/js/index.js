@@ -70,9 +70,7 @@ function toggle(id){
     if(id==='combination'){comment.style.display='none';combination.style.display='block';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
     if(id==='comment'){comment.style.display='block';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
 }
-
-
-    function Table(id) {
+function Table(id) {
         var time = document.getElementById('timeTable');
         var name = document.getElementById('nameTable');
         var director = document.getElementById('directorTable');
@@ -83,13 +81,21 @@ function toggle(id){
         if (id === 'time') {
             time.style.display = 'block';
             $.fn.dataTable.ext.errMode = 'throw';
-
+            timeChoice();
             if (mvTimetb == null) {
-                mvNametb = $('#name').DataTable({
+                mvTimetb = $('#name').DataTable({
                     ajax: {
                         type: "post",
-                        url: "/movie/name/search?name=" + moviename,
-                        dataSrc: ""
+                        url: '/movie/ajax/showtime',
+                        dataSrc: "",
+                        data : {
+                            "year":year.toString(),
+                            "month":monthArray.toString(),
+                            "dateType":dateType.toString(),
+                            "day":dayArray.toString(),
+                            "date":date.toString(),
+                            "season":seasonArray.toString()
+                        }
                     },
                     columns: [
                         {data: "movieId"},
@@ -229,9 +235,6 @@ function toggle(id){
                     }
                 });
             }
-
-
-
         }
         if (id === 'name') {
             name.style.display = 'block';
@@ -842,12 +845,23 @@ function toggle(id){
 
             }
         if (id === 'combination') {
-                combination.style.display = 'block';
-                $.fn.dataTable.ext.errMode = 'throw';
-                $('#combination').DataTable({
+            combination.style.display = 'block';
+            $.fn.dataTable.ext.errMode = 'throw';
+            var cdate = document.getElementById('cdate').value;
+            var cname = document.getElementById('cname').value;
+            var cactor = document.getElementById('cactor').value;
+            var cdirector = document.getElementById('cdirector').value;
+            var cgenre = document.getElementById('cgenre').value;
+            $('#combination').DataTable({
                     ajax: {
                         url: '/movie/ajax/showcombination',
-                        dataSrc: ''
+                        data : {
+                            "date":cdate,
+                            "name":cname,
+                            "actor":cactor,
+                            "director":cdirector,
+                            "genre":cgenre
+                        }
                     },
                     columns: [{data: "movieName"},
                         {data: "releaseTime"},
@@ -1017,257 +1031,44 @@ function toggle(id){
             });
             }
         }
-        $(function () {
-            $('#container').highcharts({
-                data: {
-                    table: 'datatable'
-                },
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: '两种模型执行时间比较'
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    title: {
-                        text: 's',
-                        rotation: 0
-                    }
-                },
-                tooltip: {
-                    formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
-                            this.point.y + 's ' + this.point.name.toLowerCase();
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        dataLabels: {
-                            enabled: true, // dataLabels设为true
-                            style: {
-                                color: '#42abf8'
-                            }
-                        }
-                    }
-                }
-            });
-        });
-        $(function () {
-            $('#actorcontainer').highcharts({
-                data: {
-                    table: 'actordatatable'
-                },
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: '两种模型执行时间比较'
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    title: {
-                        text: 's',
-                        rotation: 0
-                    }
-                },
-                tooltip: {
-                    formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
-                            this.point.y + 's ' + this.point.name.toLowerCase();
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        dataLabels: {
-                            enabled: true, // dataLabels设为true
-                            style: {
-                                color: '#42abf8'
-                            }
-                        }
-                    }
-                }
-            });
-        });
-        $(function () {
-            $('#directorcontainer').highcharts({
-                data: {
-                    table: 'directordatatable'
-                },
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: '两种模型执行时间比较'
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    title: {
-                        text: 's',
-                        rotation: 0
-                    }
-                },
-                tooltip: {
-                    formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
-                            this.point.y + 's ' + this.point.name.toLowerCase();
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        dataLabels: {
-                            enabled: true, // dataLabels设为true
-                            style: {
-                                color: '#42abf8'
-                            }
-                        }
-                    }
-                }
-            });
-        });
-        $(function () {
-            $('#combinationcontainer').highcharts({
-                data: {
-                    table: 'combinationdatatable'
-                },
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: '两种模型执行时间比较'
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    title: {
-                        text: 's',
-                        rotation: 0
-                    }
-                },
-                tooltip: {
-                    formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
-                            this.point.y + 's ' + this.point.name.toLowerCase();
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        dataLabels: {
-                            enabled: true, // dataLabels设为true
-                            style: {
-                                color: '#42abf8'
-                            }
-                        }
-                    }
-                }
-            });
-        });
-        $(function () {
-            $('#categorycontainer').highcharts({
-                data: {
-                    table: 'categorydatatable'
-                },
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: '两种模型执行时间比较'
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    title: {
-                        text: 's',
-                        rotation: 0
-                    }
-                },
-                tooltip: {
-                    formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
-                            this.point.y + 's ' + this.point.name.toLowerCase();
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        dataLabels: {
-                            enabled: true, // dataLabels设为true
-                            style: {
-                                color: '#42abf8'
-                            }
-                        }
-                    }
-                }
-            });
-        });
-        $(function () {
-            $('#namecontainer').highcharts({
-                data: {
-                    table: 'namedatatable'
-                },
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: '两种模型执行时间比较'
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    title: {
-                        text: 's',
-                        rotation: 0
-                    }
-                },
-                tooltip: {
-                    formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
-                            this.point.y + 's ' + this.point.name.toLowerCase();
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        dataLabels: {
-                            enabled: true, // dataLabels设为true
-                            style: {
-                                color: '#42abf8'
-                            }
-                        }
-                    }
-                }
-            });
-        });
-        $(function () {
-            $('#commentcontainer').highcharts({
-                data: {
-                    table: 'commentdatatable'
-                },
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: '两种模型执行时间比较'
-                },
-                yAxis: {
-                    allowDecimals: false,
-                    title: {
-                        text: 's',
-                        rotation: 0
-                    }
-                },
-                tooltip: {
-                    formatter: function () {
-                        return '<b>' + this.series.name + '</b><br/>' +
-                            this.point.y + 's ' + this.point.name.toLowerCase();
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        dataLabels: {
-                            enabled: true, // dataLabels设为true
-                            style: {
-                                color: '#42abf8'
-                            }
-                        }
-                    }
-                }
-            });
-        });
-
-
+var seasonArray,dayArray,monthArray,date,year,dateType;
+function timeChoice() {
+    date=document.getElementById('myID').value;
+    var type = document.getElementById('publicationdate');
+    if(type.checked){
+        dateType = 0; //0为出版日期 publicationdate 1为上映日期 releasedate
+    }
+    else {
+        dateType=1;
+    }
+    if(date ==='') {
+        var yearDiv = document.getElementById('myYear');
+        for (var i=0;i<=2028-1888;i++)
+        {
+            if(yearDiv.options[i].selected){
+                year = yearDiv.options[i].value;
+            }
+        }
+        var season = document.getElementsByName('season');
+        seasonArray = "";
+        for (var i = 0; i < season.length; i++) {
+            if (season[i].checked) {
+                seasonArray += season[i].value+",";
+            }
+        }
+        var month = document.getElementsByName('month');
+        monthArray = "";
+        for (var i = 0; i < month.length; i++) {
+            if (month[i].checked) {
+                monthArray += month[i].value+",";
+            }
+        }
+        var day = document.getElementsByName('day');
+        dayArray = "";
+        for (var i = 0; i < day.length; i++) {
+            if (day[i].checked) {
+                dayArray += day[i].value+",";
+            }
+        }
+    }
+}

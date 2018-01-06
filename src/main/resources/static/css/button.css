@@ -1529,9 +1529,12 @@ button {
     width:60px;
     top:0;
     right:0;
+    font-size:13px;
+    color:white;
 }
+/*
 .bar6 button:before {
     content:"搜索";
     font-size:13px;
     color:white;
-}
+}*/
