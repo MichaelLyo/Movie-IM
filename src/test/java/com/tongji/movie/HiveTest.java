@@ -148,6 +148,7 @@ public class HiveTest {
         PreparedStatement pstmt = con.prepareStatement("select * from AmazonFact a JOIN timedim b on(a.releaseDate = b.timeid) WHERE b.year=?");
         pstmt.setInt(1,year);
         ResultSet set =  pstmt.executeQuery();
+        System.out.println(set);
         return set;
     }
 

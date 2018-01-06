@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 @RestController
 @RequestMapping(value = "/actor")
@@ -17,9 +19,15 @@ public class ActorMovieController {
 
     @RequestMapping(value = "/search",method = RequestMethod.POST)
     public JSONArray searchByName(String actorName){
-        JSONArray jsonArray;
+        JSONArray jsonArray = new JSONArray();
         try {
-            jsonArray = searchMovieWithActor.search(actorName);
+            String[] nameList = actorName.split(",");
+            HashSet<JSONArray> set = new HashSet<>();
+            for(int i =0; i<nameList.length;i++){
+                set.add(searchMovieWithActor.searchInOracle('%'+nameList[i]+'%'));
+            }
+            jsonArray.addAll(set);
+
         } catch (SQLException e) {
             System.out.println("按名字查询电影失败");
             jsonArray = null;

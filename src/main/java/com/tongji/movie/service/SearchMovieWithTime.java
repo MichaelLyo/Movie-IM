@@ -1,8 +1,10 @@
 package com.tongji.movie.service;
 
-import javolution.io.Struct;
+import com.tongji.movie.model.AmazonFact;
+import com.tongji.movie.repository.AmazonFactRepository;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,48 +12,87 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 @Component
 public class SearchMovieWithTime {
     @Autowired
     private ConToHive conObj;
+
     @Autowired
-    private PutAttributesToJson putAttributesToJson;
-    public JSONArray searchMVByDate(Boolean isPublicationDate, String date) throws SQLException {
+    private AmazonFactRepository amazonFactRepository;
+
+    public JSONArray searchMVByPublication(String publicationDate) throws SQLException {
         Connection con = conObj.getConnection();
         JSONArray movies = new JSONArray();
-        PreparedStatement pstmt = null;
-        if(isPublicationDate){
-            pstmt = con.prepareStatement("select * from AmazonFact a  WHERE a.publicationDate=?");
-            pstmt.setString(1,date);
-        }
-        else{
-            pstmt = con.prepareStatement("select * from AmazonFact a  WHERE a.releaseDate=?");
-            pstmt.setString(1,date);
-        }
-
+        PreparedStatement pstmt = con.prepareStatement("select * from AmazonFact a  WHERE a.title=?");
+        pstmt.setString(1,publicationDate);
         ResultSet set =  pstmt.executeQuery();
-        movies = putAttributesToJson.put(set,"");
+        while(set.next()){
+            JSONObject movie = new JSONObject();
+            movie.put("movieId",set.getString("movieId"));
+            movie.put("title",set.getString("title"));
+            movie.put("releaseDate",set.getString("releaseDate"));
+            movie.put("runTime",set.getString("runTime"));
+            movie.put("studio",set.getString("studio"));
+            movie.put("publicationDate",set.getString("publicationDate"));
+            movie.put("publisher",set.getString("publisher"));
+            movies.add(movie);
+        }
         return movies;
     }
-    public JSONArray searchMvByYearAndMon (Boolean isPublicationDate,int year, int mon) throws SQLException{
-        Connection con = conObj.getConnection();
+
+    public JSONArray searchInOracle(String dateType,String date,String year,String[] seasonArray,String[] monthArray,String[] dayArray) throws SQLException {
         JSONArray movies = new JSONArray();
-        PreparedStatement pstmt = null;
+        List<AmazonFact> amazonFacts = null;
+        Integer yearNum = Integer.parseInt(year);
+        List<Integer> monthList = null;
+        if(Integer.parseInt(dateType) == 0){
+            if(!date.isEmpty()){
+                amazonFacts =  amazonFactRepository.findAmazonFactsByPublicationDate(date);
+            }
+            else{
+                if(dayArray.length == 0){
+                    if(monthArray.length == 0){
+                        if(seasonArray.length == 0){
+                            //amazonFacts = amazonFactRepository.findAmazonFactsByPublicationYear(year);
+                        }
+                        else {
+                            //amazonFacts = amazonFactRepository.findAmazonFactsByPublicationQuarter()
+                        }
+                    }
+                    else{
+                        //amazonFacts = amazonFactRepository
+                    }
+                }
 
-        if(isPublicationDate){
-            pstmt = con.prepareStatement("select * from amazonfact a join timedim b on (a.publicationDate = b.timeid) where b.year=? AND  b.month = ?");
-            pstmt.setInt(1,year);
-            pstmt.setInt(2,mon);
+            }
         }
         else{
-            pstmt = con.prepareStatement("select * from amazonfact a join timedim b on (a.publicationDate = b.timeid) where b.year=? AND  b.month = ?");
-            pstmt.setInt(1,year);
-            pstmt.setInt(2,mon);
-        }
+            if(!date.isEmpty()){
+                amazonFacts =  amazonFactRepository.findAmazonFactsByReleaseDate(date);
+            }
+            else{
 
-        ResultSet set =  pstmt.executeQuery();
-        movies = putAttributesToJson.put(set,"");
+            }
+        }
+        for(AmazonFact a : amazonFacts){
+            JSONObject movie = new JSONObject();
+            movie.put("movieId",a.getMovieId());
+            movie.put("title",a.getTitle());
+            movie.put("releaseDate",a.getReleaseDate());
+            movie.put("runTime",a.getRunTime());
+            movie.put("studio",a.getStudio());
+            movie.put("publicationDate",a.getPublicationDate());
+            movie.put("publisher",a.getPublishier());
+            movies.add(movie);
+        }
         return movies;
     }
+
+
+
 }
+

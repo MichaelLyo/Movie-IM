@@ -14,7 +14,7 @@
 }
 .search-form{
     margin: 0;
-    top:30px
+    top:25px
 }
 .input-button{
     width: 80%;
@@ -33,6 +33,7 @@
 .table-display{
     display: none;
     margin: 30px;
+    text-align: center;
 }
 .combination-search{
     margin-top:10px;

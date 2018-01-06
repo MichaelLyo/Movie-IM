@@ -21,16 +21,11 @@ public class NameMovieController {
     @Autowired
     private SearchMovieWithName searchMovieWithName;
     @RequestMapping(value = "/search",method = RequestMethod.POST)
-    public JSONArray searchByName(String name,  @RequestParam(value="years" ,required = true ) String[] years, @RequestParam(value="months" ,required = true ) String[] months){
+    public JSONArray searchByName(String name){
         JSONArray jsonArray;
-        for(String year : years){
-            System.out.println(year);
-        }
-        for(String month : months){
-            System.out.println(month);
-        }
-        try {
-            jsonArray = searchMovieWithName.search(name);
+
+            try {
+                jsonArray = searchMovieWithName.searchInOracle('%'+name+'%');
             } catch (SQLException e) {
             System.out.println("按名字查询电影失败");
             jsonArray = null;

@@ -44,7 +44,7 @@
                 <a onClick="toggle('category')">电影类别查询</a>
             </li>
             <li>
-                <a onClick="toggle('comment')">电影评论查询</a>
+                <a onClick="toggle('language')">电影语种查询</a>
             </li>
             <li>
                 <a onClick="toggle('combination')">高级查询</a>
@@ -57,7 +57,7 @@
 <!--Start 按照时间进行查询统计-->
 <div class="search bar6" id="search-time" style="display: none">
     <div class="container">
-    <div class="inquirebox" style="height:600px;">
+    <div class="inquirebox" style="height:670px;">
         <label class="title">根据时间查询</label>
         <form class="search-form" style="top:15px;width: 800px">
         <div class="year">年份</div><select class="select" id="myYear"></select>
@@ -83,44 +83,45 @@
                     <div class="ui-radio">
                         <div class="year" style="margin-top: 10px;margin-bottom: 10px;">季度</div>
                         <div class="dream-controls" id="season">
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="season"><span> 春</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="season"><span> 夏</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="season"><span> 秋</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="season"><span> 冬</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="春" name="season"><span> 春</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="夏" name="season"><span> 夏</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="秋" name="season"><span> 秋</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="冬" name="season"><span> 冬</span></label>
                         </div>
                         <div class="year" style="margin-top: 10px;margin-bottom: 10px;">月份</div>
                         <div class="dream-controls" id="month">
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 1</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 2</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 3</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 4</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 5</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 6</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 7</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 8</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 9</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 10</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 11</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="month"><span> 12</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="1" name="month"><span> 1</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="2" name="month"><span> 2</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="3" name="month"><span> 3</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="4" name="month"><span> 4</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="5" name="month"><span> 5</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="6" name="month"><span> 6</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="7" name="month"><span> 7</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="8" name="month"><span> 8</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="9" name="month"><span> 9</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="10" name="month"><span> 10</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="11" name="month"><span> 11</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="12" name="month"><span> 12</span></label>
                         </div>
                         <div class="year" style="margin-top: 10px;margin-bottom: 10px;">天</div>
                         <div class="dream-controls" id="day">
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周日</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周一</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周二</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周三</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周四</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周五</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" name="day"><span> 周六</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="周日" name="day"><span> 周日</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="周一" name="day"><span> 周一</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="周二" name="day"><span> 周二</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="周三" name="day"><span> 周三</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="周四" name="day"><span> 周四</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="周五" name="day"><span> 周五</span></label>
+                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="周六" name="day"><span> 周六</span></label>
                         </div>
                         <div class="year" style="margin-top: 10px;margin-bottom: 10px;">具体日期</div>
                         <div class="dream-controls">
                             <input placeholder="点击输入具体日期" id="myID">
+                            <button type="reset" style="height: 35px;top: 404px;left: 160px;border-radius: 0;">重置</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <button type="button" onclick="Table('time')" style="border-radius: 0;left:0;top:480px;"></button>
+            <button type="button" onclick="Table('time')" style="border-radius: 0;left:0;top:530px;">搜索</button>
         </form>
     </div>
     </div>
@@ -130,26 +131,12 @@
             <label class="title">查询结果</label>
         </div>
         <div id="container" class="result-container"></div>
-        <table id="datatable" class="table-display">
-            <thead>
-            <tr>
-                <th></th>
-                <th>关系型数据仓库存储数据模型</th>
-                <th>混合型存储数据模型</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th>执行时间</th>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-            </tbody>
-        </table>
         <div class="result-text">
-            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="timerelation"></label><label>分钟</label>
+            <br><br>
+            <label>使用混合型存储数据模型进行此次查询统计，需要</label><label id="timemix"></label><label>分钟</label>
+            <br><br>
+            <label >本次共搜索到</label><label id="timetotal"></label><label>条数据，下表为数据详细内容，右图两种方式的执行时间</label>
         </div>
         <table id="time" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
@@ -185,7 +172,7 @@
         <label class="title">根据电影名查询</label>
         <form class="search-form">
             <input id="sjw-search-name" type="text" placeholder="请输入电影名" class="input-button"/>
-            <button type="button" onclick="Table('name')"></button>
+            <button type="button" onclick="Table('name')">搜索</button>
         </form>
     </div>
     </div>
@@ -195,26 +182,10 @@
         <label class="title">查询结果</label>
         </div>
         <div id="namecontainer" class="result-container"></div>
-        <table id="namedatatable" class="table-display">
-            <thead>
-            <tr>
-                <th></th>
-                <th>关系型数据仓库存储数据模型</th>
-                <th>混合型存储数据模型</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th>执行时间</th>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-            </tbody>
-        </table>
         <div class="result-text">
-            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="namerelation"></label><label>分钟</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="namemix"></label><label>分钟</label><br><br>
+            <label >本次共搜索到</label><label id="nametotal"></label><label>条数据，下表为数据详细内容，右图两种方式的执行时间</label>
         </div>
         <table id="name" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
@@ -249,9 +220,10 @@
     <div class="container">
         <div class="inquirebox">
             <label class="title">根据导演名查询</label>
+
         <form class="search-form">
             <input id="sjw-search-director"  type="text" placeholder="请输入导演名" class="input-button"/>
-            <button type="button" onclick="Table('director')"></button>
+            <button type="button" onclick="Table('director')">搜索</button>
         </form>
     </div>
     </div>
@@ -261,52 +233,69 @@
             <label class="title">查询结果</label>
         </div>
         <div id="directorcontainer" class="result-container"></div>
-        <table id="directordatatable" class="table-display">
-            <thead>
-            <tr>
-                <th></th>
-                <th>关系型数据仓库存储数据模型</th>
-                <th>混合型存储数据模型</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th>执行时间</th>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-            </tbody>
-        </table>
         <div class="result-text">
-            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="directorrelation"></label><label>分钟</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="directormix"></label><label>分钟</label><br><br>
+            <label >本次共搜索到</label><label id="directortotal"></label><label>条数据，下表为数据详细内容，右图两种方式的执行时间</label>
         </div>
         <table id="director" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
-        <th>导演名</th>
+        <th>产品序列号</th>
         <th>电影名</th>
-        <th>演员名</th>
-        <th>Age</th>
-        <th data-orderable="false">Start date</th>
-        <th>Salary</th>
+        <th>导演名</th>
+        <th>电影时长</th>
+        <th>发行日期</th>
+        <th>版本</th>
     </tr>
     </thead>
     <tfoot>
     <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
+        <th>产品序列号</th>
+        <th>电影名</th>
+        <th>导演名</th>
+        <th>电影时长</th>
+        <th>发行日期</th>
+        <th>版本</th>
     </tr>
     </tfoot>
     <tbody>
     </tbody>
 </table>
     </div>
+    </div>
+    <div class="container">
+        <div id="directorTable2" class="table-display">
+            <div style="margin-left: 20px;padding-top: 20px;">
+                <label class="title">合作演员</label>
+            </div>
+            <div id="directorcontainer2" class="result-container"></div>
+            <div class="result-text">
+                <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="directorrelation2"></label><label>分钟</label><br><br>
+                <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="directormix2"></label><label>分钟</label><br><br>
+                <label >本次共搜索到</label><label id="directortotal2"></label><label>条数据，下表为数据详细内容，右图两种方式的执行时间</label>
+            </div>
+            <table id="director2" class="display datatable" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+                <thead>
+                <tr>
+                    <th>电影名</th>
+                    <th>导演名</th>
+                    <th>演员名</th>
+                    <th>演员类别</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>电影名</th>
+                    <th>导演名</th>
+                    <th>演员名</th>
+                    <th>演员类别</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <!--End 按照导演进行查询统计-->
@@ -316,8 +305,8 @@
         <div class="inquirebox">
             <label class="title">根据演员名查询</label>
         <form class="search-form">
-            <input id="sjw-search-actor" type="text" placeholder="请输入演员名" class="input-button"/>
-            <button type="button" onclick="Table('actor')"></button>
+            <input id="sjw-search-actor" type="text" placeholder="可查询单个演员或一起合作的演员，如“Tom”或“Tom,Jack”" class="input-button" style="width: 350px"/>
+            <button type="button" onclick="Table('actor')" style="left:360px;">搜索</button>
         </form>
     </div>
     </div>
@@ -327,46 +316,26 @@
             <label class="title">查询结果</label>
         </div>
         <div id="actorcontainer" class="result-container"></div>
-        <table id="actordatatable" class="table-display">
-            <thead>
-            <tr>
-                <th></th>
-                <th>关系型数据仓库存储数据模型</th>
-                <th>混合型存储数据模型</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th>执行时间</th>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-            </tbody>
-        </table>
         <div class="result-text">
-            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="actorrelation"></label><label>分钟</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="actormix"></label><label>分钟</label><br><br>
+            <label >本次共搜索到</label><label id="actortotal"></label><label>条数据，下表为数据详细内容，右图两种方式的执行时间</label>
         </div>
         <table id="actor" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
         <th>演员名</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th data-orderable="false">Start date</th>
-        <th>Salary</th>
+        <th>电影名</th>
+        <th>导演名</th>
+        <th>上映日期</th>
     </tr>
     </thead>
     <tfoot>
     <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
+        <th>演员名</th>
+        <th>电影名</th>
+        <th>导演名</th>
+        <th>上映日期</th>
     </tr>
     </tfoot>
     <tbody>
@@ -383,7 +352,7 @@
             <label class="title">根据电影类别查询</label>
         <form class="search-form">
             <input id="sjw-search-category" type="text" placeholder="请输入电影类别名" class="input-button"/>
-            <button type="button" onclick="Table('category')"></button>
+            <button type="button" onclick="Table('category')">搜索</button>
         </form>
     </div>
     </div>
@@ -393,26 +362,10 @@
             <label class="title">查询结果</label>
         </div>
         <div id="categorycontainer" class="result-container"></div>
-        <table id="categorydatatable" class="table-display">
-            <thead>
-            <tr>
-                <th></th>
-                <th>关系型数据仓库存储数据模型</th>
-                <th>混合型存储数据模型</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th>执行时间</th>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-            </tbody>
-        </table>
         <div class="result-text">
-            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="genrerelation"></label><label>分钟</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="genremix"></label><label>分钟</label><br><br>
+            <label >该类别共有</label><label id="genretotal"></label><label>部电影，下表为数据详细内容，右图两种方式的执行时间</label>
         </div>
         <table id="category" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
             <thead>
@@ -420,19 +373,19 @@
                 <th>产品ID</th>
                 <th>电影名</th>
                 <th>电影类型</th>
-                <th data-orderable="false">发行时间</th>
+                <th>发行时间</th>
                 <th>片长</th>
                 <th>音频类型</th>
             </tr>
             </thead>
             <tfoot>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>产品ID</th>
+                <th>电影名</th>
+                <th>电影类型</th>
+                <th>发行时间</th>
+                <th>片长</th>
+                <th>音频类型</th>
             </tr>
             </tfoot>
             <tbody>
@@ -442,63 +395,47 @@
     </div>
 </div>
 <!--End 按照电影类别进行查询统计-->
-<!--Start 电影评论进行查询统计-->
-<div  class="search bar6" id="search-comment" style="display: none">
+<!--Start 电影语种进行查询统计-->
+<div  class="search bar6" id="search-language" style="display: none">
     <div class="container">
         <div class="inquirebox">
-            <label class="title">根据电影名查询评论</label>
+            <label class="title">根据电影语种查询</label>
         <form class="search-form">
-            <input id="sjw-search-comment" type="text" placeholder="请输入电影名" class="input-button"/>
-            <button type="button" onclick="Table('comment')"></button>
+            <input id="sjw-search-language" type="text" placeholder="请输入语种名" class="input-button"/>
+            <button type="button" onclick="Table('language')">搜索</button>
         </form>
     </div>
     </div>
     <div class="container">
-    <div id="commentTable" class="table-display">
+    <div id="languageTable" class="table-display">
         <div style="margin-left: 20px;padding-top: 20px;">
             <label class="title">查询结果</label>
         </div>
-        <div id="commentcontainer" class="result-container"></div>
-        <table id="commentdatatable" class="table-display">
-            <thead>
-            <tr>
-                <th></th>
-                <th>关系型数据仓库存储数据模型</th>
-                <th>混合型存储数据模型</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th>执行时间</th>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-            </tbody>
-        </table>
+        <div id="languagecontainer" class="result-container"></div>
         <div class="result-text">
-            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="languagerelation"></label><label>分钟</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="languagemix"></label><label>分钟</label><br><br>
+            <label >该语种共有</label><label id="languagetotal"></label><label>部电影，下表为数据详细内容，右图两种方式的执行时间</label>
         </div>
-        <table id="comment" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+        <table id="language" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
             <thead>
             <tr>
-                <th>演员名</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th data-orderable="false">Start date</th>
-                <th>Salary</th>
+                <th>产品ID</th>
+                <th>电影名</th>
+                <th>电影类型</th>
+                <th>发行时间</th>
+                <th>片长</th>
+                <th>音频类型</th>
             </tr>
             </thead>
             <tfoot>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>产品ID</th>
+                <th>电影名</th>
+                <th>电影类型</th>
+                <th>发行时间</th>
+                <th>片长</th>
+                <th>音频类型</th>
             </tr>
             </tfoot>
             <tbody>
@@ -507,24 +444,24 @@
     </div>
     </div>
 </div>
-<!--End 电影评论进行查询统计-->
+<!--End 电影语种进行查询统计-->
 <!--Start 组合查询进行查询统计-->
 <div  class="search bar6" id="search-combination" style="display: none">
     <div class="container">
         <div class="inquirebox" style="height:380px;">
             <label class="title">高级查询</label>
         <form style="margin: 0;top:10px;width: 500px">
-            <label style="float:left;margin-top: 22px;">年份：</label>
-            <input type="text" placeholder="请输入上映年份" class="combination-search"/>
+            <label style="float:left;margin-top: 22px;">日期：</label>
+            <input id="cdate" type="text" placeholder="请输入上映年份，如：2017-12-25" class="combination-search"/>
             <label style="float: left;margin-left: -63px;margin-top: 70px;">电影名：</label>
-            <input type="text" placeholder="请输入电影名" class="combination-search"/>
+            <input id="cname" type="text" placeholder="请输入电影名" class="combination-search"/>
             <label style="float: left;margin-left: -63px;margin-top: 70px;">导演名：</label>
-            <input type="text" placeholder="请输入导演名" class="combination-search"/>
+            <input id="cdirector" type="text" placeholder="请输入导演名" class="combination-search"/>
             <label style="float: left;margin-left: -63px;margin-top: 70px;">演员名：</label>
-            <input type="text" placeholder="请输入演员名" class="combination-search"/>
+            <input id="cactor" type="text" placeholder="请输入演员名" class="combination-search"/>
             <label style="float: left;margin-left: -80px;margin-top: 70px;">电影类别：</label>
-            <input type="text" placeholder="请输入电影类别" class="combination-search"/>
-            <button style="float: left;margin-top: 270px;margin-right: 280px;border-radius: 0;width: 167px;" type="button" onclick="Table('combination')"></button>
+            <input id="cgenre" type="text" placeholder="请输入电影类别" class="combination-search"/>
+            <button style="float: left;margin-top: 270px;margin-right: 280px;border-radius: 0;width: 167px;" type="button" onclick="Table('combination')">搜索</button>
         </form>
     </div>
     </div>
@@ -534,26 +471,10 @@
             <label class="title">查询结果</label>
         </div>
         <div id="combinationcontainer" class="result-container"></div>
-        <table id="combinationdatatable" class="table-display">
-            <thead>
-            <tr>
-                <th></th>
-                <th>关系型数据仓库存储数据模型</th>
-                <th>混合型存储数据模型</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th>执行时间</th>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-            </tbody>
-        </table>
         <div class="result-text">
-        <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-        <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-        <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="combinationrelation"></label><label>分钟</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="combinationmix"></label><label>分钟</label><br><br>
+            <label >该类别共有</label><label id="combinationtotal"></label><label>部电影，下表为数据详细内容，右图两种方式的执行时间</label>
         </div>
         <table id="combination" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
             <thead>
@@ -594,7 +515,7 @@
         {
             obj.options.add(new Option(i,i));
         }
-        obj.options[obj.options.length-51].selected=1;
+        obj.options[obj.options.length-11].selected=1;
     }
 </script>
 <script type="text/javascript">

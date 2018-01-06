@@ -18,5 +18,8 @@ public interface TimeDimRepository extends JpaRepository<TimeDim, String>
 
     List<TimeDim> findTimeDimsByYearAndMonth(int year, int month);
 
+    List<TimeDim> findTimeDimsByYearAndMonthIn(int year, List<Integer> month);
+
+    List<TimeDim> findTimeDimsByYearAndMonthAndDay(int year, int month, int day);
 
 }
