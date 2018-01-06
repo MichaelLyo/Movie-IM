@@ -2,7 +2,9 @@ package com.tongji.movie.controller;
 
 import com.sun.org.apache.regexp.internal.RE;
 import com.tongji.movie.model.AmazonFact;
+
 import com.tongji.movie.service.GetBothWayTime;
+
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
@@ -28,7 +30,7 @@ public class OperationController
     @RequestMapping(value = "/{operation}",method = RequestMethod.GET)
     public JSONArray showHistogram(@PathVariable String operation) throws SQLException
     {
-        System.out.println(operation);
+        //System.out.println(operation);
         return getBothWayTime.getBothWayTime(operation);
     }
 
