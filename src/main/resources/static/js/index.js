@@ -47,15 +47,6 @@ function Time () {
         }
         else{break;}
     }
-    if(document.getElementById("search-date").checked){
-        for (var i = 0; i <  document.getElementsByName('date').length ; i++) {
-            if (document.getElementsByName('date')[i].checked) {
-                document.getElementsByName('date')[i].checked=false;
-                document.getElementsByName('date')[i].disabled=true;
-            }
-        }
-    }
-
 }
 function toggle(id){
     var time=document.getElementById('search-time');
@@ -73,7 +64,7 @@ function toggle(id){
     if(id==='combination'){language.style.display='none';combination.style.display='block';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
     if(id==='language'){language.style.display='block';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
 }
-function Table(id) {
+function Table(id,type) {
         var time = document.getElementById('timeTable');
         var name = document.getElementById('nameTable');
         var director = document.getElementById('directorTable');
@@ -92,12 +83,12 @@ function Table(id) {
                         type: "post",
                         url: '/movie/ajax/showtime',
                         data : {
-                            "year":year.toString(),
-                            "month":monthArray.toString(),
-                            "dateType":dateType.toString(),
-                            "day":dayArray.toString(),
-                            "date":date.toString(),
-                            "season":seasonArray.toString()
+                            "year":String(year),
+                            "month":String(monthArray),
+                            "dateType":String(dateType),
+                            "day":String(dayArray),
+                            "date":String(date),
+                            "season":String(seasonArray)
                         },
                         dataSrc:""
                     },
@@ -701,28 +692,23 @@ function Table(id) {
         }
         if (id === 'actor') {
             actor.style.display = 'block';
-            var parent = document.getElementById("actorInfo");
-            var label = document.createElement("label");
-            //label.setAttribute("id", "newlabel");  //设置label的ID
-            label.setAttribute("id", "newlabel");
-            label.innerHTML = "Tom主演多少部电影，参演多少部电影";
-            parent.appendChild(label);
             $.fn.dataTable.ext.errMode = 'throw';
             var actorName = $("#sjw-search-actor").val();
-            if (mvActortb == null) {
+            var url;
+            if(type==='lead')url="/movie/actor/search?actorName=";
+            if(type==='none')url="/movie/actor/search?actorName=";
+            if (mvActortb === null) {
                 mvActortb = $('#actor').DataTable({
                     ajax: {
                         type: "post",
-                        url: "/movie/actor/search?actorName=" +actorName,
+                        url: url +actorName,
                         dataSrc:""
                     },
                     columns: [
                         {data: "movieId"},
                         {data: "title"},
                         {data: "actor"},
-                        {data: "releaseDate"},
-                        {data: "runTime"},
-                        {data: "studio"},
+                        {data: "releaseDate"}
                     ],
                     "bPaginage": true,
                     "sPaginationType": "full_numbers",
