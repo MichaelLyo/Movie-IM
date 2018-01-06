@@ -91,7 +91,7 @@ function Table(id,type) {
                             "day":String(dayArray),
                             "date":String(date),
                             "season":String(seasonArray)
-                        }
+                        },
 
                         dataSrc:""
 
@@ -704,11 +704,13 @@ function Table(id,type) {
             $.fn.dataTable.ext.errMode = 'throw';
             var actorName = $("#sjw-search-actor").val();
             var url;
+
             if(type==='lead')
                 url="/movie/actor/search?actorName=";
             if(type==='none')
                 url="/movie/actor/search?actorName=";
             if (mvActortb == null) {
+
                 mvActortb = $('#actor').DataTable({
                     ajax: {
                         type: "post",
@@ -722,6 +724,7 @@ function Table(id,type) {
                         {data: "runTime"},
                         {data: "studio"},
                         {data: "publisher"},
+
                     ],
                     "bPaginage": true,
                     "sPaginationType": "full_numbers",
@@ -1230,6 +1233,8 @@ function timeChoice() {
                 year = yearDiv.options[i].value;
             }
         }
+
+
         var season = document.getElementsByName('season');
         seasonArray = [];
         for (var i = 0,j = 0; i < season.length; i++) {

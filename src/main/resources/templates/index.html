@@ -8,7 +8,6 @@
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/highcharts.js"></script>
 <script src="js/data.js"></script>
-<script src="js/stickUp.min.js"></script>
 <script src="js/flatpickr.js"></script>
 <script src="js/index.js"></script>
 <link rel="stylesheet" type="text/css" href="css/flatpickr.min.css">
@@ -136,7 +135,7 @@
             <br><br>
             <label>使用混合型存储数据模型进行此次查询统计，需要</label><label id="timemix"></label><label>ms</label>
             <br><br>
-            <label >本次共搜索到</label><label id="timetotal"></label>0<label>条数据，下表为数据详细内容，右图两种方式的执行时间比较比较</label>
+            <label >下表为数据详细内容，右图两种方式的执行时间比较比较</label>
         </div>
         <table id="time" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
@@ -185,7 +184,7 @@
         <div class="result-text">
             <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="namerelation"></label><label>ms</label><br><br>
             <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="namemix"></label><label>ms</label><br><br>
-            <label >本次共搜索到</label><label id="nametotal"></label>0<label>条数据，下表为数据详细内容，右图两种方式的执行时间比较比较</label>
+            <label >下表为数据详细内容，右图两种方式的执行时间比较比较</label>
         </div>
         <table id="name" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
@@ -236,7 +235,7 @@
         <div class="result-text">
             <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="directorrelation"></label><label>ms</label><br><br>
             <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="directormix"></label><label>ms</label><br><br>
-            <label >本次共搜索到</label><label id="directortotal"></label>0<label>条数据，下表为数据详细内容，右图两种方式的执行时间比较</label>
+            <label >下表为数据详细内容，右图两种方式的执行时间比较</label>
         </div>
         <table id="director" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
@@ -273,7 +272,7 @@
             <div class="result-text">
                 <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="directorrelation2"></label><label>ms</label><br><br>
                 <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="directormix2"></label><label>ms</label><br><br>
-                <label >本次共搜索到</label><label id="directortotal2"></label>0<label>条数据，下表为数据详细内容，右图两种方式的执行时间比较</label>
+                <label >下表为数据详细内容，右图两种方式的执行时间比较</label>
             </div>
             <table id="director2" class="display datatable" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
                 <thead>
@@ -310,6 +309,7 @@
             <input id="sjw-search-actor" type="text" placeholder="可查询单个演员或一起合作的演员，如“Tom”或“Tom,Jack”" class="input-button" style="width: 350px"/>
             <button type="button" onclick="Table('actor','none')" style="left:380px;border-radius: 0;width:80px">参演查询</button>
             <button type="button" onclick="Table('actor','lead')" style="left:420px;border-radius: 0;width:80px">主演查询</button>
+
         </form>
     </div>
     </div>
@@ -322,7 +322,7 @@
         <div class="result-text">
             <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="actorrelation"></label><label>ms</label><br><br>
             <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="actormix"></label><label>ms</label><br><br>
-            <label >本次共搜索到</label><label id="actortotal"></label>0<label>条数据，下表为数据详细内容，右图两种方式的执行时间比较</label>
+            <label >下表为数据详细内容，右图两种方式的执行时间比较</label>
             <div id="actorInfo" style="margin-top:15px;margin-bottom:15px"></div>
         </div>
         <table id="actor" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
@@ -371,7 +371,6 @@
         <div class="result-text">
             <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="genrerelation"></label><label>ms</label><br><br>
             <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="genremix"></label><label>ms</label><br><br>
-            <label >该类别共有</label><label id="genretotal"></label><label>部电影，下表为数据详细内容，右图两种方式的执行时间比较</label>
         </div>
         <table id="category" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
             <thead>
@@ -421,7 +420,7 @@
         <div class="result-text">
             <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="languagerelation"></label><label>ms</label><br><br>
             <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="languagemix"></label><label>ms</label><br><br>
-            <label >该语种共有</label><label id="languagetotal"></label><label>部电影，下表为数据详细内容，右图两种方式的执行时间比较</label>
+            <label >下表为数据详细内容，右图两种方式的执行时间比较</label>
         </div>
         <table id="language" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
             <thead>
@@ -480,7 +479,7 @@
         <div class="result-text">
             <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="combinationrelation"></label><label>ms</label><br><br>
             <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="combinationmix"></label><label>ms</label><br><br>
-            <label >该类别共有</label><label id="combinationtotal"></label><label>部电影，下表为数据详细内容，右图两种方式的执行时间比较比较</label>
+            <label >下表为数据详细内容，右图两种方式的执行时间比较比较</label>
         </div>
         <table id="combination" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
             <thead>
@@ -525,13 +524,6 @@
     }
 </script>
 <script type="text/javascript">
-    //initiating jQuery
-    jQuery(function($) {
-        $(document).ready( function() {
-            //enabling stickUp on the '.navbar-wrapper' class
-            $('.navbar-wrapper').stickUp();
-        });
-    });
     document.getElementById("myID").flatpickr();
 </script>
 </body>
