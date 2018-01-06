@@ -1,10 +1,11 @@
 package com.tongji.movie.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="Actor")
-public class Actor {
+public class Actor{
 
 
     @Id
