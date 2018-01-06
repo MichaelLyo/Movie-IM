@@ -2,7 +2,6 @@ package com.tongji.movie;
 
 import com.tongji.movie.model.AmazonFact;
 import com.tongji.movie.repository.AmazonFactRepository;
-import com.tongji.movie.service.DirectorService;
 import oracle.jdbc.internal.OracleTypes;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,8 +24,7 @@ import java.util.Map;
 @SpringBootTest
 public class MovieApplicationTests {
 
-	@Autowired
-	DirectorService directorService;
+
 	@Autowired
 	AmazonFactRepository amazonFactRepository;
 
@@ -34,17 +32,7 @@ public class MovieApplicationTests {
 	public void contextLoads() {
 	}
 
-	@Test
-	public void testSelectDirector()
-	{
-		List<AmazonFact> movies = directorService.findMoviesByDirectorName("Ken Burns");
-		//List<AmazonFact> movies = amazonFactRepository.findByDirectorName("Ken Burns");
-		//System.out.println(movies);
-		for(AmazonFact item : movies)
-		{
-			System.out.println(item.getTitle());
-		}
-	}
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	//public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {

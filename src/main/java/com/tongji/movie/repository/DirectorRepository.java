@@ -13,4 +13,7 @@ public interface DirectorRepository extends JpaRepository<Director, Long>
 {
 
     List<Director> findDirectorsByName(String name);
+
+    @Query(value = "select * from director d join actor a on a.movie_id = d.movie_id where a.name = ?1", nativeQuery=true)
+    List<Director> findDirectorsActor(String name);
 }

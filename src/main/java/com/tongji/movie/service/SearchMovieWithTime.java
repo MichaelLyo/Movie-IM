@@ -1,5 +1,7 @@
 package com.tongji.movie.service;
 
+import com.tongji.movie.model.AmazonFact;
+import com.tongji.movie.repository.AmazonFactRepository;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +10,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class SearchMovieWithTime {
     @Autowired
     private ConToHive conObj;
 
+    @Autowired
+    private AmazonFactRepository amazonFactRepository;
 
     public JSONArray searchMVByPublication(String publicationDate) throws SQLException {
         Connection con = conObj.getConnection();
@@ -33,4 +38,5 @@ public class SearchMovieWithTime {
         }
         return movies;
     }
+
 }
