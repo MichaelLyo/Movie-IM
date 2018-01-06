@@ -57,10 +57,10 @@ public class SearchMovieWithTime {
                 if(dayArray.length == 0){
                     if(monthArray.length == 0){
                         if(seasonArray.length == 0){
-                            amazonFacts = amazonFactRepository.findAmazonFactsByPublicationYear(year);
+                            //amazonFacts = amazonFactRepository.findAmazonFactsByPublicationYear(year);
                         }
                         else {
-                            amazonFacts = amazonFactRepository.findAmazonFactsByPublicationQuarter()
+                            //amazonFacts = amazonFactRepository.findAmazonFactsByPublicationQuarter()
                         }
                     }
                     else{
