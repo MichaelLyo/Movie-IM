@@ -20,24 +20,20 @@ public class TestAjax{
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-        JSONObject object1 = new JSONObject();
+
         object.put("movieName","sjw");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,120");
         object.put("director","2011/04/25");
         object.put("actor","Edinburgh");
         object.put("edition","5421");
+        object.put("relation",15);
+        object.put("mix",33);
 
-        object1.put("movieName","lsl");
-        object1.put("releaseTime","System Architect");
-        object1.put("genre","$3,120");
-        object1.put("director","2011/04/25");
-        object1.put("actor","Edinburgh");
-        object1.put("edition","5421");
         jsonArray.appendElement(object);
-        jsonArray.appendElement(object1);
         return jsonArray;
     }
+
 
 
     @RequestMapping(value = "/showmovieName",method = RequestMethod.GET)
@@ -52,15 +48,12 @@ public class TestAjax{
         object.put("director","2011/04/25");
         object.put("actor","Edinburgh");
         object.put("edition","5421");
+        object.put("relation",15);
+        object.put("mix",33);
 
-        object1.put("movieName","lsldd");
-        object1.put("releaseTime","System Architect");
-        object1.put("genre","$3,120");
-        object1.put("director","2011/04/25");
-        object1.put("actor","Edinburgh");
-        object1.put("edition","54321");
+
+
         jsonArray.appendElement(object);
-        jsonArray.appendElement(object1);
         return jsonArray;
     }
     @RequestMapping(value = "/showdirector",method = RequestMethod.GET)
@@ -76,14 +69,10 @@ public class TestAjax{
         object.put("actor","Edinburgh");
         object.put("edition","5421");
 
-        object1.put("movieName","lsldd");
-        object1.put("releaseTime","System Architect");
-        object1.put("genre","$3,120");
-        object1.put("director","2011/04/25");
-        object1.put("actor","Edinburgh");
-        object1.put("edition","5421");
+        object.put("relation",15);
+        object.put("mix",33);
         jsonArray.appendElement(object);
-        jsonArray.appendElement(object1);
+
         return jsonArray;
     }
     @RequestMapping(value = "/showactor",method = RequestMethod.GET)
@@ -99,14 +88,9 @@ public class TestAjax{
         object.put("actor","Edinburgh");
         object.put("edition","5421");
 
-        object1.put("movieName","lsldd");
-        object1.put("releaseTime","S3ysdtem Architect");
-        object1.put("genre","$3,120");
-        object1.put("director","2011/04/25");
-        object1.put("actor","Edinburgh");
-        object1.put("edition","5421");
+        object.put("relation",15);
+        object.put("mix",33);
         jsonArray.appendElement(object);
-        jsonArray.appendElement(object1);
         return jsonArray;
     }
     @RequestMapping(value = "/showcategory",method = RequestMethod.GET)
@@ -122,14 +106,9 @@ public class TestAjax{
         object.put("actor","Edinburgh");
         object.put("edition","5421");
 
-        object1.put("movieName","lsldd");
-        object1.put("releaseTime","S3ystfem Architect");
-        object1.put("genre","$3,120");
-        object1.put("director","2011/04/25");
-        object1.put("actor","Edinburgh");
-        object1.put("edition","5421");
+        object.put("relation",15);
+        object.put("mix",33);
         jsonArray.appendElement(object);
-        jsonArray.appendElement(object1);
         return jsonArray;
     }
     @RequestMapping(value = "/showcombination",method = RequestMethod.GET)
@@ -145,14 +124,9 @@ public class TestAjax{
         object.put("actor","Edinburgh");
         object.put("edition","5421");
 
-        object1.put("movieName","lsldd");
-        object1.put("releaseTime","S3yfstem Architect");
-        object1.put("genre","$3,120");
-        object1.put("director","2011/04/25");
-        object1.put("actor","Edinburgh");
-        object1.put("edition","5421");
+        object.put("relation",15);
+        object.put("mix",33);
         jsonArray.appendElement(object);
-        jsonArray.appendElement(object1);
         return jsonArray;
     }
     @RequestMapping(value = "/showcomment",method = RequestMethod.GET)
@@ -168,14 +142,9 @@ public class TestAjax{
         object.put("actor","Edinburgh");
         object.put("edition","5421");
 
-        object1.put("movieName","lsldd");
-        object1.put("releaseTime","S3ystem Architect");
-        object1.put("genre","$3,120");
-        object1.put("director","2011/04/25");
-        object1.put("actor","Edinburgh");
-        object1.put("edition","5421");
+        object.put("relation",15);
+        object.put("mix",33);
         jsonArray.appendElement(object);
-        jsonArray.appendElement(object1);
         return jsonArray;
     }
 }
