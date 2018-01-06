@@ -92,6 +92,7 @@ function Table(id,type) {
                             "date":String(date),
                             "season":String(seasonArray)
                         },
+
                         dataSrc:""
 
                     },
