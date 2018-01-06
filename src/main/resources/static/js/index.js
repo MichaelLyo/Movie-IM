@@ -91,9 +91,6 @@ function Table(id) {
                     ajax: {
                         type: "post",
                         url: '/movie/ajax/showtime',
-                        success: function () {
-                            $('#timetotal').text(mvTimetb.rows.count());
-                        },
                         data : {
                             "year":year.toString(),
                             "month":monthArray.toString(),
@@ -101,7 +98,8 @@ function Table(id) {
                             "day":dayArray.toString(),
                             "date":date.toString(),
                             "season":seasonArray.toString()
-                        }
+                        },
+                        dataSrc:""
                     },
                     columns: [
                         {data: "movieId"},
@@ -255,9 +253,7 @@ function Table(id) {
                     ajax: {
                         type: "post",
                         url: "/movie/name/search?name=" + moviename,
-                        success:function () {
-                            $('#nametotal').text(mvNametb.rows.count());
-                        }
+                        dataSrc:""
                     },
                     columns: [
                         {data: "movieId"},
@@ -411,9 +407,7 @@ function Table(id) {
                     ajax: {
                         type: "post",
                         url: "/movie/director/search?directorName=" + direcorName,
-                        success: function () {
-                            $('#directortotal').text(mvDirectortb.rows.count());
-                        }
+                        dataSrc:""
                     },
                     columns: [
                         {data: "movieId"},
@@ -445,7 +439,6 @@ function Table(id) {
                     url: '/movie/ajax/showdirector',
                     dataSrc: '',
                     success: function (data) {
-
                         var dataSrc;
                         dataSrc = data[0];
                         $('#directorrelation').text(dataSrc.relation);
@@ -557,16 +550,14 @@ function Table(id) {
                     }
                 });
             }
-            if(direcorName.indexOf(",")>0) {
-                director2.style.display = 'block';
-                if (mvDirectortb2 === null) {
+
+            director2.style.display = 'block';
+            if (mvDirectortb2 === null) {
                     mvDirectortb2 = $('#director2').DataTable({
                         ajax: {
                             type: "post",
                             url: "/movie/director/search?directorName=" + direcorName,
-                            success: function () {
-                                $('#directortotal2').text(mvDirectortb2.rows.count());
-                            }
+                            dataSrc:""
                         },
                         columns: [
                             {data: "movieName"},
@@ -648,7 +639,7 @@ function Table(id) {
                         }
                     });
                 }
-                else {
+            else {
                     mvDirectortb2.ajax.url("/movie/director/search?directorName=" + direcorName).load();
                     $.ajax({
                         url: '/movie/ajax/showdirector',
@@ -707,21 +698,23 @@ function Table(id) {
                         }
                     });
                 }
-            }
         }
         if (id === 'actor') {
-                actor.style.display = 'block';
-                $.fn.dataTable.ext.errMode = 'throw';
-                var actorName = $("#sjw-search-actor").val();
+            actor.style.display = 'block';
+            var parent = document.getElementById("actorInfo");
+            var label = document.createElement("label");
+            //label.setAttribute("id", "newlabel");  //设置label的ID
+            label.setAttribute("id", "newlabel");
+            label.innerHTML = "Tom主演多少部电影，参演多少部电影";
+            parent.appendChild(label);
+            $.fn.dataTable.ext.errMode = 'throw';
+            var actorName = $("#sjw-search-actor").val();
             if (mvActortb == null) {
                 mvActortb = $('#actor').DataTable({
                     ajax: {
                         type: "post",
                         url: "/movie/actor/search?actorName=" +actorName,
-
-                        success:function () {
-                            $('#actortotal').text(mvActortb.rows.count());
-                        }
+                        dataSrc:""
                     },
                     columns: [
                         {data: "movieId"},
@@ -876,9 +869,7 @@ function Table(id) {
                         ajax: {
                             type: "post",
                             url: "/movie/genere/search?genere=" + typename,
-                            success:function () {
-                                $('#genretotal').text(mvTypetb.rows.count());
-                            }
+                            dataSrc:""
                         },
                         columns: [
                             {data: "movieId"},
@@ -1040,9 +1031,7 @@ function Table(id) {
                             "director": cdirector,
                             "genre": cgenre
                         },
-                        success: function () {
-                            $('#combinationtotal').text(mvGenretb.rows.count());
-                        }
+                        dataSrc:""
                     },
                     columns: [{data: "movieName"},
                         {data: "releaseTime"},
@@ -1134,9 +1123,8 @@ function Table(id) {
                     $('#language').DataTable({
                     ajax: {
                         url: '/movie/ajax/showlanguage',
-                        success: function () {
-                            $('#languagetotal').text(mvLanguagetb.rows.count());
-                        }
+                        dataSrc:"",
+                        type: "post"
                     },
                     columns: [{data: "movieName"},
                         {data: "releaseTime"},
