@@ -249,8 +249,8 @@
     <div class="container">
         <div class="inquirebox">
             <label class="title">根据导演名查询</label>
-        <form class="search-form">
-            <input type="text" placeholder="请输入导演名" class="input-button"/>
+        <form class="search-form" >
+            <input type="text" placeholder="请输入导演名" id="directorName" class="input-button"/>
             <button type="button" onclick="Table('director')"></button>
         </form>
     </div>
@@ -285,22 +285,22 @@
         <table id="director" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
-        <th>导演名</th>
+        <th>产品序列号</th>
         <th>电影名</th>
-        <th>演员名</th>
-        <th>Age</th>
-        <th data-orderable="false">Start date</th>
-        <th>Salary</th>
+        <th>导演名</th>
+        <th>电影时长</th>
+        <th data-orderable="false">发行日期</th>
+        <th>版本</th>
     </tr>
     </thead>
     <tfoot>
     <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
+        <th>产品序列号</th>
+        <th>电影名</th>
+        <th>导演名</th>
+        <th>电影时长</th>
+        <th>发行日期</th>
+        <th>版本</th>
     </tr>
     </tfoot>
     <tbody>

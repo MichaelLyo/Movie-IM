@@ -20,6 +20,6 @@ public interface AmazonFactRepository extends JpaRepository<AmazonFact, String>
 
     List<AmazonFact> findAmazonFactsByReleaseDateIn(List<String> timeIds);
 
-    //@Query(value = "select a from AmazonFact a inner join Director d on a.movieId=d.movieID where d.name=?1",nativeQuery = true)
-    //List<AmazonFact> findByDirectorName(String director);
+    @Query(value = "select a from AmazonFact a inner join Director d on a.movieId=d.movieId where d.name=?1",nativeQuery = true)
+    List<AmazonFact> findByDirectorName(String director);
 }

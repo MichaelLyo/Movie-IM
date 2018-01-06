@@ -80,7 +80,7 @@ function toggle(id){
             var dtname;
             dtname = $('#time').DataTable({
                 ajax:{
-                    url: '/movie/ajax/showtime',
+                    url: '/movie/showtime',
                     dataSrc: ''
                 },
                 columns: [ {data:"movieName"},
@@ -115,7 +115,7 @@ function toggle(id){
             var dttime;
             dttime = $('#name').DataTable({
                 ajax:{
-                    url: '/movie/ajax/showmovieName',
+                    url: '/movie/showmovieName',
                     dataSrc: ''
                 },
                 columns: [ {data:"movieName"},
@@ -145,16 +145,18 @@ function toggle(id){
         }
         if(id==='director') {director.style.display='block';
             $.fn.dataTable.ext.errMode = 'throw';
+            var directorName = document.getElementById("directorName");
             $('#director').DataTable({
                 ajax:{
-                    url: '/movie/ajax/showdirector',
-                    dataSrc: ''
+                    url: '/movie/showdirector'+'?directorName='+directorName.value,
+                    dataSrc: '',
+
                 },
-                columns: [ {data:"movieName"},
-                    {data:"releaseTime"},
-                    {data:"genre"},
+                columns: [ {data:"movieID"},
+                    {data:"movieName"},
                     {data:"director"},
-                    {data:"actor"},
+                    {data:"runTime"},
+                    {data:"releaseDate"},
                     {data:"edition"}],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
@@ -178,7 +180,7 @@ function toggle(id){
             $.fn.dataTable.ext.errMode = 'throw';
             $('#actor').DataTable({
                 ajax:{
-                    url: '/movie/ajax/showactor',
+                    url: '/movie/showactor',
                     dataSrc: ''
                 },
                 columns: [ {data:"movieName"},
@@ -208,7 +210,7 @@ function toggle(id){
         if(id==='category'){category.style.display='block';            $.fn.dataTable.ext.errMode = 'throw';
             $('#category').DataTable({
                 ajax:{
-                    url: '/movie/ajax/showcategory',
+                    url: '/movie/showcategory',
                     dataSrc: ''
                 },
                 columns: [ {data:"movieName"},
@@ -238,7 +240,7 @@ function toggle(id){
         if(id==='combination'){combination.style.display='block';            $.fn.dataTable.ext.errMode = 'throw';
             $('#combination').DataTable({
                 ajax:{
-                    url: '/movie/ajax/showcombination',
+                    url: '/movie/showcombination',
                     dataSrc: ''
                 },
                 columns: [ {data:"movieName"},
@@ -270,7 +272,7 @@ function toggle(id){
             $.fn.dataTable.ext.errMode = 'throw';
             $('#comment').DataTable({
                 ajax:{
-                    url: '/movie/ajax/showcomment',
+                    url: '/movie/showcomment',
                     dataSrc: ''
                 },
                 columns: [ {data:"movieName"},
