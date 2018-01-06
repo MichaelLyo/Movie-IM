@@ -57,7 +57,7 @@
 <!--Start 按照时间进行查询统计-->
 <div class="search bar6" id="search-time" style="display: none">
     <div class="container">
-    <div class="inquirebox" style="height:600px;">
+    <div class="inquirebox" style="height:670px;">
         <label class="title">根据时间查询</label>
         <form class="search-form" style="top:15px;width: 800px">
         <div class="year">年份</div><select class="select" id="myYear"></select>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            <button type="button" onclick="Table('time')" style="border-radius: 0;left:0;top:480px;"></button>
+            <button type="button" onclick="Table('time')" style="border-radius: 0;left:0;top:530px;"></button>
         </form>
     </div>
     </div>
@@ -168,7 +168,7 @@
     <div class="inquirebox">
         <label class="title">根据电影名查询</label>
         <form class="search-form">
-            <input type="text" placeholder="请输入电影名" class="input-button"/>
+            <input id="sjw-search-name" type="text" placeholder="请输入电影名" class="input-button"/>
             <button type="button" onclick="Table('name')"></button>
         </form>
     </div>
@@ -187,22 +187,22 @@
         <table id="name" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
+        <th>产品ID</th>
         <th>电影名</th>
-        <th>上映时间</th>
-        <th>电影风格</th>
-        <th>电影导演</th>
-        <th>电影演员</th>
-        <th>电影版本</th>
+        <th>发行时间</th>
+        <th>片长</th>
+        <th>音频类型</th>
+        <th>发行商</th>
     </tr>
     </thead>
     <tfoot>
     <tr>
+        <th>产品ID</th>
         <th>电影名</th>
-        <th>上映时间</th>
-        <th>电影风格</th>
-        <th>电影导演</th>
-        <th>电影演员</th>
-        <th>电影版本</th>
+        <th>发行时间</th>
+        <th>片长</th>
+        <th>音频类型</th>
+        <th>发行商</th>
     </tr>
     </tfoot>
     <tbody>
@@ -217,8 +217,9 @@
     <div class="container">
         <div class="inquirebox">
             <label class="title">根据导演名查询</label>
+
         <form class="search-form">
-            <input type="text" placeholder="请输入导演名" class="input-button"/>
+            <input id="sjw-search-director"  type="text" placeholder="请输入导演名" class="input-button"/>
             <button type="button" onclick="Table('director')"></button>
         </form>
     </div>
@@ -237,22 +238,22 @@
         <table id="director" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
-        <th>导演名</th>
+        <th>产品序列号</th>
         <th>电影名</th>
-        <th>演员名</th>
-        <th>Age</th>
-        <th data-orderable="false">Start date</th>
-        <th>Salary</th>
+        <th>导演名</th>
+        <th>电影时长</th>
+        <th data-orderable="false">发行日期</th>
+        <th>版本</th>
     </tr>
     </thead>
     <tfoot>
     <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
+        <th>产品序列号</th>
+        <th>电影名</th>
+        <th>导演名</th>
+        <th>电影时长</th>
+        <th>发行日期</th>
+        <th>版本</th>
     </tr>
     </tfoot>
     <tbody>
@@ -268,7 +269,7 @@
         <div class="inquirebox">
             <label class="title">根据演员名查询</label>
         <form class="search-form">
-            <input type="text" placeholder="请输入演员名" class="input-button"/>
+            <input id="sjw-search-actor" type="text" placeholder="请输入演员名" class="input-button"/>
             <button type="button" onclick="Table('actor')"></button>
         </form>
     </div>
@@ -318,7 +319,7 @@
         <div class="inquirebox">
             <label class="title">根据电影类别查询</label>
         <form class="search-form">
-            <input type="text" placeholder="请输入电影类别名" class="input-button"/>
+            <input id="sjw-search-category" type="text" placeholder="请输入电影类别名" class="input-button"/>
             <button type="button" onclick="Table('category')"></button>
         </form>
     </div>
@@ -337,12 +338,12 @@
         <table id="category" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
             <thead>
             <tr>
-                <th>电影类别</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th data-orderable="false">Start date</th>
-                <th>Salary</th>
+                <th>产品ID</th>
+                <th>电影名</th>
+                <th>电影类型</th>
+                <th data-orderable="false">发行时间</th>
+                <th>片长</th>
+                <th>音频类型</th>
             </tr>
             </thead>
             <tfoot>
@@ -368,7 +369,7 @@
         <div class="inquirebox">
             <label class="title">根据电影名查询评论</label>
         <form class="search-form">
-            <input type="text" placeholder="请输入电影名" class="input-button"/>
+            <input id="sjw-search-comment" type="text" placeholder="请输入电影名" class="input-button"/>
             <button type="button" onclick="Table('comment')"></button>
         </form>
     </div>

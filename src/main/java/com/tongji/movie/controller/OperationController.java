@@ -1,11 +1,14 @@
 package com.tongji.movie.controller;
 
 import com.sun.org.apache.regexp.internal.RE;
+import com.tongji.movie.model.AmazonFact;
+import com.tongji.movie.service.DirectorService;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.apache.hadoop.metrics2.util.SampleStat;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,13 +17,16 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/ajax",method = {RequestMethod.GET, RequestMethod.POST})
-public class TestAjax{
+public class OperationController
+{
+    @Autowired
+    DirectorService directorService;
     @RequestMapping(value = "/showtime",method = RequestMethod.GET)
     public JSONArray movieTimetest()
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-        
+
         object.put("movieName","sjw");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,120");
@@ -34,20 +40,24 @@ public class TestAjax{
         return jsonArray;
     }
 
+
+
     @RequestMapping(value = "/showmovieName",method = RequestMethod.GET)
     public JSONArray movieNametest()
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-
+        JSONObject object1 = new JSONObject();
         object.put("movieName","sjw");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,120");
         object.put("director","2011/04/25");
         object.put("actor","Edinburgh");
         object.put("edition","5421");
-        object.put("relation",2);
+        object.put("relation",15);
         object.put("mix",33);
+
+
 
         jsonArray.appendElement(object);
         return jsonArray;
@@ -57,7 +67,7 @@ public class TestAjax{
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-        
+        JSONObject object1 = new JSONObject();
         object.put("movieName","sjw3");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,120");
@@ -65,11 +75,10 @@ public class TestAjax{
         object.put("actor","Edinburgh");
         object.put("edition","5421");
 
-
-        object.put("relation",32);
+        object.put("relation",15);
         object.put("mix",33);
-
         jsonArray.appendElement(object);
+
         return jsonArray;
     }
     @RequestMapping(value = "/showactor",method = RequestMethod.GET)
@@ -77,7 +86,7 @@ public class TestAjax{
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-
+        JSONObject object1 = new JSONObject();
         object.put("movieName","s2jw3");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,120");
@@ -85,10 +94,8 @@ public class TestAjax{
         object.put("actor","Edinburgh");
         object.put("edition","5421");
 
-
-        object.put("relation",4);
+        object.put("relation",15);
         object.put("mix",33);
-
         jsonArray.appendElement(object);
         return jsonArray;
     }
@@ -97,7 +104,7 @@ public class TestAjax{
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-
+        JSONObject object1 = new JSONObject();
         object.put("movieName","s2jw3");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,1230");
@@ -105,9 +112,8 @@ public class TestAjax{
         object.put("actor","Edinburgh");
         object.put("edition","5421");
 
-        object.put("relation",5);
+        object.put("relation",15);
         object.put("mix",33);
-
         jsonArray.appendElement(object);
         return jsonArray;
     }
@@ -116,7 +122,7 @@ public class TestAjax{
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-
+        JSONObject object1 = new JSONObject();
         object.put("movieName","s2jw33");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,1230");
@@ -124,9 +130,8 @@ public class TestAjax{
         object.put("actor","Edinburgh");
         object.put("edition","5421");
 
-        object.put("relation",6);
+        object.put("relation",15);
         object.put("mix",33);
-
         jsonArray.appendElement(object);
         return jsonArray;
     }
@@ -135,7 +140,7 @@ public class TestAjax{
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-
+        JSONObject object1 = new JSONObject();
         object.put("movieName","3");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,1230");
@@ -143,9 +148,8 @@ public class TestAjax{
         object.put("actor","Edinburgh");
         object.put("edition","5421");
 
-        object.put("relation",7);
+        object.put("relation",15);
         object.put("mix",33);
-
         jsonArray.appendElement(object);
         return jsonArray;
     }

@@ -15,3 +15,5 @@ maven中没有提供oracle的jdbc可以直接引用，所以要手动添加，�
  mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.1.0 -Dpackaging=jar -Dfile=ojdbc6.jar
 ```
 
+## 转内存数据库项目
+- [spring boot里调用PL/SQL编程中的存储过程方法](http://www.it610.com/article/2266736.htm)
