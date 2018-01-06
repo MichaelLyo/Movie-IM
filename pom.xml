@@ -145,8 +145,12 @@
 		<version>1.5.9.RELEASE</version>
 		<optional>true</optional>
 		</dependency>
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+        </dependency>
 
-		<!--&lt;!&ndash;session相关&ndash;&gt;-->
+        <!--&lt;!&ndash;session相关&ndash;&gt;-->
 		<!--<dependency>-->
 		<!--<groupId>org.springframework.session</groupId>-->
 		<!--<artifactId>spring-session</artifactId>-->

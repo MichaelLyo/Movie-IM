@@ -236,12 +236,15 @@ function toggle(id){
             name.style.display = 'block';
             $.fn.dataTable.ext.errMode = 'throw';
             var moviename = $("#sjw-search-name").val();
+            sjw=["sjw","lsl"];
+            lsl=["sjw","lsl"];
             if (mvNametb == null) {
                 mvNametb = $('#name').DataTable({
                     ajax: {
                         type: "post",
                         url: "/movie/name/search?name=" + moviename,
-                        dataSrc: ""
+                        dataSrc: "",
+                        data: {"years":sjw.toString(),"months":lsl.toString()},
                     },
                     columns: [
                         {data: "movieId"},
@@ -272,6 +275,7 @@ function toggle(id){
                 $.ajax({
                     url: '/movie/ajax/showmovieName',
                     dataSrc: '',
+                    data: {"sjw":nameList},
                     success: function (data) {
 
                         var dataSrc;
