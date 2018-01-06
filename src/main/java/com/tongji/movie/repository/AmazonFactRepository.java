@@ -23,22 +23,25 @@ public interface AmazonFactRepository extends JpaRepository<AmazonFact, Long>
     List<AmazonFact> findAmazonFactsByPublicationYear(int year);
 
     @Query(value="select * from amazon_fact a join time_dim d on a.publication_date = d.time_id where d.year = ?1 and d.month IN ?2", nativeQuery=true)
-    List<AmazonFact> findAmazonFactsByPublicationMonthIn(int year, List<Integer> month);
+    List<AmazonFact> findAmazonFactsByPublicationMonthIn(int year, Integer[] months);
 
-    @Query(value="SELECT * FROM amazon_fact a JOIN time_dim d ON a.publication_date = d.time_id WHERE d.year = ?1 AND d.month BETWEEN ?2 * 3 - 2 AND ?2 * 3", nativeQuery=true)
-    List<AmazonFact> findAmazonFactsByPublicationQuarter(int year, int quarter);
+    @Query(value="select * from amazon_fact a join time_dim d on a.publication_date = d.time_id where d.year = ?1 and d.month IN ?2 and d.week IN ?3", nativeQuery=true)
+    List<AmazonFact> findAmazonFactsByPublicationDayIn(int year, Integer[] months, Integer[] days);
 
-    @Query(value="select * from amazon_fact a join time_dim d on a.publication_date = d.time_id where d.year = ?1 and d.month = ?2 and d.day = ?3", nativeQuery=true)
-    List<AmazonFact> findAmazonFactsByPublicationDay(int year, int month, int day);
+    @Query(value="select * from amazon_fact a join time_dim d on a.publication_date = d.time_id where d.year = ?1 and d.week IN ?2", nativeQuery=true)
+    List<AmazonFact> findAmazonFactsByPublicationDayIn(int year, Integer[] days);
 
     @Query(value="select * from amazon_fact a join time_dim d on a.release_date = d.time_id where d.year = ?1", nativeQuery=true)
     List<AmazonFact> findAmazonFactsByReleaseYear(int year);
 
-    @Query(value="SELECT * FROM amazon_fact a JOIN time_dim d ON a.release_date = d.time_id WHERE d.year = ?1 AND d.month BETWEEN ?2 AND ?3", nativeQuery=true)
-    List<AmazonFact> findAmazonFactsByReleaseMonthBetween(int year, int month1, int month2);
+    @Query(value="select * from amazon_fact a join time_dim d on a.release_date = d.time_id where d.year = ?1 and d.month IN ?2", nativeQuery=true)
+    List<AmazonFact> findAmazonFactsByReleaseMonthIn(int year, Integer[] months);
 
-    @Query(value="select * from amazon_fact a join time_dim d on a.release_date = d.time_id where d.year = ?1 and d.month = ?2 and d.day = ?3", nativeQuery=true)
-    List<AmazonFact> findAmazonFactsByReleaseDay(int year, int month, int day);
+    @Query(value="select * from amazon_fact a join time_dim d on a.release_date = d.time_id where d.year = ?1 and d.month IN ?2 and d.week IN ?3", nativeQuery=true)
+    List<AmazonFact> findAmazonFactsByReleaseDayIn(int year, Integer[] months, Integer[] days);
+
+    @Query(value="select * from amazon_fact a join time_dim d on a.release_date = d.time_id where d.year = ?1 and d.week IN ?2", nativeQuery=true)
+    List<AmazonFact> findAmazonFactsByReleaseDayIn(int year, Integer[] days);
 
     @Query(value="select * from amazon_fact a join genre g on a.movie_id = g.movie_id where g.name LIKE ?1", nativeQuery=true)
     List<AmazonFact> findAmazonFactsByGenre(String genre);
@@ -55,6 +58,13 @@ public interface AmazonFactRepository extends JpaRepository<AmazonFact, Long>
     @Query(value = "select * from amazon_fact a join director d on a.movie_id = d.movie_id where d.name LIKE ?1", nativeQuery=true)
     List<AmazonFact> findAmazonFactsByDirector(String name);
 
-    @Query(value = "select * from AmazonFact a inner join director d on (a.movieid = d.movieid) inner JOIN genre g on (a.movieid = g.movieid) inner join actor ac on (a.movieid = ac.movieid) WHERE d.name like ?1", nativeQuery=true)
-    List<AmazonFact> findCoActorAndAmazonFactByDirector(String name);
+
+    @Query(value = "select * from amazon_fact a join actor ac on a.movie_id = ac.movie_id " +
+            "join director d on ac.movieId = d.movieId " +
+            "join genre g on d.movieId = g. movieId " +
+            "where a.release_date = ?1 and a.title = ?2 and ac.name = ?3 and d.name = ?4 and g.name = ?5", nativeQuery=true)
+    List<AmazonFact> findAmazonFactsByCombination(String date,String name,String actor,String director,String genre);
+
+
+
 }
