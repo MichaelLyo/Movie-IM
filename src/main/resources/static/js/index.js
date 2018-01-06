@@ -65,7 +65,7 @@ function toggle(id){
     if(id==='combination'){language.style.display='none';combination.style.display='block';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
     if(id==='language'){language.style.display='block';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
 }
-function Table(id) {
+function Table(id,type) {
         var time = document.getElementById('timeTable');
         var name = document.getElementById('nameTable');
         var director = document.getElementById('directorTable');
@@ -700,28 +700,23 @@ function Table(id) {
         }
         if (id === 'actor') {
             actor.style.display = 'block';
-            var parent = document.getElementById("actorInfo");
-            var label = document.createElement("label");
-            //label.setAttribute("id", "newlabel");  //设置label的ID
-            label.setAttribute("id", "newlabel");
-            label.innerHTML = "Tom主演多少部电影，参演多少部电影";
-            parent.appendChild(label);
             $.fn.dataTable.ext.errMode = 'throw';
             var actorName = $("#sjw-search-actor").val();
-            if (mvActortb == null) {
+            var url;
+            if(type==='lead')url="/movie/actor/search?actorName=";
+            if(type==='none')url="/movie/actor/search?actorName=";
+            if (mvActortb === null) {
                 mvActortb = $('#actor').DataTable({
                     ajax: {
                         type: "post",
-                        url: "/movie/actor/search?actorName=" +actorName,
+                        url: url +actorName,
                         dataSrc:""
                     },
                     columns: [
                         {data: "movieId"},
                         {data: "title"},
                         {data: "actor"},
-                        {data: "releaseDate"},
-                        {data: "runTime"},
-                        {data: "studio"},
+                        {data: "releaseDate"}
                     ],
                     "bPaginage": true,
                     "sPaginationType": "full_numbers",
@@ -1230,6 +1225,8 @@ function timeChoice() {
                 year = yearDiv.options[i].value;
             }
         }
+
+
         var season = document.getElementsByName('season');
         seasonArray = [];
         for (var i = 0,j = 0; i < season.length; i++) {
