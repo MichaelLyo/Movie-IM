@@ -44,7 +44,7 @@ public class RepositoryTest {
         for(TimeDim t : timeDims){
             timeIds.add(t.getTimeId());
         }
-        List<AmazonFact> amazonFacts = amazonFactRepository.findAmazonFactsByPublicationDateIn(timeIds);
+
 
     }
 
