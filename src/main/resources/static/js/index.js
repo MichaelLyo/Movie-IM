@@ -91,7 +91,7 @@ function Table(id) {
                             "day":String(dayArray),
                             "date":String(date),
                             "season":String(seasonArray)
-                        }
+                        },
 
                         dataSrc:""
 
