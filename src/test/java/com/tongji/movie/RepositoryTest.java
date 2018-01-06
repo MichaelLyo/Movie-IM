@@ -39,17 +39,19 @@ public class RepositoryTest {
     public void testTimeDim() throws Exception
     {
         List<TimeDim> timeDims = timeDimRepository.findTimeDimsByYear(2010);
+
         List<String> timeIds = new LinkedList<String>();
         for(TimeDim t : timeDims){
             timeIds.add(t.getTimeId());
         }
         List<AmazonFact> amazonFacts = amazonFactRepository.findAmazonFactsByPublicationDateIn(timeIds);
+
     }
 
     @Test
     public void testAmazonFact() throws Exception
     {
-
+        List<AmazonFact> amazonFacts = amazonFactRepository.findAmazonFactsByPublicationYear(2008);
     }
 
 }
