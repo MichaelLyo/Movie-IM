@@ -556,7 +556,7 @@ function Table(id,type) {
                             type: "post",
                             url: "/movie/director/actor?directorName=" + direcorName,
 
-                            dataSrc:""
+                            dataSrc: ""
                         },
                         columns: [
                             {data: "movieId"},
@@ -639,6 +639,7 @@ function Table(id,type) {
                         }
                     });
                 }
+            }
             else {
                     mvDirectortb2.ajax.url("/movie/director/search?directorName=" + direcorName).load();
                     $.ajax({
