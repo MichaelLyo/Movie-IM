@@ -1213,6 +1213,7 @@ function timeChoice() {
                 year = yearDiv.options[i].value;
             }
         }
+
         var season = document.getElementsByName('season');
         seasonArray = "";
         for (var i = 0; i < season.length; i++) {
