@@ -39,12 +39,13 @@ public class RepositoryTest {
     public void testTimeDim() throws Exception
     {
         List<TimeDim> timeDims = timeDimRepository.findTimeDimsByYear(2010);
+
     }
 
     @Test
     public void testAmazonFact() throws Exception
     {
-
+        List<AmazonFact> amazonFacts = amazonFactRepository.findAmazonFactsByPublicationYear(2008);
     }
 
 }
