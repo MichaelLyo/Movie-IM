@@ -16,14 +16,25 @@ public class DirectorMovieController {
 
     @RequestMapping(value = "/search")
     public JSONArray searchMovieWithDirector(String directorName){
-        System.out.println("hellosdfsfs");
         JSONArray jsonArray;
         try {
-
             jsonArray =searchMovieWithDirector.searchInOracle('%'+directorName+'%');
-
         } catch (SQLException e) {
-            System.out.println("按类型查询电影失败");
+            System.out.println("按导演查询电影失败");
+            jsonArray = null;
+            e.printStackTrace();
+        }
+        return jsonArray;
+    }
+    @RequestMapping(value = "/actor")
+    public JSONArray seachDirectorCoActor(String directorName)
+    {
+        JSONArray jsonArray;
+        try
+        {
+            jsonArray =searchMovieWithDirector.searchCoActorInOracle(directorName);
+        }catch (SQLException e) {
+            System.out.println("按导演合作演员类型查询电影失败");
             jsonArray = null;
             e.printStackTrace();
         }

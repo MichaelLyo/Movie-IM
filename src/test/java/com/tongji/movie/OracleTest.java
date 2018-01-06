@@ -2,6 +2,7 @@ package com.tongji.movie;
 
 import com.tongji.movie.model.TimeDim;
 import com.tongji.movie.repository.TimeDimRepository;
+import com.tongji.movie.service.SearchMovieWithDirector;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -20,7 +22,8 @@ public class OracleTest
 {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
+	@Autowired
+	SearchMovieWithDirector searchMovieWithDirector;
 	@Autowired
 	private TimeDimRepository timeDimRepository;
 
@@ -32,5 +35,10 @@ public class OracleTest
 		{
 			System.out.println(item.getTimeId());
 		}
+	}
+	@Test
+	public void directorTest() throws SQLException
+	{
+		System.out.println(searchMovieWithDirector.searchCoActor("Ken Burns"));
 	}
 }

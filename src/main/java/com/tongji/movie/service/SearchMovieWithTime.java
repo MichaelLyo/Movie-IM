@@ -47,27 +47,68 @@ public class SearchMovieWithTime {
     public JSONArray searchInOracle(String dateType,String date,String year,String[] seasonArray,String[] monthArray,String[] dayArray) throws SQLException {
         JSONArray movies = new JSONArray();
         List<AmazonFact> amazonFacts = null;
-        Integer yearNum = Integer.parseInt(year);
-        List<Integer> monthList = null;
+        Integer nyear = null;
+        Integer[] days = new Integer[31];
+        Integer[] months = new Integer[12];
+        if(date.length() == 0) {
+
+            if (!year.equals("undefined")) {
+                nyear = Integer.parseInt(year);
+            }
+            if (monthArray.length == 0) {
+                for (int i = 0, j = 0; i < seasonArray.length; i++) {
+                    if (seasonArray[i].equals("春")) {
+                        months[j] = 1;
+                        months[j + 1] = 2;
+                        months[j + 2] = 3;
+                        j = j + 3;
+                    } else if (seasonArray[i].equals("夏")) {
+                        months[j] = 4;
+                        months[j + 1] = 5;
+                        months[j + 2] = 6;
+                        j = j + 3;
+                    } else if (seasonArray[i].equals("秋")) {
+                        months[j] = 7;
+                        months[j + 1] = 8;
+                        months[j + 2] = 9;
+                        j = j + 3;
+                    } else if (seasonArray[i].equals("冬")) {
+                        months[j] = 10;
+                        months[j + 1] = 11;
+                        months[j + 2] = 12;
+                        j = j + 3;
+                    }
+                }
+            } else {
+                for (int i = 0; i < monthArray.length; i++) {
+                    months[i] = Integer.parseInt(monthArray[i]);
+                }
+            }
+            for (int i = 0; i < dayArray.length; i++) {
+                days[i] = Integer.parseInt(dayArray[i]);
+            }
+        }
         if(Integer.parseInt(dateType) == 0){
             if(!date.isEmpty()){
                 amazonFacts =  amazonFactRepository.findAmazonFactsByPublicationDate(date);
             }
             else{
-                if(dayArray.length == 0){
-                    if(monthArray.length == 0){
-                        if(seasonArray.length == 0){
-                            //amazonFacts = amazonFactRepository.findAmazonFactsByPublicationYear(year);
-                        }
-                        else {
-                            //amazonFacts = amazonFactRepository.findAmazonFactsByPublicationQuarter()
-                        }
+
+                if(days.length == 0){ //没有天数
+                    if(months.length == 0){ //没有月份或者季度
+                        amazonFacts = amazonFactRepository.findAmazonFactsByPublicationYear(nyear);
+                    }
+                    amazonFacts = amazonFactRepository.findAmazonFactsByPublicationMonthIn(nyear, months);
+                }
+                else{
+                    if(months.length != 0) {
+                        amazonFacts = amazonFactRepository.findAmazonFactsByPublicationDayIn(nyear, months, days);
+
                     }
                     else{
-                        //amazonFacts = amazonFactRepository
+                        amazonFacts = amazonFactRepository.findAmazonFactsByPublicationDayIn(nyear, days);
                     }
                 }
-
             }
         }
         else{
@@ -75,7 +116,20 @@ public class SearchMovieWithTime {
                 amazonFacts =  amazonFactRepository.findAmazonFactsByReleaseDate(date);
             }
             else{
-
+                if(days.length == 0){
+                    if(months.length == 0){
+                        amazonFacts = amazonFactRepository.findAmazonFactsByReleaseYear(nyear);
+                    }
+                    amazonFacts = amazonFactRepository.findAmazonFactsByReleaseMonthIn(nyear, months);
+                }
+                else{
+                    if(months.length != 0) {
+                        amazonFacts = amazonFactRepository.findAmazonFactsByReleaseDayIn(nyear, months, days);
+                    }
+                    else{
+                        amazonFacts = amazonFactRepository.findAmazonFactsByReleaseDayIn(nyear, days);
+                    }
+                }
             }
         }
         for(AmazonFact a : amazonFacts){

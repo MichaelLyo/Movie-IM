@@ -47,14 +47,6 @@ function Time () {
         }
         else{break;}
     }
-    if(document.getElementById("search-date").checked){
-        for (var i = 0; i <  document.getElementsByName('date').length ; i++) {
-            if (document.getElementsByName('date')[i].checked) {
-                document.getElementsByName('date')[i].checked=false;
-                document.getElementsByName('date')[i].disabled=true;
-            }
-        }
-    }
 
 }
 function toggle(id){
@@ -93,14 +85,16 @@ function Table(id,type) {
                         type: "post",
                         url: '/movie/ajax/showtime',
                         data : {
-                            "year":year.toString(),
-                            "month":monthArray.toString(),
-                            "dateType":dateType.toString(),
-                            "day":dayArray.toString(),
-                            "date":date.toString(),
-                            "season":seasonArray.toString()
-                        },
+                            "year":String(year),
+                            "month":String(monthArray),
+                            "dateType":String(dateType),
+                            "day":String(dayArray),
+                            "date":String(date),
+                            "season":String(seasonArray)
+                        }
+
                         dataSrc:""
+
                     },
                     columns: [
                         {data: "movieId"},
@@ -410,6 +404,7 @@ function Table(id,type) {
                         type: "post",
                         url: "/movie/director/search?directorName=" + direcorName,
                         dataSrc:""
+
                     },
                     columns: [
                         {data: "movieId"},
@@ -553,16 +548,19 @@ function Table(id,type) {
                 });
             }
 
-            director2.style.display = 'block';
-            if (mvDirectortb2 === null) {
+            if(true) {
+                director2.style.display = 'block';
+                if (mvDirectortb2 === null) {
                     mvDirectortb2 = $('#director2').DataTable({
                         ajax: {
                             type: "post",
-                            url: "/movie/director/search?directorName=" + direcorName,
+                            url: "/movie/director/actor?directorName=" + direcorName,
+
                             dataSrc:""
                         },
                         columns: [
-                            {data: "movieName"},
+                            {data: "movieId"},
+                            {data: "title"},
                             {data: "director"},
                             {data: "actor"},
                             {data: "genre"}
@@ -586,7 +584,7 @@ function Table(id,type) {
                         }
                     });
                     $.ajax({
-                        url: '/movie/ajax/showdirector',
+                        url: '/movie/ajax/showdirectorcoactor',
                         dataSrc: '',
                         success: function (data) {
                             var dataSrc;
@@ -1024,6 +1022,7 @@ function Table(id,type) {
             if(mvGenretb === null) {
                 $('#combination').DataTable({
                     ajax: {
+
                         url: '/movie/ajax/showcombination',
                         data: {
                             "date": cdate,
@@ -1033,6 +1032,7 @@ function Table(id,type) {
                             "genre": cgenre
                         },
                         dataSrc:""
+
                     },
                     columns: [{data: "movieName"},
                         {data: "releaseTime"},
@@ -1123,9 +1123,11 @@ function Table(id,type) {
                 if(mvLanguagetb === null){
                     $('#language').DataTable({
                     ajax: {
+
                         url: '/movie/ajax/showlanguage',
                         dataSrc:"",
                         type: "post"
+
                     },
                     columns: [{data: "movieName"},
                         {data: "releaseTime"},
@@ -1229,24 +1231,27 @@ function timeChoice() {
             }
         }
         var season = document.getElementsByName('season');
-        seasonArray = "";
-        for (var i = 0; i < season.length; i++) {
+        seasonArray = [];
+        for (var i = 0,j = 0; i < season.length; i++) {
             if (season[i].checked) {
-                seasonArray += season[i].value+",";
+                seasonArray[j] = season[i].value;
+                j++;
             }
         }
         var month = document.getElementsByName('month');
-        monthArray = "";
-        for (var i = 0; i < month.length; i++) {
+        monthArray = [];
+        for (var i = 0, j = 0; i < month.length; i++) {
             if (month[i].checked) {
-                monthArray += month[i].value+",";
+                monthArray[j] = month[i].value;
+                j++;
             }
         }
         var day = document.getElementsByName('day');
-        dayArray = "";
-        for (var i = 0; i < day.length; i++) {
+        dayArray = [];
+        for (var i = 0, j = 0; i < day.length; i++) {
             if (day[i].checked) {
-                dayArray += day[i].value+",";
+                dayArray[j] = day[i].value;
+                j++;
             }
         }
     }

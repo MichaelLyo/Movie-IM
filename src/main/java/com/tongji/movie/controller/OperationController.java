@@ -30,7 +30,7 @@ public class OperationController
     @RequestMapping(value = "/{operation}",method = RequestMethod.GET)
     public JSONArray showHistogram(@PathVariable String operation) throws SQLException
     {
-        System.out.println(operation);
+        //System.out.println(operation);
         return getBothWayTime.getBothWayTime(operation);
     }
 

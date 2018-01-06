@@ -18,6 +18,17 @@ public class TimeDim {
     @Column(nullable = true)
     private Integer month;
 
+    public Integer getWeek() {
+        return week;
+    }
+
+    public void setWeek(Integer week) {
+        this.week = week;
+    }
+
+    @Column(nullable = true)
+    private Integer week;
+
     @Column(nullable = true)
     private Integer day;
 
