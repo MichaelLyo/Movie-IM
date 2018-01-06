@@ -73,7 +73,7 @@ function toggle(id){
     if(id==='combination'){language.style.display='none';combination.style.display='block';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
     if(id==='language'){language.style.display='block';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
 }
-function Table(id) {
+function Table(id,type) {
         var time = document.getElementById('timeTable');
         var name = document.getElementById('nameTable');
         var director = document.getElementById('directorTable');
@@ -92,10 +92,6 @@ function Table(id) {
                     ajax: {
                         type: "post",
                         url: '/movie/ajax/showtime',
-                        success: function () {
-                            $('#timetotal').text(mvTimetb.rows.count());
-                        },
-
                         data : {
                             "year":year.toString(),
                             "month":monthArray.toString(),
@@ -103,7 +99,8 @@ function Table(id) {
                             "day":dayArray.toString(),
                             "date":date.toString(),
                             "season":seasonArray.toString()
-                        }
+                        },
+                        dataSrc:""
                     },
                     columns: [
                         {data: "movieId"},
@@ -258,11 +255,8 @@ function Table(id) {
                     ajax: {
                         type: "post",
                         url: "/movie/name/search?name=" + moviename,
-                        data:"",
-                        dataSrc:"",
-                        // success:function () {
-                        //     $('#nametotal').text(mvNametb.rows.count);
-                        // }
+
+                        dataSrc:""
                     },
                     columns: [
                         {data: "movieId"},
@@ -329,7 +323,6 @@ function Table(id) {
 
                                         + '</b><br/>' +
                                         this.point.y + 'ms ' + this.point.name
-
                                             .toLowerCase();
                                 }
                             },
@@ -448,7 +441,6 @@ function Table(id) {
                     url: '/movie/ajax/showdirector',
                     dataSrc: '',
                     success: function (data) {
-
                         var dataSrc;
                         dataSrc = data[0];
                         $('#directorrelation').text(dataSrc.relation);
@@ -560,16 +552,14 @@ function Table(id) {
                     }
                 });
             }
-            if(direcorName.indexOf(",")>0) {
-                director2.style.display = 'block';
-                if (mvDirectortb2 === null) {
+
+            director2.style.display = 'block';
+            if (mvDirectortb2 === null) {
                     mvDirectortb2 = $('#director2').DataTable({
                         ajax: {
                             type: "post",
                             url: "/movie/director/search?directorName=" + direcorName,
-                            success: function () {
-                                $('#directortotal2').text(mvDirectortb2.rows.count());
-                            }
+                            dataSrc:""
                         },
                         columns: [
                             {data: "movieName"},
@@ -651,13 +641,12 @@ function Table(id) {
                         }
                     });
                 }
-                else {
+            else {
                     mvDirectortb2.ajax.url("/movie/director/search?directorName=" + direcorName).load();
                     $.ajax({
                         url: '/movie/ajax/showdirector',
                         dataSrc: '',
                         success: function (data) {
-
                             var dataSrc;
                             dataSrc = data[0];
                             $('#directorrelation2').text(dataSrc.relation);
@@ -710,29 +699,31 @@ function Table(id) {
                         }
                     });
                 }
-            }
         }
+
         if (id === 'actor') {
-                actor.style.display = 'block';
-                $.fn.dataTable.ext.errMode = 'throw';
-                var actorName = $("#sjw-search-actor").val();
+            actor.style.display = 'block';
+            $.fn.dataTable.ext.errMode = 'throw';
+            var actorName = $("#sjw-search-actor").val();
+            var url;
+            if(type==='lead')
+                url="/movie/actor/search?actorName=";
+            if(type==='none')
+                url="/movie/actor/search?actorName=";
             if (mvActortb == null) {
                 mvActortb = $('#actor').DataTable({
                     ajax: {
                         type: "post",
-                        url: "/movie/actor/search?actorName=" +actorName,
-
-                        success:function () {
-                            $('#actortotal').text(mvActortb.rows.count());
-                        }
+                        url: url +actorName,
+                        dataSrc:""
                     },
                     columns: [
                         {data: "movieId"},
                         {data: "title"},
-                        {data: "actor"},
                         {data: "releaseDate"},
                         {data: "runTime"},
                         {data: "studio"},
+                        {data: "publisher"},
                     ],
                     "bPaginage": true,
                     "sPaginationType": "full_numbers",
@@ -810,7 +801,7 @@ function Table(id) {
                 });
             }
             else {
-                mvActortb.ajax.url("/movie/actor/search?actorName=" + actorName).load();
+                mvActortb.ajax.url(url + actorName).load();
                 $.ajax({
                     url: '/movie/ajax/showactor',
                     dataSrc: '',
@@ -879,9 +870,7 @@ function Table(id) {
                         ajax: {
                             type: "post",
                             url: "/movie/genere/search?genere=" + typename,
-                            success:function () {
-                                $('#genretotal').text(mvTypetb.rows.count());
-                            }
+                            dataSrc:""
                         },
                         columns: [
                             {data: "movieId"},
@@ -1043,9 +1032,7 @@ function Table(id) {
                             "director": cdirector,
                             "genre": cgenre
                         },
-                        success: function () {
-                            $('#combinationtotal').text(mvGenretb.rows.count());
-                        }
+                        dataSrc:""
                     },
                     columns: [{data: "movieName"},
                         {data: "releaseTime"},
@@ -1137,9 +1124,8 @@ function Table(id) {
                     $('#language').DataTable({
                     ajax: {
                         url: '/movie/ajax/showlanguage',
-                        success: function () {
-                            $('#languagetotal').text(mvLanguagetb.rows.count());
-                        }
+                        dataSrc:"",
+                        type: "post"
                     },
                     columns: [{data: "movieName"},
                         {data: "releaseTime"},
