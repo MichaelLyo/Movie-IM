@@ -5,13 +5,14 @@ import com.tongji.movie.repository.AmazonFactRepository;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
+@Component
 public class SearchMovieWithTime {
     @Autowired
     private ConToHive conObj;

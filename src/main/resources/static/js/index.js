@@ -158,7 +158,7 @@ function Table(id) {
                             yAxis: {
                                 allowDecimals: false,
                                 title: {
-                                    text: 's',
+                                    text: 'ms',
                                     rotation: 0
                                 }
                             },
@@ -167,7 +167,7 @@ function Table(id) {
                                     return '<b>' + this.series.name
 
                                         + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
+                                        this.point.y + 'ms ' + this.point.name
 
                                             .toLowerCase();
                                 }
@@ -216,7 +216,7 @@ function Table(id) {
                             yAxis: {
                                 allowDecimals: false,
                                 title: {
-                                    text: 's',
+                                    text: 'ms',
                                     rotation: 0
                                 }
                             },
@@ -225,7 +225,7 @@ function Table(id) {
                                     return '<b>' + this.series.name
 
                                         + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
+                                        this.point.y + 'ms ' + this.point.name
 
                                             .toLowerCase();
                                 }
@@ -314,7 +314,7 @@ function Table(id) {
                             yAxis: {
                                 allowDecimals: false,
                                 title: {
-                                    text: 's',
+                                    text: 'ms',
                                     rotation: 0
                                 }
                             },
@@ -323,7 +323,7 @@ function Table(id) {
                                     return '<b>' + this.series.name
 
                                         + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
+                                        this.point.y + 'ms ' + this.point.name
 
                                             .toLowerCase();
                                 }
@@ -373,7 +373,7 @@ function Table(id) {
                             yAxis: {
                                 allowDecimals: false,
                                 title: {
-                                    text: 's',
+                                    text: 'ms',
                                     rotation: 0
                                 }
                             },
@@ -382,7 +382,7 @@ function Table(id) {
                                     return '<b>' + this.series.name
 
                                         + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
+                                        this.point.y + 'ms ' + this.point.name
 
                                             .toLowerCase();
                                 }
@@ -470,7 +470,7 @@ function Table(id) {
                             yAxis: {
                                 allowDecimals: false,
                                 title: {
-                                    text: 's',
+                                    text: 'ms',
                                     rotation: 0
                                 }
                             },
@@ -479,7 +479,7 @@ function Table(id) {
                                     return '<b>' + this.series.name
 
                                         + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
+                                        this.point.y + 'ms ' + this.point.name
 
                                             .toLowerCase();
                                 }
@@ -529,7 +529,7 @@ function Table(id) {
                             yAxis: {
                                 allowDecimals: false,
                                 title: {
-                                    text: 's',
+                                    text: 'ms',
                                     rotation: 0
                                 }
                             },
@@ -538,7 +538,7 @@ function Table(id) {
                                     return '<b>' + this.series.name
 
                                         + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
+                                        this.point.y + 'ms ' + this.point.name
 
                                             .toLowerCase();
                                 }
@@ -718,6 +718,7 @@ function Table(id) {
                     ajax: {
                         type: "post",
                         url: "/movie/actor/search?actorName=" +actorName,
+
                         success:function () {
                             $('#actortotal').text(mvActortb.rows.count());
                         }
@@ -777,7 +778,7 @@ function Table(id) {
                             yAxis: {
                                 allowDecimals: false,
                                 title: {
-                                    text: 's',
+                                    text: 'ms',
                                     rotation: 0
                                 }
                             },
@@ -786,7 +787,7 @@ function Table(id) {
                                     return '<b>' + this.series.name
 
                                         + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
+                                        this.point.y + 'ms ' + this.point.name
 
                                             .toLowerCase();
                                 }
@@ -836,7 +837,7 @@ function Table(id) {
                             yAxis: {
                                 allowDecimals: false,
                                 title: {
-                                    text: 's',
+                                    text: 'ms',
                                     rotation: 0
                                 }
                             },
@@ -845,7 +846,7 @@ function Table(id) {
                                     return '<b>' + this.series.name
 
                                         + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
+                                        this.point.y + 'ms ' + this.point.name
 
                                             .toLowerCase();
                                 }
@@ -932,7 +933,7 @@ function Table(id) {
                                 yAxis: {
                                     allowDecimals: false,
                                     title: {
-                                        text: 's',
+                                        text: 'ms',
                                         rotation: 0
                                     }
                                 },
@@ -941,7 +942,7 @@ function Table(id) {
                                         return '<b>' + this.series.name
 
                                             + '</b><br/>' +
-                                            this.point.y + 's ' + this.point.name
+                                            this.point.y + 'ms ' + this.point.name
 
                                                 .toLowerCase();
                                     }
@@ -990,7 +991,7 @@ function Table(id) {
                                 yAxis: {
                                     allowDecimals: false,
                                     title: {
-                                        text: 's',
+                                        text: 'ms',
                                         rotation: 0
                                     }
                                 },
@@ -999,7 +1000,7 @@ function Table(id) {
                                         return '<b>' + this.series.name
 
                                             + '</b><br/>' +
-                                            this.point.y + 's ' + this.point.name
+                                            this.point.y + 'ms ' + this.point.name
 
                                                 .toLowerCase();
                                     }
@@ -1084,6 +1085,7 @@ function Table(id) {
                                 type: 'column'
                             },
                             title: {
+
                                 text: '两种模型执行时间比较'
                             },
                             data: {
@@ -1096,7 +1098,7 @@ function Table(id) {
                             yAxis: {
                                 allowDecimals: false,
                                 title: {
-                                    text: 's',
+                                    text: 'ms',
                                     rotation: 0
                                 }
                             },
@@ -1105,8 +1107,7 @@ function Table(id) {
                                     return '<b>' + this.series.name
 
                                         + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
-
+                                        this.point.y + 'ms ' + this.point.name
                                             .toLowerCase();
                                 }
                             },
@@ -1190,7 +1191,7 @@ function Table(id) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 's',
+                                text: 'ms',
                                 rotation: 0
                             }
                         },
@@ -1199,7 +1200,7 @@ function Table(id) {
                                 return '<b>' + this.series.name
 
                                     + '</b><br/>' +
-                                    this.point.y + 's ' + this.point.name
+                                    this.point.y + 'ms ' + this.point.name
 
                                         .toLowerCase();
                             }
