@@ -83,7 +83,7 @@ function Table(id,type) {
                 mvTimetb = $('#time').DataTable({
                     ajax: {
                         type: "post",
-                        url: '/movie/ajax/showtime
+                        url: '/movie/ajax/showtime',
                         data : {
                             "year":String(year),
                             "month":String(monthArray),
@@ -243,11 +243,13 @@ function Table(id,type) {
             $.fn.dataTable.ext.errMode = 'throw';
 
             var moviename = $("#sjw-search-name").val();
+
             if (mvNametb === null) {
                 mvNametb = $('#name').DataTable({
                     ajax: {
                         type: "post",
                         url: "/movie/name/search?name=" + moviename,
+
                         dataSrc:""
                     },
                     columns: [
@@ -315,7 +317,6 @@ function Table(id,type) {
 
                                         + '</b><br/>' +
                                         this.point.y + 'ms ' + this.point.name
-
                                             .toLowerCase();
                                 }
                             },
@@ -644,7 +645,6 @@ function Table(id,type) {
                         url: '/movie/ajax/showdirector',
                         dataSrc: '',
                         success: function (data) {
-
                             var dataSrc;
                             dataSrc = data[0];
                             $('#directorrelation2').text(dataSrc.relation);
@@ -698,14 +698,19 @@ function Table(id,type) {
                     });
                 }
         }
+
         if (id === 'actor') {
             actor.style.display = 'block';
             $.fn.dataTable.ext.errMode = 'throw';
             var actorName = $("#sjw-search-actor").val();
             var url;
-            if(type==='lead')url="/movie/actor/search?actorName=";
-            if(type==='none')url="/movie/actor/search?actorName=";
-            if (mvActortb === null) {
+
+            if(type==='lead')
+                url="/movie/actor/search?actorName=";
+            if(type==='none')
+                url="/movie/actor/search?actorName=";
+            if (mvActortb == null) {
+
                 mvActortb = $('#actor').DataTable({
                     ajax: {
                         type: "post",
@@ -715,8 +720,11 @@ function Table(id,type) {
                     columns: [
                         {data: "movieId"},
                         {data: "title"},
-                        {data: "actor"},
-                        {data: "releaseDate"}
+                        {data: "releaseDate"},
+                        {data: "runTime"},
+                        {data: "studio"},
+                        {data: "publisher"},
+
                     ],
                     "bPaginage": true,
                     "sPaginationType": "full_numbers",
@@ -794,7 +802,7 @@ function Table(id,type) {
                 });
             }
             else {
-                mvActortb.ajax.url("/movie/actor/search?actorName=" + actorName).load();
+                mvActortb.ajax.url(url + actorName).load();
                 $.ajax({
                     url: '/movie/ajax/showactor',
                     dataSrc: '',
