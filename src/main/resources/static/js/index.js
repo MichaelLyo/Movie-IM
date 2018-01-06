@@ -86,6 +86,7 @@ function Table(id) {
             time.style.display = 'block';
             $.fn.dataTable.ext.errMode = 'throw';
             timeChoice();
+
             if (mvTimetb === null) {
                 mvTimetb = $('#time').DataTable({
                     ajax: {
@@ -94,6 +95,7 @@ function Table(id) {
                         success: function () {
                             $('#timetotal').text(mvTimetb.rows.count());
                         },
+
                         data : {
                             "year":year.toString(),
                             "month":monthArray.toString(),
@@ -187,7 +189,7 @@ function Table(id) {
                 });
             }
             else {
-                mvTimetb.ajax.url("/movie/name/search?name=" + moviename).load();
+                mvTimetb.ajax.url("/movie/time/search").load();
                 $.ajax({
                     url: '/movie/ajax/showtime',
                     dataSrc: '',
