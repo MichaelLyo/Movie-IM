@@ -13,6 +13,4 @@ public interface ActorRepository extends JpaRepository<Actor, Long>
 {
 
     List<Actor> findActorsByName(String name);
-
-    Page<Actor> findActorsByName(String name, Pageable pageable);
 }

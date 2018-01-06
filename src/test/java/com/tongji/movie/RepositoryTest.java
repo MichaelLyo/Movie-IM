@@ -40,6 +40,12 @@ public class RepositoryTest {
     {
         List<TimeDim> timeDims = timeDimRepository.findTimeDimsByYear(2010);
 
+        List<String> timeIds = new LinkedList<String>();
+        for(TimeDim t : timeDims){
+            timeIds.add(t.getTimeId());
+        }
+        List<AmazonFact> amazonFacts = amazonFactRepository.findAmazonFactsByPublicationDateIn(timeIds);
+
     }
 
     @Test

@@ -29,7 +29,7 @@ public class DirectorService
 		{
 			list.add(item.getMovieId());
 		}
-		return null;
+		return amazonFactRepository.findAmazonFactsByMovieIdIn(list);
 	}
 
 }
