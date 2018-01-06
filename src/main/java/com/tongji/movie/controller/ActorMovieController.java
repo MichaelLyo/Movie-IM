@@ -19,7 +19,7 @@ public class ActorMovieController {
     public JSONArray searchByName(String actorName){
         JSONArray jsonArray;
         try {
-            jsonArray = searchMovieWithActor.search(actorName);
+            jsonArray = searchMovieWithActor.searchInOracle(actorName);
         } catch (SQLException e) {
             System.out.println("按名字查询电影失败");
             jsonArray = null;
