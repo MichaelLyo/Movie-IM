@@ -2,6 +2,9 @@ package com.tongji.movie.controller;
 
 import com.sun.org.apache.regexp.internal.RE;
 import com.tongji.movie.model.AmazonFact;
+
+import com.tongji.movie.service.GetBothWayTime;
+
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,20 +24,14 @@ import java.util.Map;
 public class OperationController
 {
 
+    @Autowired
+    GetBothWayTime getBothWayTime;
 
-    @RequestMapping(value = "/show{.*}",method = RequestMethod.GET)
-    public JSONArray showHistogram()
+    @RequestMapping(value = "/{operation}",method = RequestMethod.GET)
+    public JSONArray showHistogram(@PathVariable String operation) throws SQLException
     {
-        JSONArray jsonArray = new JSONArray();
-        JSONObject object = new JSONObject();
-
-
-        object.put("relation",20);
-        object.put("mix",40);
-
-
-        jsonArray.appendElement(object);
-        return jsonArray;
+        //System.out.println(operation);
+        return getBothWayTime.getBothWayTime(operation);
     }
 
 }

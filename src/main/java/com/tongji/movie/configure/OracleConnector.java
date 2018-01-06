@@ -1,10 +1,13 @@
 package com.tongji.movie.configure;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.*;
 
 /**
  * Created by LSL on 2018/1/6
  */
+@Component
 public class OracleConnector
 {
 	public Connection getConnection(){

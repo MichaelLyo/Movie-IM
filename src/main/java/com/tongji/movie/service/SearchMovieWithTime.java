@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 @Component
 public class SearchMovieWithTime {
@@ -94,6 +93,7 @@ public class SearchMovieWithTime {
                 amazonFacts =  amazonFactRepository.findAmazonFactsByPublicationDate(date);
             }
             else{
+
                 if(days.length == 0){ //没有天数
                     if(months.length == 0){ //没有月份或者季度
                         amazonFacts = amazonFactRepository.findAmazonFactsByPublicationYear(nyear);
@@ -103,6 +103,7 @@ public class SearchMovieWithTime {
                 else{
                     if(months.length != 0) {
                         amazonFacts = amazonFactRepository.findAmazonFactsByPublicationDayIn(nyear, months, days);
+
                     }
                     else{
                         amazonFacts = amazonFactRepository.findAmazonFactsByPublicationDayIn(nyear, days);

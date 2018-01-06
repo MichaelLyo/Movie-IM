@@ -44,7 +44,7 @@
                 <a onClick="toggle('category')">电影类别查询</a>
             </li>
             <li>
-                <a onClick="toggle('comment')">电影评论查询</a>
+                <a onClick="toggle('language')">电影语种查询</a>
             </li>
             <li>
                 <a onClick="toggle('combination')">高级查询</a>
@@ -132,11 +132,13 @@
         </div>
         <div id="container" class="result-container"></div>
         <div class="result-text">
-            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="timerelation"></label><label>ms</label>
+            <br><br>
+            <label>使用混合型存储数据模型进行此次查询统计，需要</label><label id="timemix"></label><label>ms</label>
+            <br><br>
+            <label >本次共搜索到</label><label id="timetotal"></label>0<label>条数据，下表为数据详细内容，右图两种方式的执行时间比较比较</label>
         </div>
-        <table id="time" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+        <table id="time" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
         <th>电影名</th>
@@ -181,11 +183,11 @@
         </div>
         <div id="namecontainer" class="result-container"></div>
         <div class="result-text">
-            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="namerelation"></label><label>ms</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="namemix"></label><label>ms</label><br><br>
+            <label >本次共搜索到</label><label id="nametotal"></label>0<label>条数据，下表为数据详细内容，右图两种方式的执行时间比较比较</label>
         </div>
-        <table id="name" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+        <table id="name" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
         <th>产品ID</th>
@@ -232,18 +234,18 @@
         </div>
         <div id="directorcontainer" class="result-container"></div>
         <div class="result-text">
-            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="directorrelation"></label><label>ms</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="directormix"></label><label>ms</label><br><br>
+            <label >本次共搜索到</label><label id="directortotal"></label>0<label>条数据，下表为数据详细内容，右图两种方式的执行时间比较</label>
         </div>
-        <table id="director" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+        <table id="director" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
         <th>产品序列号</th>
         <th>电影名</th>
         <th>导演名</th>
         <th>电影时长</th>
-        <th data-orderable="false">发行日期</th>
+        <th>发行日期</th>
         <th>版本</th>
     </tr>
     </thead>
@@ -262,6 +264,41 @@
 </table>
     </div>
     </div>
+    <div class="container">
+        <div id="directorTable2" class="table-display">
+            <div style="margin-left: 20px;padding-top: 20px;">
+                <label class="title">合作演员</label>
+            </div>
+            <div id="directorcontainer2" class="result-container"></div>
+            <div class="result-text">
+                <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="directorrelation2"></label><label>ms</label><br><br>
+                <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="directormix2"></label><label>ms</label><br><br>
+                <label >本次共搜索到</label><label id="directortotal2"></label>0<label>条数据，下表为数据详细内容，右图两种方式的执行时间比较</label>
+            </div>
+            <table id="director2" class="display datatable" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+                <thead>
+                <tr>
+                    <th>电影序列号</th>
+                    <th>电影名</th>
+                    <th>导演名</th>
+                    <th>演员名</th>
+                    <th>演员类别</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>电影序列号</th>
+                    <th>电影名</th>
+                    <th>导演名</th>
+                    <th>演员名</th>
+                    <th>演员类别</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <!--End 按照导演进行查询统计-->
 <!--Start 按照演员进行查询统计-->
@@ -270,8 +307,8 @@
         <div class="inquirebox">
             <label class="title">根据演员名查询</label>
         <form class="search-form">
-            <input id="sjw-search-actor" type="text" placeholder="请输入演员名" class="input-button"/>
-            <button type="button" onclick="Table('actor')">搜索</button>
+            <input id="sjw-search-actor" type="text" placeholder="可查询单个演员或一起合作的演员，如“Tom”或“Tom,Jack”" class="input-button" style="width: 350px"/>
+            <button type="button" onclick="Table('actor')" style="left:360px;">搜索</button>
         </form>
     </div>
     </div>
@@ -282,29 +319,26 @@
         </div>
         <div id="actorcontainer" class="result-container"></div>
         <div class="result-text">
-            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="actorrelation"></label><label>ms</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="actormix"></label><label>ms</label><br><br>
+            <label >本次共搜索到</label><label id="actortotal"></label>0<label>条数据，下表为数据详细内容，右图两种方式的执行时间比较</label>
+            <div id="actorInfo" style="margin-top:15px;margin-bottom:15px"></div>
         </div>
-        <table id="actor" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+        <table id="actor" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
     <tr>
         <th>演员名</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th data-orderable="false">Start date</th>
-        <th>Salary</th>
+        <th>电影名</th>
+        <th>导演名</th>
+        <th>上映日期</th>
     </tr>
     </thead>
     <tfoot>
     <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
+        <th>演员名</th>
+        <th>电影名</th>
+        <th>导演名</th>
+        <th>上映日期</th>
     </tr>
     </tfoot>
     <tbody>
@@ -332,29 +366,29 @@
         </div>
         <div id="categorycontainer" class="result-container"></div>
         <div class="result-text">
-            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="genrerelation"></label><label>ms</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="genremix"></label><label>ms</label><br><br>
+            <label >该类别共有</label><label id="genretotal"></label><label>部电影，下表为数据详细内容，右图两种方式的执行时间比较</label>
         </div>
-        <table id="category" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+        <table id="category" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
             <thead>
             <tr>
                 <th>产品ID</th>
                 <th>电影名</th>
                 <th>电影类型</th>
-                <th data-orderable="false">发行时间</th>
+                <th>发行时间</th>
                 <th>片长</th>
                 <th>音频类型</th>
             </tr>
             </thead>
             <tfoot>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>产品ID</th>
+                <th>电影名</th>
+                <th>电影类型</th>
+                <th>发行时间</th>
+                <th>片长</th>
+                <th>音频类型</th>
             </tr>
             </tfoot>
             <tbody>
@@ -364,47 +398,47 @@
     </div>
 </div>
 <!--End 按照电影类别进行查询统计-->
-<!--Start 电影评论进行查询统计-->
-<div  class="search bar6" id="search-comment" style="display: none">
+<!--Start 电影语种进行查询统计-->
+<div  class="search bar6" id="search-language" style="display: none">
     <div class="container">
         <div class="inquirebox">
-            <label class="title">根据电影名查询评论</label>
+            <label class="title">根据电影语种查询</label>
         <form class="search-form">
-            <input id="sjw-search-comment" type="text" placeholder="请输入电影名" class="input-button"/>
-            <button type="button" onclick="Table('comment')">搜索</button>
+            <input id="sjw-search-language" type="text" placeholder="请输入语种名" class="input-button"/>
+            <button type="button" onclick="Table('language')">搜索</button>
         </form>
     </div>
     </div>
     <div class="container">
-    <div id="commentTable" class="table-display">
+    <div id="languageTable" class="table-display">
         <div style="margin-left: 20px;padding-top: 20px;">
             <label class="title">查询结果</label>
         </div>
-        <div id="commentcontainer" class="result-container"></div>
+        <div id="languagecontainer" class="result-container"></div>
         <div class="result-text">
-            <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-            <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="languagerelation"></label><label>ms</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="languagemix"></label><label>ms</label><br><br>
+            <label >该语种共有</label><label id="languagetotal"></label><label>部电影，下表为数据详细内容，右图两种方式的执行时间比较</label>
         </div>
-        <table id="comment" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+        <table id="language" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
             <thead>
             <tr>
-                <th>演员名</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th data-orderable="false">Start date</th>
-                <th>Salary</th>
+                <th>产品ID</th>
+                <th>电影名</th>
+                <th>电影类型</th>
+                <th>发行时间</th>
+                <th>片长</th>
+                <th>音频类型</th>
             </tr>
             </thead>
             <tfoot>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>产品ID</th>
+                <th>电影名</th>
+                <th>电影类型</th>
+                <th>发行时间</th>
+                <th>片长</th>
+                <th>音频类型</th>
             </tr>
             </tfoot>
             <tbody>
@@ -413,7 +447,7 @@
     </div>
     </div>
 </div>
-<!--End 电影评论进行查询统计-->
+<!--End 电影语种进行查询统计-->
 <!--Start 组合查询进行查询统计-->
 <div  class="search bar6" id="search-combination" style="display: none">
     <div class="container">
@@ -441,11 +475,11 @@
         </div>
         <div id="combinationcontainer" class="result-container"></div>
         <div class="result-text">
-        <p >使用关系型数据仓库存储数据模型进行此次查询统计，需要5分钟</p>
-        <p >使用混合型存储数据模型进行此次查询统计，需要5分钟</p>
-        <p >本次共搜索到100条数据，下表为数据详细内容，右图两种方式的执行时间</p>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="combinationrelation"></label><label>ms</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="combinationmix"></label><label>ms</label><br><br>
+            <label >该类别共有</label><label id="combinationtotal"></label><label>部电影，下表为数据详细内容，右图两种方式的执行时间比较比较</label>
         </div>
-        <table id="combination" class="display" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+        <table id="combination" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
             <thead>
             <tr>
                 <th>组合查询</th>

@@ -2,6 +2,7 @@ package com.tongji.movie;
 
 import com.tongji.movie.model.AmazonFact;
 import com.tongji.movie.repository.AmazonFactRepository;
+import com.tongji.movie.service.SearchMovieWithActor;
 import oracle.jdbc.internal.OracleTypes;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,6 +28,9 @@ public class MovieApplicationTests {
 
 	@Autowired
 	AmazonFactRepository amazonFactRepository;
+
+	@Autowired
+	SearchMovieWithActor searchMovieWithActor;
 
 	@Test
 	public void contextLoads() {
@@ -97,6 +101,11 @@ public class MovieApplicationTests {
 
 		Map<String, Object> execute = call.execute(in);
 		System.out.println(execute);
+	}
+
+	@Test
+	public void testCountTime() throws SQLException
+	{
 	}
 
 }
