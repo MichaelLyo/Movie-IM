@@ -83,10 +83,10 @@ function Table(id) {
             $.fn.dataTable.ext.errMode = 'throw';
             timeChoice();
             if (mvTimetb == null) {
-                mvTimetb = $('#name').DataTable({
+                mvTimetb = $('#time').DataTable({
                     ajax: {
                         type: "post",
-                        url: '/movie/ajax/showtime',
+                        url: '/movie/time/search',
                         dataSrc: "",
                         data : {
                             "year":year.toString(),
@@ -179,7 +179,7 @@ function Table(id) {
                 });
             }
             else {
-                mvTimetb.ajax.url("/movie/name/search?name=" + moviename).load();
+                mvTimetb.ajax.url("/movie/time/search").load();
                 $.ajax({
                     url: '/movie/ajax/showtime',
                     dataSrc: '',

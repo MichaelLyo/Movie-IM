@@ -2,7 +2,6 @@ package com.tongji.movie.controller;
 
 import com.sun.org.apache.regexp.internal.RE;
 import com.tongji.movie.model.AmazonFact;
-import com.tongji.movie.service.DirectorService;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;

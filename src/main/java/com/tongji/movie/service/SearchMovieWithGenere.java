@@ -4,6 +4,7 @@ import com.tongji.movie.model.AmazonFact;
 import com.tongji.movie.repository.AmazonFactRepository;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
+import org.mortbay.util.ajax.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -46,24 +47,5 @@ public class SearchMovieWithGenere {
         return movies;
     }
 
-    public JSONArray searchInOracle(String typeName) throws SQLException {
-        JSONArray movies = new JSONArray();
-        List<AmazonFact> amazonFacts =  amazonFactRepository.findAmazonFactsByGenre(typeName);
-        int i = 0;
-        for(AmazonFact a : amazonFacts){
-            i++;
-            if(i>100)
-                break;
-            JSONObject movie = new JSONObject();
-            movie.put("movieId",a.getMovieId());
-            movie.put("title",a.getTitle());
-            movie.put("releaseDate",a.getReleaseDate());
-            movie.put("studio",a.getStudio());
-            movie.put("publicationDate",a.getPublicationDate());
-            movie.put("publisher",a.getPublishier());
-            movie.put("type",typeName);
-            movies.add(movie);
-        }
-        return movies;
-    }
+
 }
