@@ -19,7 +19,7 @@ public class DirectorMovieController {
         System.out.println("hellosdfsfs");
         JSONArray jsonArray;
         try {
-            jsonArray =searchMovieWithDirector.search('%'+directorName+'%');
+            jsonArray =searchMovieWithDirector.searchInOracle('%'+directorName+'%');
         } catch (SQLException e) {
             System.out.println("按类型查询电影失败");
             jsonArray = null;

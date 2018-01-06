@@ -44,14 +44,6 @@ function Time () {
         }
         else{break;}
     }
-    if(document.getElementById("search-date").checked){
-        for (var i = 0; i <  document.getElementsByName('date').length ; i++) {
-            if (document.getElementsByName('date')[i].checked) {
-                document.getElementsByName('date')[i].checked=false;
-                document.getElementsByName('date')[i].disabled=true;
-            }
-        }
-    }
 
 }
 function toggle(id){
@@ -89,12 +81,12 @@ function Table(id) {
                         url: '/movie/time/search',
                         dataSrc: "",
                         data : {
-                            "year":year.toString(),
-                            "month":monthArray.toString(),
-                            "dateType":dateType.toString(),
-                            "day":dayArray.toString(),
-                            "date":date.toString(),
-                            "season":seasonArray.toString()
+                            "year":String(year),
+                            "month":String(monthArray),
+                            "dateType":String(dateType),
+                            "day":String(dayArray),
+                            "date":String(date),
+                            "season":String(seasonArray)
                         }
                     },
                     columns: [
@@ -854,7 +846,7 @@ function Table(id) {
             var cgenre = document.getElementById('cgenre').value;
             $('#combination').DataTable({
                     ajax: {
-                        url: '/movie/ajax/showcombination',
+                        url: '/movie/combination/search',
                         data : {
                             "date":cdate,
                             "name":cname,
@@ -948,7 +940,7 @@ function Table(id) {
                 $.fn.dataTable.ext.errMode = 'throw';
                 $('#comment').DataTable({
                     ajax: {
-                        url: '/movie/ajax/showcomment',
+                        url: '/movie/combination/search',
                         dataSrc: ''
                     },
                     columns: [{data: "movieName"},
@@ -1050,24 +1042,27 @@ function timeChoice() {
             }
         }
         var season = document.getElementsByName('season');
-        seasonArray = "";
-        for (var i = 0; i < season.length; i++) {
+        seasonArray = [];
+        for (var i = 0,j = 0; i < season.length; i++) {
             if (season[i].checked) {
-                seasonArray += season[i].value+",";
+                seasonArray[j] = season[i].value;
+                j++;
             }
         }
         var month = document.getElementsByName('month');
-        monthArray = "";
-        for (var i = 0; i < month.length; i++) {
+        monthArray = [];
+        for (var i = 0, j = 0; i < month.length; i++) {
             if (month[i].checked) {
-                monthArray += month[i].value+",";
+                monthArray[j] = month[i].value;
+                j++;
             }
         }
         var day = document.getElementsByName('day');
-        dayArray = "";
-        for (var i = 0; i < day.length; i++) {
+        dayArray = [];
+        for (var i = 0, j = 0; i < day.length; i++) {
             if (day[i].checked) {
-                dayArray += day[i].value+",";
+                dayArray[j] = day[i].value;
+                j++;
             }
         }
     }

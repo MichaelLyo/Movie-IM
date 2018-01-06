@@ -19,11 +19,11 @@ public class TimeMovieController {
 
     @RequestMapping(value = "/search",method = RequestMethod.POST)
     public JSONArray searchByTime(@RequestParam(value = "year", required = true) String year,
-                                  @RequestParam(value = "monthArray",required = true) String[]monthArray,
-                                  @RequestParam(value = "dayArray", required = true) String[] dayArray,
+                                  @RequestParam(value = "month",required = true) String[]monthArray,
+                                  @RequestParam(value = "day", required = true) String[] dayArray,
                                   @RequestParam(value = "dateType",required = true) String dateType,
                                   @RequestParam(value = "date", required = true) String date,
-                                  @RequestParam(value = "seasonArray", required = true) String[] seasonArray)
+                                  @RequestParam(value = "season", required = true) String[] seasonArray)
     {
         JSONArray jsonArray;
         try {
