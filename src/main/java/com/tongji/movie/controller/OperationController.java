@@ -10,6 +10,7 @@ import org.apache.hadoop.metrics2.util.SampleStat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,17 @@ import java.util.Map;
 @RequestMapping(value = "/ajax",method = {RequestMethod.GET, RequestMethod.POST})
 public class OperationController
 {
+/*    @RequestMapping(value = "/testPost", method = {RequestMethod.POST})
+    public void testPost(HttpServletRequest req) throws IOException {
+        String[] array = req.getParameterValues("array[]");
+        System.out.println(array[0]);//具体日期
+        System.out.println(array[1]);//出版日期or上映日期
+        System.out.println(array[2]);//年份
+        System.out.println(array[3]);//季度数组
+        System.out.println(array[4]);//月份数组
+        System.out.println(array[5]);//天数组
+        return ;
+    }*/
     @Autowired
     DirectorService directorService;
     @RequestMapping(value = "/showtime",method = RequestMethod.GET)
@@ -28,7 +40,7 @@ public class OperationController
         JSONObject object = new JSONObject();
 
         object.put("movieName","sjw");
-        object.put("releaseTime","System Architect");
+        object.put("releaseTime","Systecm Architect");
         object.put("genre","$3,120");
         object.put("director","2011/04/25");
         object.put("actor","Edinburgh");
@@ -47,8 +59,7 @@ public class OperationController
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-        JSONObject object1 = new JSONObject();
-        object.put("movieName","sjw");
+        object.put("movieName","sjdw");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,120");
         object.put("director","2011/04/25");
@@ -67,7 +78,6 @@ public class OperationController
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-        JSONObject object1 = new JSONObject();
         object.put("movieName","sjw3");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,120");
@@ -86,7 +96,6 @@ public class OperationController
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-        JSONObject object1 = new JSONObject();
         object.put("movieName","s2jw3");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,120");
@@ -104,7 +113,6 @@ public class OperationController
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-        JSONObject object1 = new JSONObject();
         object.put("movieName","s2jw3");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,1230");
@@ -122,7 +130,6 @@ public class OperationController
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-        JSONObject object1 = new JSONObject();
         object.put("movieName","s2jw33");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,1230");
@@ -140,7 +147,6 @@ public class OperationController
     {
         JSONArray jsonArray = new JSONArray();
         JSONObject object = new JSONObject();
-        JSONObject object1 = new JSONObject();
         object.put("movieName","3");
         object.put("releaseTime","System Architect");
         object.put("genre","$3,1230");
