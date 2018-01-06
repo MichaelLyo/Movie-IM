@@ -55,5 +55,6 @@ public interface AmazonFactRepository extends JpaRepository<AmazonFact, Long>
     @Query(value = "select * from amazon_fact a join director d on a.movie_id = d.movie_id where d.name LIKE ?1", nativeQuery=true)
     List<AmazonFact> findAmazonFactsByDirector(String name);
 
-
+    @Query(value = "select * from AmazonFact a inner join director d on (a.movieid = d.movieid) inner JOIN genre g on (a.movieid = g.movieid) inner join actor ac on (a.movieid = ac.movieid) WHERE d.name like ?1", nativeQuery=true)
+    List<AmazonFact> findCoActorAndAmazonFactByDirector(String name);
 }

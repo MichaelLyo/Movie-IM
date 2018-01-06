@@ -409,6 +409,7 @@ function Table(id) {
                         type: "post",
                         url: "/movie/director/search?directorName=" + direcorName,
                         dataSrc:""
+
                     },
                     columns: [
                         {data: "movieId"},
@@ -552,16 +553,19 @@ function Table(id) {
                 });
             }
 
-            director2.style.display = 'block';
-            if (mvDirectortb2 === null) {
+            if(true) {
+                director2.style.display = 'block';
+                if (mvDirectortb2 === null) {
                     mvDirectortb2 = $('#director2').DataTable({
                         ajax: {
                             type: "post",
-                            url: "/movie/director/search?directorName=" + direcorName,
+                            url: "/movie/director/actor?directorName=" + direcorName,
+
                             dataSrc:""
                         },
                         columns: [
-                            {data: "movieName"},
+                            {data: "movieId"},
+                            {data: "title"},
                             {data: "director"},
                             {data: "actor"},
                             {data: "genre"}
@@ -585,7 +589,7 @@ function Table(id) {
                         }
                     });
                     $.ajax({
-                        url: '/movie/ajax/showdirector',
+                        url: '/movie/ajax/showdirectorcoactor',
                         dataSrc: '',
                         success: function (data) {
                             var dataSrc;
