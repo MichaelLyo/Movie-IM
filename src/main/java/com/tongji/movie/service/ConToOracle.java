@@ -18,7 +18,7 @@ public class ConToOracle {
             Statement stmt=conn.createStatement();
             ResultSet set = stmt.executeQuery("select * from amazon_fact a join actor b on (a.movie_id=b.movie_id)");
             while(set.next()){
-                System.out.println(set.getString(1));
+                System.out.println(set.getString(1)+set.getString("name"));
             }
             conn.close();
         }

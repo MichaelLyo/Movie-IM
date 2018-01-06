@@ -64,6 +64,13 @@ public class GetBothWayTime
 			searchMovieWithName.search(operation);
 
 		}
+		else if(operation.indexOf("coactor")>0)
+		{
+			searchMovieWithDirector.searchCoActorInOracle(operation);
+			oracleTime =System.currentTimeMillis();
+			searchMovieWithDirector.searchCoActor(operation);
+
+		}
 		//else if(operation.indexOf("time")>0)
 		//{
 		//	searchMovieWithTime.searchInOracle(operation);
