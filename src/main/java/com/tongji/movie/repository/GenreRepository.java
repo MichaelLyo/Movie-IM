@@ -9,8 +9,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface GenreRepository extends JpaRepository<Genre, String>
+public interface GenreRepository extends JpaRepository<Genre, Long>
 {
 
     List<Genre> findGenresByName(String name);
+
+    @Query(value = "select * from genre g join actor a on g.movie_id = a.movie_id where a.name = ?1", nativeQuery=true)
+    List<Genre> findGenresByActor(String name);
+
+    @Query(value = "select * from genre g join director d on g.movie_id = d.movie_id where d.name = ?1", nativeQuery=true)
+    List<Genre> findGenresByDirector(String name);
 }
