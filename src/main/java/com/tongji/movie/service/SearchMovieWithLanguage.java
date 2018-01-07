@@ -43,7 +43,6 @@ public class SearchMovieWithLanguage {
     public JSONArray searchInOracle(String language) throws SQLException {
         JSONArray movies = new JSONArray();
         List<AmazonFact> amazonFacts =  amazonFactRepository.findAmazonFactsByTitle(language);
-
         for(AmazonFact a : amazonFacts){
             JSONObject movie = new JSONObject();
             movie.put("movieId",a.getMovieId());

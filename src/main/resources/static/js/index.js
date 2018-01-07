@@ -1026,6 +1026,7 @@ function Table(id,type) {
                 mvCombinationtb = $('#combination').DataTable({
                     ajax: {
                         url: '/movie/combination/search',
+                        type:'post',
                         data: {
                             "date": String(cdate),
                             "name": String(cname),
