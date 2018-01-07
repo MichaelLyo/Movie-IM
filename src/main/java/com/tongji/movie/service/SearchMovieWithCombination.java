@@ -41,7 +41,7 @@ public class SearchMovieWithCombination {
         //oracle连接
         else {
             con = oracleConnector.getConnection();
-            sql = "select * from Amazon_Fact a " +
+            sql = "select a.movie_Id as movie_id,a.title as title,ac.name as act,g.name as gen,d.name as dir,a.release_Date as release_Date,a.run_Time as run_Time  from Amazon_Fact a " +
                     "INNER join Actor ac on (a.movie_id = ac.movie_id) " +
                     "INNER join director d on (a.movie_id = d.movie_id) "+
                     "INNER join genre g on (a.movie_id = g.movie_id) "+
@@ -106,23 +106,29 @@ public class SearchMovieWithCombination {
         ResultSet set =  pstmt.executeQuery();
         while(set.next()){
             JSONObject movie = new JSONObject();
+
             if(opType==0)
             {
                 movie.put("movieId",set.getString("movieId"));
                 movie.put("releaseDate",set.getString("releaseDate"));
-                movie.put("publicationDate",set.getString("publicationDate"));
                 movie.put("runTime",set.getString("runTime"));
-                movie.put("publisher",set.getString("publisher"));
+                movie.put("genre", set.getString("g.name"));
+
+                movie.put("title",set.getString("title"));
+                movie.put("director",set.getString("d.name"));
+                movie.put("actor",set.getString("ac.name"));
             }
             else {
                 movie.put("movieId",set.getString("movie_Id"));
                 movie.put("releaseDate",set.getString("release_Date"));
-                movie.put("publicationDate",set.getString("publication_Date"));
                 movie.put("runTime",set.getString("run_Time"));
-                movie.put("publisher",set.getString("publishier"));
+                movie.put("genre", set.getString("gen"));
+
+                movie.put("title",set.getString("title"));
+                movie.put("director",set.getString("dir"));
+                movie.put("actor",set.getString("act"));
             }
-            movie.put("studio",set.getString("studio"));
-            movie.put("title",set.getString("title"));
+
             movies.add(movie);
         }
         return movies;
