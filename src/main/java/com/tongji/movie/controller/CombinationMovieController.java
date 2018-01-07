@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.SQLException;
 
 @RestController
-@RequestMapping(value = "/combination")
+@RequestMapping(value = "/combination",method = RequestMethod.POST)
 public class CombinationMovieController {
 
     @Autowired
