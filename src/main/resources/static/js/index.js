@@ -589,6 +589,7 @@ function Table(id,type) {
                         {data: "actor"},
                         {data: "genre"}
                     ],
+                "bProcessing": true,
                     "bPaginage": true,
                     "sPaginationType": "full_numbers",
                     "oLanguage": {
