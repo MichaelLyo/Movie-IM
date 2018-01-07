@@ -669,7 +669,6 @@ function Table(id,type) {
             });
 
         }
-
         else {
 
             mvDirectortb2.ajax.url("/movie/director/actor?directorName=" + direcorName).load();
@@ -684,6 +683,7 @@ function Table(id,type) {
                     if (directorchart2 !== undefined) {
                         directorchart2.destroy();
                     }
+
                     directorchart2 = Highcharts.chart('directorcontainer2', {
                         chart: {
                             type: 'column'
@@ -701,45 +701,35 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: '两种模型执行时间比较'
-                            },
-                            data: {
-                                columns: [
-                                    [null, '执行时间'], // 分类
-                                    ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
-                                    ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
-                                ]
-                            },
-                            yAxis: {
-                                allowDecimals: false,
-                                title: {
-                                    text: 'ms',
-                                    
-                                }
-                            },
-                            tooltip: {
-                                formatter: function () {
-                                    return '<b>' + this.series.name
+                                text: '单位(ms)',
 
-                                        + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
+                            }
+                        },
+                        tooltip: {
+                            formatter: function () {
+                                return '<b>' + this.series.name
 
-                                            .toLowerCase();
-                                }
-                            },
-                            plotOptions: {
-                                column: {
-                                    dataLabels: {
-                                        enabled: true, // dataLabels设为true
-                                        style: {
-                                            color: '#42abf8'
-                                        }
+
+                                    + '</b><br/>' +
+                                    this.point.y + 's ' + this.point.name
+
+                                        .toLowerCase();
+                            }
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: true, // dataLabels设为true
+                                    style: {
+                                        color: '#42abf8'
                                     }
                                 }
                             }
-                        });
-                    }
-                });
+
+                        }
+                    });
+                }
+            });
             }
 
     }
