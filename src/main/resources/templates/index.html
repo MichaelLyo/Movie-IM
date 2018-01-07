@@ -25,9 +25,6 @@
         </button>
         <ul class="animenu__nav">
             <li>
-                <a>Amazon Movies</a>
-            </li>
-            <li>
                 <a onClick="toggle('time')">电影时间查询</a>
             </li>
             <li>
@@ -44,6 +41,9 @@
             </li>
             <li>
                 <a onClick="toggle('language')">电影语种查询</a>
+            </li>
+            <li>
+                <a onClick="toggle('runtime')">电影时长查询</a>
             </li>
             <li>
                 <a onClick="toggle('combination')">高级查询</a>
@@ -451,6 +451,58 @@
     </div>
 </div>
 <!--End 电影语种进行查询统计-->
+<!--Start 电影时长进行查询统计-->
+<div  class="search bar6" id="search-runtime" style="display: none">
+    <div class="container">
+        <div class="inquirebox">
+            <label class="title">根据电影时长查询</label>
+            <form class="search-form" style="top:10px;">
+                <div class="year">时长范围（单位分钟）</div><select class="select" id="time1"></select>
+                <label>～</label>
+                <select class="select" id="time2"></select>
+                <button type="button" style="top: 39px;left: 180px;height: 30px;border-radius: 0" onclick="Table('runtime')">搜索</button>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div id="runtimeTable" class="table-display">
+            <div style="margin-left: 20px;padding-top: 20px;">
+                <label class="title">查询结果</label>
+            </div>
+            <div id="runtimecontainer" class="result-container"></div>
+            <div class="result-text">
+                <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="runtimerelation"></label><label>ms</label><br><br>
+                <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="runtimemix"></label><label>ms</label><br><br>
+                <label >下表为数据详细内容，右图两种方式的执行时间比较</label>
+            </div>
+            <table id="rtime" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+                <thead>
+                <tr>
+                    <th>产品ID</th>
+                    <th>电影名</th>
+                    <th>发行时间</th>
+                    <th>片长</th>
+                    <th>音频类型</th>
+                    <th>发行商</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>产品ID</th>
+                    <th>电影名</th>
+                    <th>发行时间</th>
+                    <th>片长</th>
+                    <th>音频类型</th>
+                    <th>发行商</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--End 电影时长进行查询统计-->
 <!--Start 组合查询进行查询统计-->
 <div  class="search bar6" id="search-combination" style="display: none">
     <div class="container">
@@ -522,6 +574,17 @@
             obj.options.add(new Option(i,i));
         }
         obj.options[obj.options.length-11].selected=1;
+        var startTime=1;//最低时长
+        var endTime=240;//最多时长
+        obj=document.getElementById('time1');
+        var obj2 = document.getElementById('time2');
+        for (var i=startTime;i<=endTime;i++)
+        {
+            obj.options.add(new Option(i,i));
+            obj2.options.add(new Option(i,i));
+        }
+        obj.options[obj.options.length-240].selected=1;
+        obj2.options[obj.options.length-239].selected=1;
     }
 </script>
 <script type="text/javascript">

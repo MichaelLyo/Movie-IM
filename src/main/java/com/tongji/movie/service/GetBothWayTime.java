@@ -25,6 +25,10 @@ public class GetBothWayTime
 	SearchMovieWithTime searchMovieWithTime;
 	@Autowired
 	SearchMovieWithLanguage searchMovieWithLanguage;
+
+	@Autowired
+	SearchMovieWithCombination searchMovieWithCombination;
+
 	public JSONArray getBothWayTime(String operation) throws SQLException
 	{
 		long startTime = System.currentTimeMillis();
@@ -64,13 +68,12 @@ public class GetBothWayTime
 			searchMovieWithName.search(operation);
 
 		}
-		else if(operation.indexOf("combination")>0)
-		{
-			searchMovieWithName.searchInOracle(operation);
-			oracleTime =System.currentTimeMillis();
-			searchMovieWithName.search(operation);
-
-		}
+		//else if(operation.indexOf("combination")>0)
+		//{
+		//	searchMovieWithCombination.searchInOracle(operation);
+		//	oracleTime =System.currentTimeMillis();
+		//	//searchMovieWithCombination.search(operation);
+		//}
 		else if(operation.indexOf("coactor")>0)
 		{
 			searchMovieWithDirector.searchCoActorInOracle(operation);
@@ -78,13 +81,7 @@ public class GetBothWayTime
 			searchMovieWithDirector.searchCoActor(operation);
 
 		}
-		//else if(operation.indexOf("time")>0)
-		//{
-		//	searchMovieWithTime.searchInOracle(operation);
-		//	oracleTime =System.currentTimeMillis();
-		//	searchMovieWithTime.search(operation);
-		//
-		//}
+
 
 		long endTime = System.currentTimeMillis();
 
@@ -95,5 +92,22 @@ public class GetBothWayTime
 
 		return result;
 
+	}
+	public JSONArray getBothWayTimeOfDate(String dateType,String date,String year,String[] seasonArray,String[] monthArray,String[] dayArray) throws SQLException
+	{
+		long startTime = System.currentTimeMillis();
+		JSONArray result = new JSONArray();
+		long oracleTime =0;
+		searchMovieWithTime.searchInOracle(dateType,date,year,seasonArray,monthArray,dayArray);
+		oracleTime =System.currentTimeMillis();
+		searchMovieWithTime.search(dateType,date,year,seasonArray,monthArray,dayArray);
+		long endTime = System.currentTimeMillis();
+
+		JSONObject time = new JSONObject();
+		time.put("relation", oracleTime - startTime);
+		time.put("mix", endTime - oracleTime);
+		result.add(time);
+
+		return result;
 	}
 }

@@ -18,7 +18,7 @@ public class DirectorMovieController {
     public JSONArray searchMovieWithDirector(String directorName){
         JSONArray jsonArray;
         try {
-            jsonArray =searchMovieWithDirector.searchInOracle('%'+directorName+'%');
+            jsonArray =searchMovieWithDirector.searchInOracle(directorName);
         } catch (SQLException e) {
             System.out.println("按导演查询电影失败");
             jsonArray = null;

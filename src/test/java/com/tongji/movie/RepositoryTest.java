@@ -2,6 +2,9 @@ package com.tongji.movie;
 
 import com.tongji.movie.model.*;
 import com.tongji.movie.repository.*;
+import com.tongji.movie.service.SearchMovieWithCombination;
+import com.tongji.movie.service.SearchMovieWithRunTime;
+import net.minidev.json.JSONArray;
 import org.jetbrains.annotations.NotNull;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -29,6 +32,12 @@ public class RepositoryTest {
     @Autowired
     private AmazonFactRepository amazonFactRepository;
 
+    @Autowired
+    private SearchMovieWithRunTime searchMovieWithRunTime;
+
+    @Autowired
+    private SearchMovieWithCombination searchMovieWithCombination;
+
     @Test
     public void testActor() throws Exception
     {
@@ -51,7 +60,7 @@ public class RepositoryTest {
     @Test
     public void testAmazonFact() throws Exception
     {
-        List<AmazonFact> amazonFacts = amazonFactRepository.findAmazonFactsByPublicationYear(2008);
+        JSONArray array = searchMovieWithCombination.searchInOracle("2000-12-03","Fire on the Amazon","Luis Llosa","Craig Sheffer","Adventure");
     }
 
 }

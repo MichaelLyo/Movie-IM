@@ -1,14 +1,9 @@
 package com.tongji.movie.repository;
-import java.io.Serializable;
 import java.util.List;
 
 import com.tongji.movie.model.*;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 
 public interface AmazonFactRepository extends JpaRepository<AmazonFact, Long>
 {
@@ -49,6 +44,9 @@ public interface AmazonFactRepository extends JpaRepository<AmazonFact, Long>
     @Query(value = "select * from amazon_fact a where a.title LIKE ?1", nativeQuery=true)
     List<AmazonFact> findAmazonFactsByTitle(String title);
 
+    @Query(value = "select * from amazon_fact a where a.run_time BETWEEN ?1 AND ?2", nativeQuery=true)
+    List<AmazonFact> findAmazonFactsByRunTimeBetween(String time1, String time2);
+
     @Query(value = "select * from amazon_fact a join actor ac on a.movie_id = ac.movie_id where ac.name = ?1", nativeQuery=true)
     List<AmazonFact> findAmazonFactsByActor(String name);
 
@@ -58,11 +56,10 @@ public interface AmazonFactRepository extends JpaRepository<AmazonFact, Long>
     @Query(value = "select * from amazon_fact a join director d on a.movie_id = d.movie_id where d.name LIKE ?1", nativeQuery=true)
     List<AmazonFact> findAmazonFactsByDirector(String name);
 
-
-    @Query(value = "select * from amazon_fact a join actor ac on a.movie_id = ac.movie_id " +
-            "join director d on ac.movieId = d.movieId " +
-            "join genre g on d.movieId = g. movieId " +
-            "where a.release_date = ?1 and a.title = ?2 and ac.name = ?3 and d.name = ?4 and g.name = ?5", nativeQuery=true)
+    @Query(value = "select * from amazon_fact a left join actor ac on a.movie_id = ac.movie_id " +
+            "left join director d on a.movie_id = d.movie_id " +
+            "left join genre g on a.movie_id = g.movie_id " +
+            "where a.release_date = ?1 and a.title LIKE ?2 and ac.name LIKE ?3 and d.name LIKE ?4 and g.name = ?5", nativeQuery=true)
     List<AmazonFact> findAmazonFactsByCombination(String date,String name,String actor,String director,String genre);
 
     @Query(value = "select * from amazon_fact a join language l on a.movie_id = l.movie_id where l.name = ?1",nativeQuery = true)
