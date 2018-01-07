@@ -267,10 +267,9 @@ function Table(id,type) {
                 columns: [
                     {data: "movieId"},
                     {data: "title"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "releaseDate", width: "20%"},
+                    {data: "runTime",width: "10%"},
                     {data: "studio"},
-                    {data: "publisher"}
                 ],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
@@ -420,11 +419,10 @@ function Table(id,type) {
                 },
                 columns: [
                     {data: "movieId"},
-                    {data: "title"},
+                    {data: "title",width:"30%"},
                     {data: "director"},
                     {data: "releaseDate"},
                     {data: "runTime"},
-                    {data: "studio"}
                 ],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
@@ -572,7 +570,7 @@ function Table(id,type) {
                     },
                     columns: [
                         {data: "movieId"},
-                        {data: "title"},
+                        {data: "title",width:"30%"},
                         {data: "director"},
                         {data: "actor"},
                         {data: "genre"}
@@ -731,11 +729,10 @@ function Table(id,type) {
                 },
                 columns: [
                     {data: "movieId"},
-                    {data: "title"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "title",width:"20%"},
+                    {data: "releaseDate",width:"10%"},
+                    {data: "runTime",width:"10%"},
                     {data: "studio"},
-                    {data: "publisher"},
 
                 ],
                 "bPaginage": true,
@@ -887,10 +884,10 @@ function Table(id,type) {
                 },
                 columns: [
                     {data: "movieId"},
-                    {data: "title"},
-                    {data: "type"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "title",width:"20%"},
+                    {data: "type",width:"10%"},
+                    {data: "releaseDate",width:"10%"},
+                    {data: "runTime",width:"10%"},
                     {data: "studio"}
                 ],
                 "bPaginage": true,
@@ -1204,11 +1201,11 @@ function Table(id,type) {
                 },
                 columns: [
                     {data: "movieId"},
-                    {data: "title"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "title",width:"30%"},
                     {data: "studio"},
-                    {data: "publisher"}],
+                    {data: "runTime",width:"10%"},
+                    {data: "publisher"},
+                    {data: "releaseDate",width:"10%"},],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "oLanguage": {
