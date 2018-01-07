@@ -78,7 +78,6 @@ function Table(id,type) {
     var category = document.getElementById('categoryTable');
     var combination = document.getElementById('combinationTable');
     var language = document.getElementById('languageTable');
-
     var runtime = document.getElementById('runtimeTable');
 
     if (id === 'time') {
@@ -98,9 +97,7 @@ function Table(id,type) {
                         "date": String(date),
                         "season": String(seasonArray)
                     },
-
                     dataSrc: ""
-
                 },
                 columns: [
                     {data: "movieId"},
@@ -110,6 +107,7 @@ function Table(id,type) {
                     {data: "studio"},
                     {data: "publisher"}
                 ],
+                "bProcessing": true,
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "oLanguage": {
@@ -152,6 +150,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
                             text: '两种模型执行时间比较'
                         },
@@ -165,8 +166,8 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
+                                
                             }
                         },
                         tooltip: {
@@ -210,6 +211,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
                             text: '两种模型执行时间比较'
                         },
@@ -223,8 +227,8 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
+                                
                             }
                         },
                         tooltip: {
@@ -273,6 +277,7 @@ function Table(id,type) {
                     {data: "publisher"}
                 ],
                 "bPaginage": true,
+                "bProcessing": true,
                 "sPaginationType": "full_numbers",
                 "oLanguage": {
                     "sLengthMenu": "每页显示 _MENU_ 条",
@@ -306,6 +311,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
                             text: '两种模型执行时间比较'
                         },
@@ -319,8 +327,8 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
+                                
                             }
                         },
                         tooltip: {
@@ -364,6 +372,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
                             text: '两种模型执行时间比较'
                         },
@@ -377,8 +388,7 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
                             }
                         },
                         tooltip: {
@@ -427,6 +437,7 @@ function Table(id,type) {
                     {data: "studio"}
                 ],
                 "bPaginage": true,
+                "bProcessing": true,
                 "sPaginationType": "full_numbers",
                 "oLanguage": {
                     "sLengthMenu": "每页显示 _MENU_ 条",
@@ -459,6 +470,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
                             text: '两种模型执行时间比较'
                         },
@@ -470,10 +484,8 @@ function Table(id,type) {
                             ]
                         },
                         yAxis: {
-                            allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)'
                             }
                         },
                         tooltip: {
@@ -518,6 +530,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
                             text: '两种模型执行时间比较'
                         },
@@ -531,8 +546,8 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
+                                
                             }
                         },
                         tooltip: {
@@ -560,10 +575,10 @@ function Table(id,type) {
             });
         }
 
-        if (true) {
-            director2.style.display = 'block';
-            if (mvDirectortb2 === null) {
-                mvDirectortb2 = $('#director2').DataTable({
+
+        director2.style.display = 'block';
+        if (mvDirectortb2 === null) {
+            mvDirectortb2 = $('#director2').DataTable({
                     ajax: {
                         type: "post",
                         url: "/movie/director/actor?directorName=" + direcorName,
@@ -595,7 +610,7 @@ function Table(id,type) {
                         }
                     }
                 });
-                $.ajax({
+            $.ajax({
                     url: '/movie/ajax/showdirectorcoactor',
                     dataSrc: '',
                     success: function (data) {
@@ -609,6 +624,9 @@ function Table(id,type) {
                         directorchart2 = Highcharts.chart('directorcontainer2', {
                             chart: {
                                 type: 'column'
+                            },
+                            credits: {
+                                enabled: false
                             },
                             title: {
                                 text: '两种模型执行时间比较'
@@ -624,7 +642,68 @@ function Table(id,type) {
                                 allowDecimals: false,
                                 title: {
                                     text: 's',
-                                    rotation: 0
+                                    
+                                }
+                            },
+                            tooltip: {
+                                formatter: function () {
+                                    return '<b>' + this.series.name
+
+                                        + '</b><br/>' +
+                                        this.point.y + 's ' + this.point.name
+
+                                            .toLowerCase();
+                                }
+                            },
+                            plotOptions: {
+                                column: {
+                                    dataLabels: {
+                                        enabled: true, // dataLabels设为true
+                                        style: {
+                                            color: '#42abf8'
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+        }
+        else {
+                mvDirectortb2.ajax.url("/movie/director/search?directorName=" + direcorName).load();
+                $.ajax({
+                    url: '/movie/ajax/showdirector',
+                    dataSrc: '',
+                    success: function (data) {
+                        var dataSrc;
+                        dataSrc = data[0];
+                        $('#directorrelation2').text(dataSrc.relation);
+                        $('#directormix2').text(dataSrc.mix);
+                        if (directorchart2 !== undefined) {
+                            directorchart2.destroy();
+                        }
+                        directorchart2 = Highcharts.chart('directorcontainer2', {
+                            chart: {
+                                type: 'column'
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            title: {
+                                text: '两种模型执行时间比较'
+                            },
+                            data: {
+                                columns: [
+                                    [null, '执行时间'], // 分类
+                                    ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+                                    ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+                                ]
+                            },
+                            yAxis: {
+                                allowDecimals: false,
+                                title: {
+                                    text: 'ms',
+                                    
                                 }
                             },
                             tooltip: {
@@ -651,65 +730,7 @@ function Table(id,type) {
                     }
                 });
             }
-        }
-        else {
-            mvDirectortb2.ajax.url("/movie/director/search?directorName=" + direcorName).load();
-            $.ajax({
-                url: '/movie/ajax/showdirector',
-                dataSrc: '',
-                success: function (data) {
-                    var dataSrc;
-                    dataSrc = data[0];
-                    $('#directorrelation2').text(dataSrc.relation);
-                    $('#directormix2').text(dataSrc.mix);
-                    if (directorchart2 !== undefined) {
-                        directorchart2.destroy();
-                    }
-                    directorchart2 = Highcharts.chart('directorcontainer2', {
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: '两种模型执行时间比较'
-                        },
-                        data: {
-                            columns: [
-                                [null, '执行时间'], // 分类
-                                ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
-                                ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
-                            ]
-                        },
-                        yAxis: {
-                            allowDecimals: false,
-                            title: {
-                                text: 's',
-                                rotation: 0
-                            }
-                        },
-                        tooltip: {
-                            formatter: function () {
-                                return '<b>' + this.series.name
 
-                                    + '</b><br/>' +
-                                    this.point.y + 's ' + this.point.name
-
-                                        .toLowerCase();
-                            }
-                        },
-                        plotOptions: {
-                            column: {
-                                dataLabels: {
-                                    enabled: true, // dataLabels设为true
-                                    style: {
-                                        color: '#42abf8'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                }
-            });
-        }
     }
     if (id === 'actor') {
         actor.style.display = 'block';
@@ -738,6 +759,7 @@ function Table(id,type) {
                     {data: "publisher"},
 
                 ],
+                "bProcessing": true,
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "oLanguage": {
@@ -772,6 +794,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
                             text: '两种模型执行时间比较'
                         },
@@ -785,8 +810,8 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
+                                
                             }
                         },
                         tooltip: {
@@ -831,6 +856,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
                             text: '两种模型执行时间比较'
                         },
@@ -844,8 +872,8 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
+                                
                             }
                         },
                         tooltip: {
@@ -893,6 +921,7 @@ function Table(id,type) {
                     {data: "runTime"},
                     {data: "studio"}
                 ],
+                "bProcessing": true,
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "oLanguage": {
@@ -925,6 +954,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
                             text: '两种模型执行时间比较'
                         },
@@ -938,8 +970,8 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
+                                
                             }
                         },
                         tooltip: {
@@ -983,6 +1015,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
                             text: '两种模型执行时间比较'
                         },
@@ -996,8 +1031,8 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
+                                
                             }
                         },
                         tooltip: {
@@ -1055,6 +1090,7 @@ function Table(id,type) {
                     {data: "runTime"},
                     {data: "studio"},
                     {data: "publisher"}],
+                "bProcessing": true,
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "oLanguage": {
@@ -1088,6 +1124,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
 
                             text: '两种模型执行时间比较'
@@ -1102,8 +1141,8 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
+                                
                             }
                         },
                         tooltip: {
@@ -1148,6 +1187,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
 
                             text: '两种模型执行时间比较'
@@ -1162,8 +1204,8 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
+                                
                             }
                         },
                         tooltip: {
@@ -1209,6 +1251,7 @@ function Table(id,type) {
                     {data: "runTime"},
                     {data: "studio"},
                     {data: "publisher"}],
+                "bProcessing": true,
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "oLanguage": {
@@ -1243,6 +1286,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
                             text: '两种模型执行时间比较'
                         },
@@ -1256,8 +1302,8 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
+                                
                             }
                         },
                         tooltip: {
@@ -1302,6 +1348,9 @@ function Table(id,type) {
                         chart: {
                             type: 'column'
                         },
+                        credits: {
+                            enabled: false
+                        },
                         title: {
                             text: '两种模型执行时间比较'
                         },
@@ -1315,8 +1364,8 @@ function Table(id,type) {
                         yAxis: {
                             allowDecimals: false,
                             title: {
-                                text: 'ms',
-                                rotation: 0
+                                text: '单位(ms)  '
+                                
                             }
                         },
                         tooltip: {
@@ -1344,7 +1393,7 @@ function Table(id,type) {
             });
         }
     }
-        if (id === 'runtime') {
+    if (id === 'runtime') {
             runtime.style.display = 'block';
             $.fn.dataTable.ext.errMode = 'throw';
             var time1 = document.getElementById('time1').value;
@@ -1368,7 +1417,7 @@ function Table(id,type) {
                         {data: "studio"},
                         {data: "publisher"}
                     ],
-
+                    "bProcessing": true,
                     "bPaginage": true,
                     "sPaginationType": "full_numbers",
                     "oLanguage": {
@@ -1403,6 +1452,9 @@ function Table(id,type) {
                             chart: {
                                 type: 'column'
                             },
+                            credits: {
+                                enabled: false
+                            },
                             title: {
                                 text: '两种模型执行时间比较'
                             },
@@ -1416,8 +1468,8 @@ function Table(id,type) {
                             yAxis: {
                                 allowDecimals: false,
                                 title: {
-                                    text: 'ms',
-                                    rotation: 0
+                                    text: '单位(ms)  '
+                                    
                                 }
                             },
                             tooltip: {
@@ -1461,6 +1513,9 @@ function Table(id,type) {
                             chart: {
                                 type: 'column'
                             },
+                            credits: {
+                                enabled: false
+                            },
                             title: {
                                 text: '两种模型执行时间比较'
                             },
@@ -1474,8 +1529,8 @@ function Table(id,type) {
                             yAxis: {
                                 allowDecimals: false,
                                 title: {
-                                    text: 'ms',
-                                    rotation: 0
+                                    text: '单位(ms)  '
+                                    
                                 }
                             },
                             tooltip: {
