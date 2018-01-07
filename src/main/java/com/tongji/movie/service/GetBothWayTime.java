@@ -39,7 +39,7 @@ public class GetBothWayTime
 		}
 		else if(operation.indexOf("language")>0)
 		{
-			searchMovieWithLanguage.searchInOracle(operation);
+			searchMovieWithLanguage.searchLanuage(operation);
 			oracleTime =System.currentTimeMillis();
 			searchMovieWithLanguage.search(operation);
 

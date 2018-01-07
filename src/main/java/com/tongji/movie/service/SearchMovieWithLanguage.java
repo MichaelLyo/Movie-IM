@@ -23,7 +23,7 @@ public class SearchMovieWithLanguage {
     public JSONArray search(String language) throws SQLException {
         Connection con = conObj.getConnection();
         JSONArray movies = new JSONArray();
-        PreparedStatement pstmt = con.prepareStatement("select * from AmazonFact a  WHERE a.language=?");
+        PreparedStatement pstmt = con.prepareStatement("select * from AmazonFact a  join LANGUAGE l on( a.movieid= l.movieid) where l.name=?");
         pstmt.setString(1,language);
         ResultSet set =  pstmt.executeQuery();
         while(set.next()){
@@ -53,6 +53,24 @@ public class SearchMovieWithLanguage {
             movie.put("studio",a.getStudio());
             movie.put("publicationDate",a.getPublicationDate());
             movie.put("publisher",a.getPublishier());
+            movies.add(movie);
+        }
+        return movies;
+    }
+
+
+    public JSONArray searchLanuage(String language) throws SQLException {
+        JSONArray movies = new JSONArray();
+        List<AmazonFact> amazonFacts = amazonFactRepository.findAmazonFactByLanguage(language);
+        for (AmazonFact a : amazonFacts) {
+            JSONObject movie = new JSONObject();
+            movie.put("movieId", a.getMovieId());
+            movie.put("title", a.getTitle());
+            movie.put("releaseDate", a.getReleaseDate());
+            movie.put("runTime", a.getRunTime());
+            movie.put("studio", a.getStudio());
+            movie.put("publicationDate", a.getPublicationDate());
+            movie.put("publisher", a.getPublishier());
             movies.add(movie);
         }
         return movies;

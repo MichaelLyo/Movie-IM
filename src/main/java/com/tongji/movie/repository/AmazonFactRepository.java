@@ -65,6 +65,9 @@ public interface AmazonFactRepository extends JpaRepository<AmazonFact, Long>
             "where a.release_date = ?1 and a.title = ?2 and ac.name = ?3 and d.name = ?4 and g.name = ?5", nativeQuery=true)
     List<AmazonFact> findAmazonFactsByCombination(String date,String name,String actor,String director,String genre);
 
+    @Query(value = "select * from amazon_fact a join language l on a.movie_id = l.movie_id where l.name = ?1",nativeQuery = true)
+    List<AmazonFact> findAmazonFactByLanguage(String language);
+
 
 
 }
