@@ -267,10 +267,9 @@ function Table(id,type) {
                 columns: [
                     {data: "movieId"},
                     {data: "title"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "releaseDate", width: "20%"},
+                    {data: "runTime",width: "10%"},
                     {data: "studio"},
-                    {data: "publisher"}
                 ],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
@@ -420,11 +419,10 @@ function Table(id,type) {
                 },
                 columns: [
                     {data: "movieId"},
-                    {data: "title"},
+                    {data: "title",width:"30%"},
                     {data: "director"},
                     {data: "releaseDate"},
                     {data: "runTime"},
-                    {data: "studio"}
                 ],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
@@ -559,8 +557,6 @@ function Table(id,type) {
                 }
             });
         }
-
-
         director2.style.display = 'block';
         if (mvDirectortb2 === null) {
             mvDirectortb2 = $('#director2').DataTable({
@@ -568,31 +564,33 @@ function Table(id,type) {
                     type: "post",
                     url: "/movie/director/actor?directorName=" + direcorName,
 
-                    dataSrc: ""
-                },
-                columns: [
-                    {data: "movieId"},
-                    {data: "title"},
-                    {data: "director"},
-                    {data: "actor"},
-                    {data: "genre"}
-                ],
-                "bPaginage": true,
-                "sPaginationType": "full_numbers",
-                "oLanguage": {
-                    "sLengthMenu": "每页显示 _MENU_ 条",
-                    "sZeroRecords": "没有找到符合条件的数据",
-                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-                    "sInfoEmpty": "没有记录",
-                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
-                    "sSearch": "搜索",
-                    "sProcessing": "数据加载中...",
-                    "oPaginate": {
-                        "sFirst": "首页",
-                        "sPrevious": "上一页",
-                        "sNext": "下一页",
-                        "sLast": "尾页"
-                    }
+                  dataSrc: ""
+                    },
+                    columns: [
+                        {data: "movieId"},
+                        {data: "title",width:"30%"},
+                        {data: "director"},
+                        {data: "actor"},
+                        {data: "genre"}
+                    ],
+                    "bPaginage": true,
+                    "sPaginationType": "full_numbers",
+                    "oLanguage": {
+                        "sLengthMenu": "每页显示 _MENU_ 条",
+                        "sZeroRecords": "没有找到符合条件的数据",
+                        "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+                        "sInfoEmpty": "没有记录",
+                        "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
+                        "sSearch": "搜索",
+                        "sProcessing": "数据加载中...",
+                        "oPaginate": {
+                            "sFirst": "首页",
+                            "sPrevious": "上一页",
+                            "sNext": "下一页",
+                            "sLast": "尾页"
+                        }
+
+                    
                 }
             });
             $.ajax({
@@ -731,11 +729,10 @@ function Table(id,type) {
                 },
                 columns: [
                     {data: "movieId"},
-                    {data: "title"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "title",width:"20%"},
+                    {data: "releaseDate",width:"10%"},
+                    {data: "runTime",width:"10%"},
                     {data: "studio"},
-                    {data: "publisher"},
 
                 ],
                 "bPaginage": true,
@@ -887,10 +884,10 @@ function Table(id,type) {
                 },
                 columns: [
                     {data: "movieId"},
-                    {data: "title"},
-                    {data: "type"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "title",width:"20%"},
+                    {data: "type",width:"10%"},
+                    {data: "releaseDate",width:"10%"},
+                    {data: "runTime",width:"10%"},
                     {data: "studio"}
                 ],
                 "bPaginage": true,
@@ -1204,11 +1201,11 @@ function Table(id,type) {
                 },
                 columns: [
                     {data: "movieId"},
-                    {data: "title"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "title",width:"30%"},
                     {data: "studio"},
-                    {data: "publisher"}],
+                    {data: "runTime",width:"10%"},
+                    {data: "publisher"},
+                    {data: "releaseDate",width:"10%"},],
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "oLanguage": {
