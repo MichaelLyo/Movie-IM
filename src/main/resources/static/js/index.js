@@ -100,10 +100,10 @@ function Table(id,type) {
                     dataSrc: ""
                 },
                 columns: [
-                    {data: "movieId"},
-                    {data: "title"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "movieId",},
+                    {data: "title",width:'30%'},
+                    {data: "releaseDate",width:'10%'},
+                    {data: "runTime",width:'10%'},
                     {data: "studio"},
                     {data: "publisher"}
                 ],
