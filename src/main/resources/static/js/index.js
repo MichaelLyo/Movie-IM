@@ -271,10 +271,9 @@ function Table(id,type) {
                 columns: [
                     {data: "movieId"},
                     {data: "title"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "releaseDate", width: "20%"},
+                    {data: "runTime",width: "10%"},
                     {data: "studio"},
-                    {data: "publisher"}
                 ],
                 "bPaginage": true,
                 "bProcessing": true,
@@ -430,11 +429,10 @@ function Table(id,type) {
                 },
                 columns: [
                     {data: "movieId"},
-                    {data: "title"},
+                    {data: "title",width:"30%"},
                     {data: "director"},
                     {data: "releaseDate"},
                     {data: "runTime"},
-                    {data: "studio"}
                 ],
                 "bPaginage": true,
                 "bProcessing": true,
@@ -574,20 +572,19 @@ function Table(id,type) {
                 }
             });
         }
-
-
         director2.style.display = 'block';
         if (mvDirectortb2 === null) {
             mvDirectortb2 = $('#director2').DataTable({
-                    ajax: {
-                        type: "post",
-                        url: "/movie/director/actor?directorName=" + direcorName,
+                ajax: {
+                    type: "post",
+                    url: "/movie/director/actor?directorName=" + direcorName,
 
-                        dataSrc: ""
+                  dataSrc: ""
+
                     },
                     columns: [
                         {data: "movieId"},
-                        {data: "title"},
+                        {data: "title",width:"30%"},
                         {data: "director"},
                         {data: "actor"},
                         {data: "genre"}
@@ -608,87 +605,101 @@ function Table(id,type) {
                             "sNext": "下一页",
                             "sLast": "尾页"
                         }
-                    }
-                });
+
+                    
+                }
+            });
             $.ajax({
-                    url: '/movie/ajax/showdirectorcoactor',
-                    dataSrc: '',
-                    success: function (data) {
-                        var dataSrc;
-                        dataSrc = data[0];
-                        $('#directorrelation2').text(dataSrc.relation);
-                        $('#directormix2').text(dataSrc.mix);
-                        if (directorchart2 !== undefined) {
-                            directorchart2.destroy();
-                        }
-                        directorchart2 = Highcharts.chart('directorcontainer2', {
-                            chart: {
-                                type: 'column'
-                            },
-                            credits: {
-                                enabled: false
-                            },
+                url: '/movie/ajax/showdirectorcoactor',
+                dataSrc: '',
+                success: function (data) {
+                    var dataSrc;
+                    dataSrc = data[0];
+                    $('#directorrelation2').text(dataSrc.relation);
+                    $('#directormix2').text(dataSrc.mix);
+                    if (directorchart2 !== undefined) {
+                        directorchart2.destroy();
+                    }
+
+                    directorchart2 = Highcharts.chart('directorcontainer2', {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: '两种模型执行时间比较'
+                        },
+                        data: {
+                            columns: [
+                                [null, '执行时间'], // 分类
+                                ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+                                ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+                            ]
+                        },
+                        yAxis: {
+                            allowDecimals: false,
                             title: {
-                                text: '两种模型执行时间比较'
-                            },
-                            data: {
-                                columns: [
-                                    [null, '执行时间'], // 分类
-                                    ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
-                                    ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
-                                ]
-                            },
-                            yAxis: {
-                                allowDecimals: false,
-                                title: {
-                                    text: 's',
-                                    
-                                }
-                            },
-                            tooltip: {
-                                formatter: function () {
-                                    return '<b>' + this.series.name
+                                text: '单位(ms)',
+                              
+                            }
+                        },
+                        tooltip: {
+                            formatter: function () {
+                                return '<b>' + this.series.name
 
-                                        + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
 
-                                            .toLowerCase();
-                                }
-                            },
-                            plotOptions: {
-                                column: {
-                                    dataLabels: {
-                                        enabled: true, // dataLabels设为true
-                                        style: {
-                                            color: '#42abf8'
-                                        }
+                                    + '</b><br/>' +
+                                    this.point.y + 's ' + this.point.name
+
+                                        .toLowerCase();
+                            }
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: true, // dataLabels设为true
+                                    style: {
+                                        color: '#42abf8'
                                     }
                                 }
                             }
-                        });
-                    }
-                });
-        }
-        else {
-                mvDirectortb2.ajax.url("/movie/director/search?directorName=" + direcorName).load();
-                $.ajax({
-                    url: '/movie/ajax/showdirector',
-                    dataSrc: '',
-                    success: function (data) {
-                        var dataSrc;
-                        dataSrc = data[0];
-                        $('#directorrelation2').text(dataSrc.relation);
-                        $('#directormix2').text(dataSrc.mix);
-                        if (directorchart2 !== undefined) {
-                            directorchart2.destroy();
+
                         }
-                        directorchart2 = Highcharts.chart('directorcontainer2', {
-                            chart: {
-                                type: 'column'
-                            },
-                            credits: {
-                                enabled: false
-                            },
+                    });
+                }
+            });
+
+        }
+
+        else {
+
+            mvDirectortb2.ajax.url("/movie/director/actor?directorName=" + direcorName).load();
+            $.ajax({
+                url: '/movie/ajax/showdirectorcoactor',
+                dataSrc: '',
+                success: function (data) {
+                    var dataSrc;
+                    dataSrc = data[0];
+                    $('#directorrelation2').text(dataSrc.relation);
+                    $('#directormix2').text(dataSrc.mix);
+                    if (directorchart2 !== undefined) {
+                        directorchart2.destroy();
+                    }
+                    directorchart2 = Highcharts.chart('directorcontainer2', {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: '两种模型执行时间比较'
+                        },
+                        data: {
+                            columns: [
+                                [null, '执行时间'], // 分类
+                                ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+                                ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+                            ]
+                        },
+                        yAxis: {
+                            allowDecimals: false,
                             title: {
                                 text: '两种模型执行时间比较'
                             },
@@ -752,11 +763,10 @@ function Table(id,type) {
                 },
                 columns: [
                     {data: "movieId"},
-                    {data: "title"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "title",width:"20%"},
+                    {data: "releaseDate",width:"10%"},
+                    {data: "runTime",width:"10%"},
                     {data: "studio"},
-                    {data: "publisher"},
 
                 ],
                 "bProcessing": true,
@@ -915,10 +925,10 @@ function Table(id,type) {
                 },
                 columns: [
                     {data: "movieId"},
-                    {data: "title"},
-                    {data: "type"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "title",width:"20%"},
+                    {data: "type",width:"10%"},
+                    {data: "releaseDate",width:"10%"},
+                    {data: "runTime",width:"10%"},
                     {data: "studio"}
                 ],
                 "bProcessing": true,
@@ -1246,11 +1256,11 @@ function Table(id,type) {
                 },
                 columns: [
                     {data: "movieId"},
-                    {data: "title"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
+                    {data: "title",width:"30%"},
                     {data: "studio"},
-                    {data: "publisher"}],
+                    {data: "runTime",width:"10%"},
+                    {data: "publisher"},
+                    {data: "releaseDate",width:"10%"},],
                 "bProcessing": true,
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
