@@ -7,6 +7,7 @@ var mvActortb = null;
 var mvTimetb = null;
 var mvGenretb = null;
 var mvLanguagetb = null;
+var mvCombinationtb = null;
 var timechart,namechart,directorchart,directorchart2,actorchart,categorychart,languagechart,combinationchart; //柱状图
 function Time () {
     var season=document.getElementsByName('season');
@@ -1021,27 +1022,26 @@ function Table(id,type) {
             var cactor = document.getElementById('cactor').value;
             var cdirector = document.getElementById('cdirector').value;
             var cgenre = document.getElementById('cgenre').value;
-            if(mvGenretb === null) {
-                $('#combination').DataTable({
+            if(mvCombinationtb === null) {
+                mvCombinationtb = $('#combination').DataTable({
                     ajax: {
-
-                        url: '/movie/ajax/showcombination',
+                        url: '/movie/combination/search',
                         data: {
-                            "date": cdate,
-                            "name": cname,
-                            "actor": cactor,
-                            "director": cdirector,
-                            "genre": cgenre
+                            "date": String(cdate),
+                            "name": String(cname),
+                            "actor": String(cactor),
+                            "director": String(cdirector),
+                            "genre": String(cgenre)
                         },
                         dataSrc:""
 
                     },
-                    columns: [{data: "movieName"},
-                        {data: "releaseTime"},
-                        {data: "genre"},
-                        {data: "director"},
-                        {data: "actor"},
-                        {data: "edition"}],
+                    columns: [{data: "movieId"},
+                        {data: "title"},
+                        {data: "releaseDate"},
+                        {data: "runTime"},
+                        {data: "studio"},
+                        {data: "publisher"}],
                     "bPaginage": true,
                     "sPaginationType": "full_numbers",
                     "oLanguage": {
@@ -1064,7 +1064,6 @@ function Table(id,type) {
                     url: '/movie/ajax/showcombination',
                     dataSrc: '',
                     success: function (data) {
-
                         var dataSrc;
                         dataSrc = data[0];
                         $('#combinationrelation').text(dataSrc.relation);
@@ -1119,7 +1118,7 @@ function Table(id,type) {
                 });
             }
             else {
-                mvGenretb.ajax.url('/movie/ajax/showcombination').load();
+                mvCombinationtb .ajax.url('/movie/combination/search').load();
                 $.ajax({
                     url: '/movie/ajax/showcombination',
                     dataSrc: '',
