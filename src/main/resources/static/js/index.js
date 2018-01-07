@@ -78,7 +78,9 @@ function Table(id,type) {
         var category = document.getElementById('categoryTable');
         var combination = document.getElementById('combinationTable');
         var language = document.getElementById('languageTable');
+
         var runtime = document.getElementById('runtimeTable');
+
         if (id === 'time') {
             time.style.display = 'block';
             $.fn.dataTable.ext.errMode = 'throw';
@@ -1028,6 +1030,7 @@ function Table(id,type) {
                 mvCombinationtb = $('#combination').DataTable({
                     ajax: {
                         url: '/movie/combination/search',
+                        type:'post',
                         data: {
                             "date": String(cdate),
                             "name": String(cname),
@@ -1184,19 +1187,20 @@ function Table(id,type) {
             var languagename = $("#sjw-search-language").val();
                 language.style.display = 'block';
                 $.fn.dataTable.ext.errMode = 'throw';
-                if(mvLanguagetb === null){
-                    $('#language').DataTable({
+                if(mvLanguagetb == null){
+                    mvLanguagetb=$('#language').DataTable({
                     ajax: {
                         url: '/movie/language/search?language=' + languagename,
                         dataSrc:"",
                         type: "post"
                     },
-                    columns: [{data: "movieID"},
-                        {data: "movieName"},
-                        {data: "genre"},
+                    columns: [
+                        {data: "movieId"},
+                        {data: "title"},
                         {data: "releaseDate"},
+                        {data: "runTime"},
                         {data: "studio"},
-                        {data: "releaseDate"}],
+                        {data: "publisher"}],
                     "bPaginage": true,
                     "sPaginationType": "full_numbers",
                     "oLanguage": {
@@ -1273,7 +1277,7 @@ function Table(id,type) {
             });
                 }
                 else {
-                    mvGenretb.ajax.url('/movie/language/search?language=' + languagename).load();
+                    mvLanguagetb.ajax.url('/movie/language/search?language=' + languagename).load();
                     $.ajax({
                         url: '/movie/ajax/showlanguage',
                         dataSrc: '',

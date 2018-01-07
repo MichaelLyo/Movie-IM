@@ -24,17 +24,22 @@ public class SearchMovieWithCombination {
 
     public JSONArray searchInOracle(String date,String name,String actor,String director,String genre) throws SQLException {
         JSONArray movies = new JSONArray();
-        List<AmazonFact> amazonFacts = amazonFactRepository.findAmazonFactsByCombination(date,name,actor,director,genre);
-        for(AmazonFact a : amazonFacts){
-            JSONObject movie = new JSONObject();
-            movie.put("movieId",a.getMovieId());
-            movie.put("title",a.getTitle());
-            movie.put("releaseDate",a.getReleaseDate());
-            movie.put("runTime",a.getRunTime());
-            movie.put("studio",a.getStudio());
-            movie.put("publicationDate",a.getPublicationDate());
-            movie.put("publisher",a.getPublishier());
-            movies.add(movie);
+        String nameLike = '%' + name + '%';
+        String actorLike = '%' + actor + '%';
+        String directorLike = '%' + director + '%';
+        List<AmazonFact> amazonFacts = amazonFactRepository.findAmazonFactsByCombination(date,nameLike,actorLike,directorLike,genre);
+        if(!amazonFacts.isEmpty()) {
+            for (AmazonFact a : amazonFacts) {
+                JSONObject movie = new JSONObject();
+                movie.put("movieId", a.getMovieId());
+                movie.put("title", a.getTitle());
+                movie.put("releaseDate", a.getReleaseDate());
+                movie.put("runTime", a.getRunTime());
+                movie.put("studio", a.getStudio());
+                movie.put("publicationDate", a.getPublicationDate());
+                movie.put("publisher", a.getPublishier());
+                movies.add(movie);
+            }
         }
         return movies;
     }
