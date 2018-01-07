@@ -90,16 +90,16 @@ function Table(id,type) {
                 ajax: {
                     type: "post",
                     url: '/movie/time/search',
-                    data : {
-                        "year":String(year),
-                        "month":String(monthArray),
-                        "dateType":String(dateType),
-                        "day":String(dayArray),
-                        "date":String(date),
-                        "season":String(seasonArray)
+                    data: {
+                        "year": String(year),
+                        "month": String(monthArray),
+                        "dateType": String(dateType),
+                        "day": String(dayArray),
+                        "date": String(date),
+                        "season": String(seasonArray)
                     },
 
-                    dataSrc:""
+                    dataSrc: ""
 
                 },
                 columns: [
@@ -130,13 +130,13 @@ function Table(id,type) {
             });
             $.ajax({
                 url: '/movie/multiple/showtime',
-                data : {
-                    "year":String(year),
-                    "month":String(monthArray),
-                    "dateType":String(dateType),
-                    "day":String(dayArray),
-                    "date":String(date),
-                    "season":String(seasonArray)
+                data: {
+                    "year": String(year),
+                    "month": String(monthArray),
+                    "dateType": String(dateType),
+                    "day": String(dayArray),
+                    "date": String(date),
+                    "season": String(seasonArray)
                 },
                 dataSrc: '',
                 success: function (data) {
@@ -145,10 +145,10 @@ function Table(id,type) {
                     dataSrc = data[0];
                     $('#timerelation').text(dataSrc.relation);
                     $('#timemix').text(dataSrc.mix);
-                    if(timechart!==undefined){
+                    if (timechart !== undefined) {
                         timechart.destroy();
                     }
-                    timechart =  Highcharts.chart('container',{
+                    timechart = Highcharts.chart('container', {
                         chart: {
                             type: 'column'
                         },
@@ -203,10 +203,10 @@ function Table(id,type) {
                     dataSrc = data[0];
                     $('#timerelation').text(dataSrc.relation);
                     $('#timemix').text(dataSrc.mix);
-                    if(timechart!==undefined){
+                    if (timechart !== undefined) {
                         timechart.destroy();
                     }
-                    timechart =  Highcharts.chart('container',{
+                    timechart = Highcharts.chart('container', {
                         chart: {
                             type: 'column'
                         },
@@ -262,7 +262,7 @@ function Table(id,type) {
                     type: "post",
                     url: "/movie/name/search?name=" + moviename,
 
-                    dataSrc:""
+                    dataSrc: ""
                 },
                 columns: [
                     {data: "movieId"},
@@ -299,10 +299,10 @@ function Table(id,type) {
                     dataSrc = data[0];
                     $('#namerelation').text(dataSrc.relation);
                     $('#namemix').text(dataSrc.mix);
-                    if(namechart!==undefined){
+                    if (namechart !== undefined) {
                         namechart.destroy();
                     }
-                    namechart =  Highcharts.chart('namecontainer',{
+                    namechart = Highcharts.chart('namecontainer', {
                         chart: {
                             type: 'column'
                         },
@@ -357,10 +357,10 @@ function Table(id,type) {
                     dataSrc = data[0];
                     $('#namerelation').text(dataSrc.relation);
                     $('#namemix').text(dataSrc.mix);
-                    if(namechart!==undefined){
+                    if (namechart !== undefined) {
                         namechart.destroy();
                     }
-                    namechart =  Highcharts.chart('namecontainer',{
+                    namechart = Highcharts.chart('namecontainer', {
                         chart: {
                             type: 'column'
                         },
@@ -415,7 +415,7 @@ function Table(id,type) {
                 ajax: {
                     type: "post",
                     url: "/movie/director/search?directorName=" + direcorName,
-                    dataSrc:""
+                    dataSrc: ""
 
                 },
                 columns: [
@@ -452,10 +452,10 @@ function Table(id,type) {
                     dataSrc = data[0];
                     $('#directorrelation').text(dataSrc.relation);
                     $('#directormix').text(dataSrc.mix);
-                    if(directorchart!==undefined){
+                    if (directorchart !== undefined) {
                         directorchart.destroy();
                     }
-                    directorchart =  Highcharts.chart('directorcontainer',{
+                    directorchart = Highcharts.chart('directorcontainer', {
                         chart: {
                             type: 'column'
                         },
@@ -511,10 +511,10 @@ function Table(id,type) {
                     dataSrc = data[0];
                     $('#directorrelation').text(dataSrc.relation);
                     $('#directormix').text(dataSrc.mix);
-                    if(directorchart!==undefined){
+                    if (directorchart !== undefined) {
                         directorchart.destroy();
                     }
-                    directorchart =  Highcharts.chart('directorcontainer',{
+                    directorchart = Highcharts.chart('directorcontainer', {
                         chart: {
                             type: 'column'
                         },
@@ -560,7 +560,7 @@ function Table(id,type) {
             });
         }
 
-        if(true) {
+        if (true) {
             director2.style.display = 'block';
             if (mvDirectortb2 === null) {
                 mvDirectortb2 = $('#director2').DataTable({
@@ -883,7 +883,7 @@ function Table(id,type) {
                 ajax: {
                     type: "post",
                     url: "/movie/genere/search?genere=" + typename,
-                    dataSrc:""
+                    dataSrc: ""
                 },
                 columns: [
                     {data: "movieId"},
@@ -916,12 +916,12 @@ function Table(id,type) {
                 dataSrc: '',
                 success: function (data) {
                     dataSrc = data[0];
-                    if(categorychart!==undefined){
+                    if (categorychart !== undefined) {
                         categorychart.destroy();
                     }
                     $('#genrerelation').text(dataSrc.relation);
                     $('#genremix').text(dataSrc.mix);
-                    categorychart =  Highcharts.chart('categorycontainer',{
+                    categorychart = Highcharts.chart('categorycontainer', {
                         chart: {
                             type: 'column'
                         },
@@ -976,10 +976,10 @@ function Table(id,type) {
                     dataSrc = data[0];
                     $('#genrerelation').text(dataSrc.relation);
                     $('#genremix').text(dataSrc.mix);
-                    if(categorychart!==undefined){
+                    if (categorychart !== undefined) {
                         categorychart.destroy();
                     }
-                    categorychart =  Highcharts.chart('categorycontainer',{
+                    categorychart = Highcharts.chart('categorycontainer', {
                         chart: {
                             type: 'column'
                         },
@@ -1034,11 +1034,11 @@ function Table(id,type) {
         var cactor = document.getElementById('cactor').value;
         var cdirector = document.getElementById('cdirector').value;
         var cgenre = document.getElementById('cgenre').value;
-        if(mvCombinationtb === null) {
+        if (mvCombinationtb === null) {
             mvCombinationtb = $('#combination').DataTable({
                 ajax: {
                     url: '/movie/combination/search',
-                    type:'post',
+                    type: 'post',
                     data: {
                         "date": String(cdate),
                         "name": String(cname),
@@ -1046,7 +1046,7 @@ function Table(id,type) {
                         "director": String(cdirector),
                         "genre": String(cgenre)
                     },
-                    dataSrc:""
+                    dataSrc: ""
 
                 },
                 columns: [{data: "movieId"},
@@ -1131,7 +1131,7 @@ function Table(id,type) {
             });
         }
         else {
-            mvCombinationtb .ajax.url('/movie/combination/search').load();
+            mvCombinationtb.ajax.url('/movie/combination/search').load();
             $.ajax({
                 url: '/movie/ajax/showcombination',
                 dataSrc: '',
@@ -1195,11 +1195,11 @@ function Table(id,type) {
         var languagename = $("#sjw-search-language").val();
         language.style.display = 'block';
         $.fn.dataTable.ext.errMode = 'throw';
-        if(mvLanguagetb == null){
-            mvLanguagetb=$('#language').DataTable({
+        if (mvLanguagetb == null) {
+            mvLanguagetb = $('#language').DataTable({
                 ajax: {
                     url: '/movie/language/search?language=' + languagename,
-                    dataSrc:"",
+                    dataSrc: "",
                     type: "post"
                 },
                 columns: [
@@ -1236,10 +1236,10 @@ function Table(id,type) {
                     dataSrc = data[0];
                     $('#languagerelation').text(dataSrc.relation);
                     $('#languagemix').text(dataSrc.mix);
-                    if(languagechart!==undefined){
+                    if (languagechart !== undefined) {
                         languagechart.destroy();
                     }
-                    languagechart =  Highcharts.chart('languagecontainer',{
+                    languagechart = Highcharts.chart('languagecontainer', {
                         chart: {
                             type: 'column'
                         },
@@ -1295,10 +1295,10 @@ function Table(id,type) {
                     dataSrc = data[0];
                     $('#languagerelation').text(dataSrc.relation);
                     $('#languagemix').text(dataSrc.mix);
-                    if(languagechart!==undefined){
+                    if (languagechart !== undefined) {
                         languagechart.destroy();
                     }
-                    languagechart =  Highcharts.chart('languagecontainer',{
+                    languagechart = Highcharts.chart('languagecontainer', {
                         chart: {
                             type: 'column'
                         },
@@ -1343,20 +1343,22 @@ function Table(id,type) {
                 }
             });
         }
-
+    }
         if (id === 'runtime') {
             runtime.style.display = 'block';
             $.fn.dataTable.ext.errMode = 'throw';
-            var time1=document.getElementById('time1').value;
-            var time2=document.getElementById('time2').value;
+            var time1 = document.getElementById('time1').value;
+            var time2 = document.getElementById('time2').value;
             if (mvRunTimetb === null) {
                 mvRunTimetb = $('#rtime').DataTable({
                     ajax: {
                         type: "post",
                         url: "/movie/runtime/search",
-                        dataSrc:"",
-                        data:{"time1" :String(time1),
-                            "time2" :String(time2)}
+                        dataSrc: "",
+                        data: {
+                            "time1": String(time1),
+                            "time2": String(time2)
+                        }
                     },
                     columns: [
                         {data: "movieId"},
@@ -1367,155 +1369,155 @@ function Table(id,type) {
                         {data: "publisher"}
                     ],
 
-                "bPaginage": true,
-                "sPaginationType": "full_numbers",
-                "oLanguage": {
-                    "sLengthMenu": "每页显示 _MENU_ 条",
-                    "sZeroRecords": "没有找到符合条件的数据",
-                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-                    "sInfoEmpty": "没有记录",
-                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
-                    "sSearch": "搜索",
-                    "sProcessing": "数据加载中...",
-                    "oPaginate": {
-                        "sFirst": "首页",
-                        "sPrevious": "上一页",
-                        "sNext": "下一页",
-                        "sLast": "尾页"
+                    "bPaginage": true,
+                    "sPaginationType": "full_numbers",
+                    "oLanguage": {
+                        "sLengthMenu": "每页显示 _MENU_ 条",
+                        "sZeroRecords": "没有找到符合条件的数据",
+                        "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+                        "sInfoEmpty": "没有记录",
+                        "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
+                        "sSearch": "搜索",
+                        "sProcessing": "数据加载中...",
+                        "oPaginate": {
+                            "sFirst": "首页",
+                            "sPrevious": "上一页",
+                            "sNext": "下一页",
+                            "sLast": "尾页"
+                        }
                     }
-                }
-            });
-            $.ajax({
-                url: '/movie/ajax/showruntime',
-                dataSrc: '',
-                success: function (data) {
+                });
+                $.ajax({
+                    url: '/movie/ajax/showruntime',
+                    dataSrc: '',
+                    success: function (data) {
 
-                    var dataSrc;
-                    dataSrc = data[0];
-                    $('#runtimerelation').text(dataSrc.relation);
-                    $('#runtimemix').text(dataSrc.mix);
-                    if(runtimechart!==undefined){
-                        runtimechart.destroy();
-                    }
-                    runtimechart =  Highcharts.chart('runtimecontainer',{
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: '两种模型执行时间比较'
-                        },
-                        data: {
-                            columns: [
-                                [null, '执行时间'], // 分类
-                                ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
-                                ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
-                            ]
-                        },
-                        yAxis: {
-                            allowDecimals: false,
+                        var dataSrc;
+                        dataSrc = data[0];
+                        $('#runtimerelation').text(dataSrc.relation);
+                        $('#runtimemix').text(dataSrc.mix);
+                        if (runtimechart !== undefined) {
+                            runtimechart.destroy();
+                        }
+                        runtimechart = Highcharts.chart('runtimecontainer', {
+                            chart: {
+                                type: 'column'
+                            },
                             title: {
-                                text: 'ms',
-                                rotation: 0
-                            }
-                        },
-                        tooltip: {
-                            formatter: function () {
-                                return '<b>' + this.series.name
+                                text: '两种模型执行时间比较'
+                            },
+                            data: {
+                                columns: [
+                                    [null, '执行时间'], // 分类
+                                    ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+                                    ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+                                ]
+                            },
+                            yAxis: {
+                                allowDecimals: false,
+                                title: {
+                                    text: 'ms',
+                                    rotation: 0
+                                }
+                            },
+                            tooltip: {
+                                formatter: function () {
+                                    return '<b>' + this.series.name
 
-                                    + '</b><br/>' +
-                                    this.point.y + 'ms ' + this.point.name
-                                        .toLowerCase();
-                            }
-                        },
-                        plotOptions: {
-                            column: {
-                                dataLabels: {
-                                    enabled: true, // dataLabels设为true
-                                    style: {
-                                        color: '#42abf8'
+                                        + '</b><br/>' +
+                                        this.point.y + 'ms ' + this.point.name
+                                            .toLowerCase();
+                                }
+                            },
+                            plotOptions: {
+                                column: {
+                                    dataLabels: {
+                                        enabled: true, // dataLabels设为true
+                                        style: {
+                                            color: '#42abf8'
+                                        }
                                     }
                                 }
                             }
-                        }
-                    });
-                }
-            });
-        }
-        else {
-            mvNametb.ajax.url("/movie/runtime/search").load();
-            $.ajax({
-                url: '/movie/ajax/showruntime',
-                dataSrc: '',
-                success: function (data) {
-
-                    var dataSrc;
-                    dataSrc = data[0];
-                    $('#runtimerelation').text(dataSrc.relation);
-                    $('#runtimemix').text(dataSrc.mix);
-                    if(runtimechart!==undefined){
-                        runtimechart.destroy();
+                        });
                     }
-                    runtimechart =  Highcharts.chart('runtimecontainer',{
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: '两种模型执行时间比较'
-                        },
-                        data: {
-                            columns: [
-                                [null, '执行时间'], // 分类
-                                ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
-                                ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
-                            ]
-                        },
-                        yAxis: {
-                            allowDecimals: false,
-                            title: {
-                                text: 'ms',
-                                rotation: 0
-                            }
-                        },
-                        tooltip: {
-                            formatter: function () {
-                                return '<b>' + this.series.name
+                });
+            }
+            else {
+                mvNametb.ajax.url("/movie/runtime/search").load();
+                $.ajax({
+                    url: '/movie/ajax/showruntime',
+                    dataSrc: '',
+                    success: function (data) {
 
-                                    + '</b><br/>' +
-                                    this.point.y + 'ms ' + this.point.name
-                                        .toLowerCase();
-                            }
-                        },
-                        plotOptions: {
-                            column: {
-                                dataLabels: {
-                                    enabled: true, // dataLabels设为true
-                                    style: {
-                                        color: '#42abf8'
+                        var dataSrc;
+                        dataSrc = data[0];
+                        $('#runtimerelation').text(dataSrc.relation);
+                        $('#runtimemix').text(dataSrc.mix);
+                        if (runtimechart !== undefined) {
+                            runtimechart.destroy();
+                        }
+                        runtimechart = Highcharts.chart('runtimecontainer', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: '两种模型执行时间比较'
+                            },
+                            data: {
+                                columns: [
+                                    [null, '执行时间'], // 分类
+                                    ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+                                    ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+                                ]
+                            },
+                            yAxis: {
+                                allowDecimals: false,
+                                title: {
+                                    text: 'ms',
+                                    rotation: 0
+                                }
+                            },
+                            tooltip: {
+                                formatter: function () {
+                                    return '<b>' + this.series.name
+
+                                        + '</b><br/>' +
+                                        this.point.y + 'ms ' + this.point.name
+                                            .toLowerCase();
+                                }
+                            },
+                            plotOptions: {
+                                column: {
+                                    dataLabels: {
+                                        enabled: true, // dataLabels设为true
+                                        style: {
+                                            color: '#42abf8'
+                                        }
                                     }
                                 }
                             }
-                        }
-                    });
-                }
-            });
+                        });
+                    }
+                });
+            }
         }
     }
-}
-var seasonArray,dayArray,monthArray,date,year,dateType;
+    var seasonArray, dayArray, monthArray, date, year, dateType;
+
 function timeChoice() {
-    date=document.getElementById('myID').value;
+    date = document.getElementById('myID').value;
     var type = document.getElementById('publicationdate');
-    if(type.checked){
+    if (type.checked) {
         dateType = 0; //0为出版日期 publicationdate 1为上映日期 releasedate
     }
     else {
-        dateType=1;
+        dateType = 1;
     }
-    if(date ==='') {
+    if (date === '') {
         var yearDiv = document.getElementById('myYear');
-        for (var i=0;i<=2028-1888;i++)
-        {
-            if(yearDiv.options[i].selected){
+        for (var i = 0; i <= 2028 - 1888; i++) {
+            if (yearDiv.options[i].selected) {
                 year = yearDiv.options[i].value;
             }
         }
@@ -1523,7 +1525,7 @@ function timeChoice() {
 
         var season = document.getElementsByName('season');
         seasonArray = [];
-        for (var i = 0,j = 0; i < season.length; i++) {
+        for (var i = 0, j = 0; i < season.length; i++) {
             if (season[i].checked) {
                 seasonArray[j] = season[i].value;
                 j++;
