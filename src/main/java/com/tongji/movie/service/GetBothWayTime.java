@@ -25,9 +25,11 @@ public class GetBothWayTime
 	SearchMovieWithTime searchMovieWithTime;
 	@Autowired
 	SearchMovieWithLanguage searchMovieWithLanguage;
-
+	@Autowired
+	SearchMovieWithRunTime searchMovieWithRunTime;
 	@Autowired
 	SearchMovieWithCombination searchMovieWithCombination;
+
 
 	public JSONArray getBothWayTime(String operation) throws SQLException
 	{
@@ -101,6 +103,40 @@ public class GetBothWayTime
 		searchMovieWithTime.searchInOracle(dateType,date,year,seasonArray,monthArray,dayArray);
 		oracleTime =System.currentTimeMillis();
 		searchMovieWithTime.search(dateType,date,year,seasonArray,monthArray,dayArray);
+		long endTime = System.currentTimeMillis();
+
+		JSONObject time = new JSONObject();
+		time.put("relation", oracleTime - startTime);
+		time.put("mix", endTime - oracleTime);
+		result.add(time);
+
+		return result;
+	}
+	public JSONArray getBothWayTimeOfRuntime(String time1, String time2) throws SQLException
+	{
+		long startTime = System.currentTimeMillis();
+		JSONArray result = new JSONArray();
+		long oracleTime =0;
+		searchMovieWithRunTime.searchInOracle(time1,time2);
+		oracleTime =System.currentTimeMillis();
+		searchMovieWithRunTime.search(time1,time2);
+		long endTime = System.currentTimeMillis();
+
+		JSONObject time = new JSONObject();
+		time.put("relation", oracleTime - startTime);
+		time.put("mix", endTime - oracleTime);
+		result.add(time);
+
+		return result;
+	}
+	public JSONArray getBothWayTimeOfCombination(String date,String name,String actor,String director,String genre) throws SQLException
+	{
+		long startTime = System.currentTimeMillis();
+		JSONArray result = new JSONArray();
+		long oracleTime =0;
+		searchMovieWithCombination.searchInOracle(date,name,actor,director,genre);
+		oracleTime =System.currentTimeMillis();
+		searchMovieWithCombination.search(date,name,actor,director,genre);
 		long endTime = System.currentTimeMillis();
 
 		JSONObject time = new JSONObject();

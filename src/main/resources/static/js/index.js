@@ -196,7 +196,7 @@ function Table(id,type) {
         else {
             mvTimetb.ajax.url("/movie/time/search").load();
             $.ajax({
-                url: '/movie/ajax/showtime',
+                url: '/movie/multiple/showtime',
                 dataSrc: '',
                 success: function (data) {
                     var dataSrc;
@@ -1074,7 +1074,7 @@ function Table(id,type) {
                 }
             });
             $.ajax({
-                url: '/movie/ajax/showcombination',
+                url: '/movie/multiple/showcombination',
                 dataSrc: '',
                 success: function (data) {
                     var dataSrc;
@@ -1133,7 +1133,7 @@ function Table(id,type) {
         else {
             mvCombinationtb.ajax.url('/movie/combination/search').load();
             $.ajax({
-                url: '/movie/ajax/showcombination',
+                url: '/movie/multiple/showcombination',
                 dataSrc: '',
                 success: function (data) {
 
@@ -1388,7 +1388,7 @@ function Table(id,type) {
                     }
                 });
                 $.ajax({
-                    url: '/movie/ajax/showruntime',
+                    url: '/movie/multiple/showruntime',
                     dataSrc: '',
                     success: function (data) {
 
@@ -1446,7 +1446,7 @@ function Table(id,type) {
             else {
                 mvNametb.ajax.url("/movie/runtime/search").load();
                 $.ajax({
-                    url: '/movie/ajax/showruntime',
+                    url: '/movie/multiple/showruntime',
                     dataSrc: '',
                     success: function (data) {
 

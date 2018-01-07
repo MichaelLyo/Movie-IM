@@ -18,7 +18,7 @@ public class CombinationMovieController {
     private SearchMovieWithCombination searchMovieWithCombination;
 
     @RequestMapping(value = "/search",method = RequestMethod.POST)
-    public JSONArray searchByTime(@RequestParam(value = "date", required = true) String date,
+    public JSONArray searchByCombination(@RequestParam(value = "date", required = true) String date,
                                   @RequestParam(value = "name",required = true) String name,
                                   @RequestParam(value = "actor", required = true) String actor,
                                   @RequestParam(value = "director",required = true) String director,
@@ -26,7 +26,7 @@ public class CombinationMovieController {
     {
         JSONArray jsonArray;
         try {
-            jsonArray = searchMovieWithCombination.search(date,name,actor,director,genre);
+            jsonArray = searchMovieWithCombination.searchInOracle(date,name,actor,director,genre);
         } catch (SQLException e) {
             System.out.println("高级查询电影失败");
             jsonArray = null;
