@@ -168,20 +168,20 @@ public class SearchMovieWithTime {
 
                     }
                     //amazonFacts = amazonFactRepository.findAmazonFactsByReleaseMonthIn(nyear, months);
-                    pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.releasedate = d.timeid where d.year = ? and d.month IN ?");
+                    pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.releasedate = d.timeid where d.year = ? and d.month IN "+generateSQLParameter(months));
                     pstmt.setInt(1,nyear);
                     addParameter(pstmt,months,null);
                 }
                 else{
                     if(months != null) {
                         //amazonFacts = amazonFactRepository.findAmazonFactsByReleaseDayIn(nyear, months, days);
-                        pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.releasedate = d.timeid where d.year = ? and d.month IN ? and d.week IN ?");
+                        pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.releasedate = d.timeid where d.year = ? and d.month IN "+generateSQLParameter(months)+ "and d.week IN "+generateSQLParameter(days));
                         pstmt.setInt(1,nyear);
                         addParameter(pstmt,months,days);
                     }
                     else{
                         //amazonFacts = amazonFactRepository.findAmazonFactsByReleaseDayIn(nyear, days);
-                        pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.releasedate = d.timeid where d.year = ? and d.week IN ?");
+                        pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.releasedate = d.timeid where d.year = ? and d.week IN "+generateSQLParameter(days));
                         addParameter(pstmt,null,days);
                     }
                 }

@@ -196,7 +196,7 @@ function Table(id,type) {
         else {
             mvTimetb.ajax.url("/movie/time/search").load();
             $.ajax({
-                url: '/movie/ajax/showtime',
+                url: '/movie/multiple/showtime',
                 dataSrc: '',
                 success: function (data) {
                     var dataSrc;
@@ -557,16 +557,14 @@ function Table(id,type) {
                 }
             });
         }
+        director2.style.display = 'block';
+        if (mvDirectortb2 === null) {
+            mvDirectortb2 = $('#director2').DataTable({
+                ajax: {
+                    type: "post",
+                    url: "/movie/director/actor?directorName=" + direcorName,
 
-        if (true) {
-            director2.style.display = 'block';
-            if (mvDirectortb2 === null) {
-                mvDirectortb2 = $('#director2').DataTable({
-                    ajax: {
-                        type: "post",
-                        url: "/movie/director/actor?directorName=" + direcorName,
-
-                        dataSrc: ""
+                  dataSrc: ""
                     },
                     columns: [
                         {data: "movieId"},
@@ -591,69 +589,71 @@ function Table(id,type) {
                             "sNext": "下一页",
                             "sLast": "尾页"
                         }
+
+                    
+                }
+            });
+            $.ajax({
+                url: '/movie/ajax/showdirectorcoactor',
+                dataSrc: '',
+                success: function (data) {
+                    var dataSrc;
+                    dataSrc = data[0];
+                    $('#directorrelation2').text(dataSrc.relation);
+                    $('#directormix2').text(dataSrc.mix);
+                    if (directorchart2 !== undefined) {
+                        directorchart2.destroy();
                     }
-                });
-                $.ajax({
-                    url: '/movie/ajax/showdirectorcoactor',
-                    dataSrc: '',
-                    success: function (data) {
-                        var dataSrc;
-                        dataSrc = data[0];
-                        $('#directorrelation2').text(dataSrc.relation);
-                        $('#directormix2').text(dataSrc.mix);
-                        if (directorchart2 !== undefined) {
-                            directorchart2.destroy();
-                        }
-                        directorchart2 = Highcharts.chart('directorcontainer2', {
-                            chart: {
-                                type: 'column'
-                            },
+                    directorchart2 = Highcharts.chart('directorcontainer2', {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: '两种模型执行时间比较'
+                        },
+                        data: {
+                            columns: [
+                                [null, '执行时间'], // 分类
+                                ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+                                ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+                            ]
+                        },
+                        yAxis: {
+                            allowDecimals: false,
                             title: {
-                                text: '两种模型执行时间比较'
-                            },
-                            data: {
-                                columns: [
-                                    [null, '执行时间'], // 分类
-                                    ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
-                                    ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
-                                ]
-                            },
-                            yAxis: {
-                                allowDecimals: false,
-                                title: {
-                                    text: 's',
-                                    rotation: 0
-                                }
-                            },
-                            tooltip: {
-                                formatter: function () {
-                                    return '<b>' + this.series.name
+                                text: 's',
+                                rotation: 0
+                            }
+                        },
+                        tooltip: {
+                            formatter: function () {
+                                return '<b>' + this.series.name
 
-                                        + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
+                                    + '</b><br/>' +
+                                    this.point.y + 's ' + this.point.name
 
-                                            .toLowerCase();
-                                }
-                            },
-                            plotOptions: {
-                                column: {
-                                    dataLabels: {
-                                        enabled: true, // dataLabels设为true
-                                        style: {
-                                            color: '#42abf8'
-                                        }
+                                        .toLowerCase();
+                            }
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: true, // dataLabels设为true
+                                    style: {
+                                        color: '#42abf8'
                                     }
                                 }
                             }
-                        });
-                    }
-                });
-            }
+                        }
+                    });
+                }
+            });
         }
+
         else {
-            mvDirectortb2.ajax.url("/movie/director/search?directorName=" + direcorName).load();
+            mvDirectortb2.ajax.url("/movie/director/actor?directorName=" + direcorName).load();
             $.ajax({
-                url: '/movie/ajax/showdirector',
+                url: '/movie/ajax/showdirectorcoactor',
                 dataSrc: '',
                 success: function (data) {
                     var dataSrc;
@@ -1071,7 +1071,7 @@ function Table(id,type) {
                 }
             });
             $.ajax({
-                url: '/movie/ajax/showcombination',
+                url: '/movie/multiple/showcombination',
                 dataSrc: '',
                 success: function (data) {
                     var dataSrc;
@@ -1130,7 +1130,7 @@ function Table(id,type) {
         else {
             mvCombinationtb.ajax.url('/movie/combination/search').load();
             $.ajax({
-                url: '/movie/ajax/showcombination',
+                url: '/movie/multiple/showcombination',
                 dataSrc: '',
                 success: function (data) {
 
@@ -1385,7 +1385,7 @@ function Table(id,type) {
                     }
                 });
                 $.ajax({
-                    url: '/movie/ajax/showruntime',
+                    url: '/movie/multiple/showruntime',
                     dataSrc: '',
                     success: function (data) {
 
@@ -1443,7 +1443,7 @@ function Table(id,type) {
             else {
                 mvNametb.ajax.url("/movie/runtime/search").load();
                 $.ajax({
-                    url: '/movie/ajax/showruntime',
+                    url: '/movie/multiple/showruntime',
                     dataSrc: '',
                     success: function (data) {
 

@@ -44,8 +44,23 @@ public class OperationController
     {
         return getBothWayTime.getBothWayTimeOfDate(dateType,date,year,seasonArray,monthArray,dayArray);
     }
-    @RequestMapping(value = "/multiple/showtime/h")
-    public JSONArray hhh()
+
+    @RequestMapping(value = "/multiple/showruntime")
+    public JSONArray showRuntimeHistogram(String time1, String time2) throws SQLException
+    {
+        return getBothWayTime.getBothWayTimeOfRuntime(time1, time2);
+    }
+    @RequestMapping(value = "/multiple/showcombination")
+    public JSONArray showCombinationHistogram(@RequestParam(value = "date", required = true) String date,
+                                              @RequestParam(value = "name",required = true) String name,
+                                              @RequestParam(value = "actor", required = true) String actor,
+                                              @RequestParam(value = "director",required = true) String director,
+                                              @RequestParam(value = "genre", required = true) String genre) throws SQLException
+    {
+        return getBothWayTime.getBothWayTimeOfCombination(date,name,actor,director,genre);
+    }
+    @RequestMapping(value = "/multiple/test")
+    public JSONArray testForCompareTime()
     {
         JSONArray result = new JSONArray();
         JSONObject time = new JSONObject();
@@ -55,7 +70,4 @@ public class OperationController
         result.add(time);
         return result;
     }
-
-
-
 }
