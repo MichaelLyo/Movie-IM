@@ -18,6 +18,60 @@ public class SearchMovieWithTime {
     @Autowired
     private AmazonFactRepository amazonFactRepository;
 
+    public String generateSQLParameter(Integer[] item)
+    {
+        if(item!=null)
+        {
+            String result = "(";
+            for (int i = 0; i < item.length; i++)
+            {
+                if (i + 1 == item.length) {
+                    result+="?)";
+                } else {
+                    result+="?,";
+                }
+
+            }
+            return result;
+        }
+        return "()";
+    }
+    public void addParameter(PreparedStatement pstmt,Integer[] months,Integer[] days) throws SQLException
+    {
+        int count = 2;
+        if(months!=null)
+        {
+            int leng = months.length;
+            for(int i=0;i<months.length;i++)
+            {
+                if(pstmt!=null)
+                {
+                    if(months[i]!=null){
+                        pstmt.setInt(count++,months[i]);
+                    }
+                    else {
+                        pstmt.setInt(count++,-1);
+                    }
+                }
+            }
+        }
+        if(days!=null)
+        {
+            for(int i=0;i<days.length;i++)
+            {
+                if(pstmt!=null)
+                {
+                    if(days[i]!=null){
+                        pstmt.setInt(count++,days[i]);
+                    }
+                    else {
+                        pstmt.setInt(count++,-1);
+                    }
+                }
+            }
+        }
+    }
+
     public JSONArray search(String dateType,String date,String year,String[] seasonArray,String[] monthArray,String[] dayArray) throws SQLException {
         Connection con = conObj.getConnection();
         JSONArray movies = new JSONArray();
@@ -75,31 +129,26 @@ public class SearchMovieWithTime {
             else{
                 if(days == null){ //没有天数
                     if(months  == null){ //没有月份或者季度
-                        pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.publicationdate = d.timeid where d.year = ?1");
+                        pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.publicationdate = d.timeid where d.year = ?");
                         pstmt.setInt(1,nyear);
                     }
                     //amazonFacts = amazonFactRepository.findAmazonFactsByPublicationMonthIn(nyear, months);
-                    pstmt = con.prepareStatement("select * from amazon_fact a join time_dim d on a.publication_date = d.time_id where d.year = ?1 and d.month IN ?2");
+                    pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.publicationdate = d.timeid where d.year = ? and d.month IN "+generateSQLParameter(months));
                     pstmt.setInt(1,nyear);
-                    Array intArr = con.createArrayOf("int", months);
-                    pstmt.setArray(2,intArr);
+                    addParameter(pstmt,months,null);
                 }
                 else{
                     if(months != null) {
                         //amazonFacts = amazonFactRepository.findAmazonFactsByPublicationDayIn(nyear, months, days);
-                        pstmt = con.prepareStatement("select * from amazon_fact a join time_dim d on a.publication_date = d.time_id where d.year = ?1 and d.month IN ?2 and d.week IN ?3");
+                        pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.publicationdate = d.timeid where d.year = ? and d.month IN "+generateSQLParameter(months)+" and d.week IN "+generateSQLParameter(days));
                         pstmt.setInt(1,nyear);
-                        Array intArr = con.createArrayOf("int", months);
-                        pstmt.setArray(2,intArr);
-                        Array intArr2 = con.createArrayOf("int", days);
-                        pstmt.setArray(3,intArr2);
+                        addParameter(pstmt,months,days);
                     }
                     else{
                         //amazonFacts = amazonFactRepository.findAmazonFactsByPublicationDayIn(nyear, days);
-                        pstmt = con.prepareStatement("select * from amazon_fact a join time_dim d on a.publication_date = d.time_id where d.year = ?1 and d.week IN ?2");
+                        pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.publicationdate = d.timeid where d.year = ? and d.week IN "+generateSQLParameter(days));
                         pstmt.setInt(1,nyear);
-                        Array intArr2 = con.createArrayOf("int", days);
-                        pstmt.setArray(2,intArr2);
+                        addParameter(pstmt,null,days);
                     }
                 }
             }
@@ -114,32 +163,26 @@ public class SearchMovieWithTime {
                 if(days == null){
                     if(months == null){
                         //amazonFacts = amazonFactRepository.findAmazonFactsByReleaseYear(nyear);
-                        pstmt = con.prepareStatement("select * from amazon_fact a join time_dim d on a.release_date = d.time_id where d.year = ?1");
+                        pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.releasedate = d.timeid where d.year = ?");
                         pstmt.setInt(1,nyear);
 
                     }
                     //amazonFacts = amazonFactRepository.findAmazonFactsByReleaseMonthIn(nyear, months);
-                    pstmt = con.prepareStatement("select * from amazon_fact a join time_dim d on a.release_date = d.time_id where d.year = ?1 and d.month IN ?2");
+                    pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.releasedate = d.timeid where d.year = ? and d.month IN ?");
                     pstmt.setInt(1,nyear);
-                    Array intArr = con.createArrayOf("int", months);
-                    pstmt.setArray(2,intArr);
+                    addParameter(pstmt,months,null);
                 }
                 else{
                     if(months != null) {
                         //amazonFacts = amazonFactRepository.findAmazonFactsByReleaseDayIn(nyear, months, days);
-                        pstmt = con.prepareStatement("select * from amazon_fact a join time_dim d on a.release_date = d.time_id where d.year = ?1 and d.month IN ?2 and d.week IN ?3");
+                        pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.releasedate = d.timeid where d.year = ? and d.month IN ? and d.week IN ?");
                         pstmt.setInt(1,nyear);
-                        Array intArr = con.createArrayOf("int", months);
-                        pstmt.setArray(2,intArr);
-                        Array intArr2 = con.createArrayOf("int", days);
-                        pstmt.setArray(3,intArr2);
+                        addParameter(pstmt,months,days);
                     }
                     else{
                         //amazonFacts = amazonFactRepository.findAmazonFactsByReleaseDayIn(nyear, days);
-                        pstmt = con.prepareStatement("select * from amazon_fact a join time_dim d on a.release_date = d.time_id where d.year = ?1 and d.week IN ?2");
-                        pstmt.setInt(1,nyear);
-                        Array intArr2 = con.createArrayOf("int", days);
-                        pstmt.setArray(2,intArr2);
+                        pstmt = con.prepareStatement("select * from amazonfact a join timedim d on a.releasedate = d.timeid where d.year = ? and d.week IN ?");
+                        addParameter(pstmt,null,days);
                     }
                 }
             }

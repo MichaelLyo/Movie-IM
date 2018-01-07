@@ -12,6 +12,7 @@ import org.apache.hadoop.metrics2.util.SampleStat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,6 +44,18 @@ public class OperationController
     {
         return getBothWayTime.getBothWayTimeOfDate(dateType,date,year,seasonArray,monthArray,dayArray);
     }
+    @RequestMapping(value = "/multiple/showtime/h")
+    public JSONArray hhh()
+    {
+        JSONArray result = new JSONArray();
+        JSONObject time = new JSONObject();
+        System.out.println("test for histogram");
+        time.put("relation", 30);
+        time.put("mix",40);
+        result.add(time);
+        return result;
+    }
+
 
 
 }
