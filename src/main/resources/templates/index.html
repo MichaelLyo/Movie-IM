@@ -455,10 +455,12 @@
 <div  class="search bar6" id="search-runtime" style="display: none">
     <div class="container">
         <div class="inquirebox">
-            <label class="title">根据电影语种查询</label>
+            <label class="title">根据电影时长查询</label>
             <form class="search-form" style="top:10px;">
-                <div class="year">时长</div><select class="select" id="runTime"></select>
-                <button type="button" style="top: 39px;left: 70px;height: 30px;" onclick="Table('runtime')">搜索</button>
+                <div class="year">时长范围（单位分钟）</div><select class="select" id="time1"></select>
+                <label>～</label>
+                <select class="select" id="time2"></select>
+                <button type="button" style="top: 39px;left: 180px;height: 30px;border-radius: 0" onclick="Table('runtime')">搜索</button>
             </form>
         </div>
     </div>
@@ -574,12 +576,15 @@
         obj.options[obj.options.length-11].selected=1;
         var startTime=1;//最低时长
         var endTime=240;//最多时长
-        obj=document.getElementById('runTime');
+        obj=document.getElementById('time1');
+        var obj2 = document.getElementById('time2');
         for (var i=startTime;i<=endTime;i++)
         {
             obj.options.add(new Option(i,i));
+            obj2.options.add(new Option(i,i));
         }
         obj.options[obj.options.length-240].selected=1;
+        obj2.options[obj.options.length-239].selected=1;
     }
 </script>
 <script type="text/javascript">
