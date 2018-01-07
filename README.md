@@ -16,4 +16,4 @@ maven中没有提供oracle的jdbc可以直接引用，所以要手动添加，�
 ```
 
 ## 转内存数据库项目
-- [spring boot里调用PL/SQL编程中的存储过程方法](http://www.it610.com/article/2266736.htm)
+- [spring boot里调用PL/SQL编程中的存储过程](http://www.it610.com/article/2266736.htm)
