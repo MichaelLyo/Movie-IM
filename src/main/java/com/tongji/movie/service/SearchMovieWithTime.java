@@ -297,16 +297,18 @@ public class SearchMovieWithTime {
                 }
             }
         }
-        for(AmazonFact a : amazonFacts){
-            JSONObject movie = new JSONObject();
-            movie.put("movieId",a.getMovieId());
-            movie.put("title",a.getTitle());
-            movie.put("releaseDate",a.getReleaseDate());
-            movie.put("runTime",a.getRunTime());
-            movie.put("studio",a.getStudio());
-            movie.put("publicationDate",a.getPublicationDate());
-            movie.put("publisher",a.getPublishier());
-            movies.add(movie);
+        if(amazonFacts!=null) {
+            for (AmazonFact a : amazonFacts) {
+                JSONObject movie = new JSONObject();
+                movie.put("movieId", a.getMovieId());
+                movie.put("title", a.getTitle());
+                movie.put("releaseDate", a.getReleaseDate());
+                movie.put("runTime", a.getRunTime());
+                movie.put("studio", a.getStudio());
+                movie.put("publicationDate", a.getPublicationDate());
+                movie.put("publisher", a.getPublishier());
+                movies.add(movie);
+            }
         }
         return movies;
     }

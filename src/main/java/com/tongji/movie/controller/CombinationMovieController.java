@@ -26,7 +26,7 @@ public class CombinationMovieController {
     {
         JSONArray jsonArray;
         try {
-            jsonArray = searchMovieWithCombination.searchInOracle(date,name,actor,director,genre);
+            jsonArray = searchMovieWithCombination.search(date,name,actor,director,genre);
         } catch (SQLException e) {
             System.out.println("高级查询电影失败");
             jsonArray = null;

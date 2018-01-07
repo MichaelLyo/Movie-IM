@@ -26,6 +26,9 @@ public class GetBothWayTime
 	@Autowired
 	SearchMovieWithLanguage searchMovieWithLanguage;
 
+	@Autowired
+	SearchMovieWithCombination searchMovieWithCombination;
+
 	public JSONArray getBothWayTime(String operation) throws SQLException
 	{
 		long startTime = System.currentTimeMillis();
@@ -40,7 +43,7 @@ public class GetBothWayTime
 		}
 		else if(operation.indexOf("language")>0)
 		{
-			searchMovieWithLanguage.searchInOracle(operation);
+			searchMovieWithLanguage.searchLanuage(operation);
 			oracleTime =System.currentTimeMillis();
 			searchMovieWithLanguage.search(operation);
 
@@ -66,13 +69,12 @@ public class GetBothWayTime
 			searchMovieWithName.search(operation);
 
 		}
-		else if(operation.indexOf("combination")>0)
-		{
-			searchMovieWithName.searchInOracle(operation);
-			oracleTime =System.currentTimeMillis();
-			searchMovieWithName.search(operation);
-
-		}
+		//else if(operation.indexOf("combination")>0)
+		//{
+		//	searchMovieWithCombination.searchInOracle(operation);
+		//	oracleTime =System.currentTimeMillis();
+		//	//searchMovieWithCombination.search(operation);
+		//}
 		else if(operation.indexOf("coactor")>0)
 		{
 			searchMovieWithDirector.searchCoActorInOracle(operation);
