@@ -1,8 +1,11 @@
 package com.tongji.movie;
 
+import com.google.gson.JsonArray;
 import com.tongji.movie.model.AmazonFact;
 import com.tongji.movie.repository.AmazonFactRepository;
 import com.tongji.movie.service.SearchMovieWithActor;
+import com.tongji.movie.service.SearchMovieWithTime;
+import net.minidev.json.JSONArray;
 import oracle.jdbc.internal.OracleTypes;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +34,8 @@ public class MovieApplicationTests {
 
 	@Autowired
 	SearchMovieWithActor searchMovieWithActor;
+	@Autowired
+	SearchMovieWithTime searchMovieWithTime;
 
 	@Test
 	public void contextLoads() {
@@ -106,6 +111,8 @@ public class MovieApplicationTests {
 	@Test
 	public void testCountTime() throws SQLException
 	{
+		JSONArray array =searchMovieWithTime.searchInOracle("0", "2014-05-07", "2014", null, null, null);
+		System.out.println(array);
 	}
 
 }
