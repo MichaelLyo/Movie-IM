@@ -48,14 +48,12 @@ public class SearchMovieWithTime {
         JSONArray movies = new JSONArray();
         List<AmazonFact> amazonFacts = null;
         Integer nyear = null;
-        Integer[] days = new Integer[31];
-        Integer[] months = new Integer[12];
+        Integer[] days = null;
+        Integer[] months = null;
         if(date.length() == 0) {
-
-            if (!year.equals("undefined")) {
-                nyear = Integer.parseInt(year);
-            }
-            if (monthArray.length == 0) {
+            nyear = Integer.parseInt(year);
+            if (monthArray.length == 0 && seasonArray.length != 0) {
+                months = new Integer[12];
                 for (int i = 0, j = 0; i < seasonArray.length; i++) {
                     if (seasonArray[i].equals("春")) {
                         months[j] = 1;
@@ -79,29 +77,32 @@ public class SearchMovieWithTime {
                         j = j + 3;
                     }
                 }
-            } else {
+            } else if (monthArray.length != 0 && seasonArray.length == 0){
+                months = new Integer[12];
                 for (int i = 0; i < monthArray.length; i++) {
                     months[i] = Integer.parseInt(monthArray[i]);
                 }
             }
-            for (int i = 0; i < dayArray.length; i++) {
-                days[i] = Integer.parseInt(dayArray[i]);
+            if(dayArray.length != 0) {
+                days = new Integer[31];
+                for (int i = 0; i < dayArray.length; i++) {
+                    days[i] = Integer.parseInt(dayArray[i]);
+                }
             }
         }
         if(Integer.parseInt(dateType) == 0){
-            if(!date.isEmpty()){
+            if(date.length() != 0){
                 amazonFacts =  amazonFactRepository.findAmazonFactsByPublicationDate(date);
             }
             else{
-
-                if(days.length == 0){ //没有天数
-                    if(months.length == 0){ //没有月份或者季度
+                if(days == null){ //没有天数
+                    if(months  == null){ //没有月份或者季度
                         amazonFacts = amazonFactRepository.findAmazonFactsByPublicationYear(nyear);
                     }
                     amazonFacts = amazonFactRepository.findAmazonFactsByPublicationMonthIn(nyear, months);
                 }
                 else{
-                    if(months.length != 0) {
+                    if(months != null) {
                         amazonFacts = amazonFactRepository.findAmazonFactsByPublicationDayIn(nyear, months, days);
 
                     }
@@ -116,14 +117,14 @@ public class SearchMovieWithTime {
                 amazonFacts =  amazonFactRepository.findAmazonFactsByReleaseDate(date);
             }
             else{
-                if(days.length == 0){
-                    if(months.length == 0){
+                if(days == null){
+                    if(months == null){
                         amazonFacts = amazonFactRepository.findAmazonFactsByReleaseYear(nyear);
                     }
                     amazonFacts = amazonFactRepository.findAmazonFactsByReleaseMonthIn(nyear, months);
                 }
                 else{
-                    if(months.length != 0) {
+                    if(months != null) {
                         amazonFacts = amazonFactRepository.findAmazonFactsByReleaseDayIn(nyear, months, days);
                     }
                     else{
