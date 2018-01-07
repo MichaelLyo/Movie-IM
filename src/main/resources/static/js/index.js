@@ -129,7 +129,15 @@ function Table(id,type) {
                     }
                 });
                 $.ajax({
-                    url: '/movie/ajax/showtime',
+                    url: '/movie/multiple/showtime',
+                    data : {
+                        "year":String(year),
+                        "month":String(monthArray),
+                        "dateType":String(dateType),
+                        "day":String(dayArray),
+                        "date":String(date),
+                        "season":String(seasonArray)
+                    },
                     dataSrc: '',
                     success: function (data) {
 

@@ -62,6 +62,7 @@ public class SearchMovieWithDirector {
 
     public JSONArray searchInOracle(String directorName) throws SQLException {
         JSONArray movies = new JSONArray();
+
         List<AmazonFact> amazonFacts =  amazonFactRepository.findAmazonFactsByDirector(directorName);
         if(amazonFacts != null) {
             for (AmazonFact a : amazonFacts) {
@@ -76,6 +77,7 @@ public class SearchMovieWithDirector {
                 movie.put("director", directorName);
                 movies.add(movie);
             }
+
         }
         return movies;
     }
