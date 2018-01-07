@@ -1343,27 +1343,30 @@ function Table(id,type) {
                 }
             });
         }
-    }
-    if (id === 'runtime') {
-        runtime.style.display = 'block';
-        $.fn.dataTable.ext.errMode = 'throw';
-        var rtime=document.getElementById('runTime').value;
-        if (mvRunTimetb === null) {
-            mvRunTimetb = $('#rtime').DataTable({
-                ajax: {
-                    type: "post",
-                    url: "/movie/runtime/search",
-                    dataSrc:"",
-                    data:{"runtime" :String(rtime)}
-                },
-                columns: [
-                    {data: "movieId"},
-                    {data: "title"},
-                    {data: "releaseDate"},
-                    {data: "runTime"},
-                    {data: "studio"},
-                    {data: "publisher"}
-                ],
+
+        if (id === 'runtime') {
+            runtime.style.display = 'block';
+            $.fn.dataTable.ext.errMode = 'throw';
+            var time1=document.getElementById('time1').value;
+            var time2=document.getElementById('time2').value;
+            if (mvRunTimetb === null) {
+                mvRunTimetb = $('#rtime').DataTable({
+                    ajax: {
+                        type: "post",
+                        url: "/movie/runtime/search",
+                        dataSrc:"",
+                        data:{"time1" :String(time1),
+                            "time2" :String(time2)}
+                    },
+                    columns: [
+                        {data: "movieId"},
+                        {data: "title"},
+                        {data: "releaseDate"},
+                        {data: "runTime"},
+                        {data: "studio"},
+                        {data: "publisher"}
+                    ],
+
                 "bPaginage": true,
                 "sPaginationType": "full_numbers",
                 "oLanguage": {

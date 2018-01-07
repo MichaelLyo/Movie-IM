@@ -23,7 +23,7 @@ public class RunTimeMovieController {
     {
         JSONArray jsonArray;
         try {
-            jsonArray = searchMovieWithRunTime.searchInOracle(time1,time2);
+            jsonArray = searchMovieWithRunTime.search(time1,time2);
         } catch (SQLException e) {
             System.out.println("按时长查询电影失败");
             jsonArray = null;
