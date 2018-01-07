@@ -49,6 +49,8 @@ public interface AmazonFactRepository extends JpaRepository<AmazonFact, Long>
     @Query(value = "select * from amazon_fact a where a.title LIKE ?1", nativeQuery=true)
     List<AmazonFact> findAmazonFactsByTitle(String title);
 
+    List<AmazonFact> findAmazonFactsByRunTimeBetween(String time1, String time2);
+
     @Query(value = "select * from amazon_fact a join actor ac on a.movie_id = ac.movie_id where ac.name = ?1", nativeQuery=true)
     List<AmazonFact> findAmazonFactsByActor(String name);
 

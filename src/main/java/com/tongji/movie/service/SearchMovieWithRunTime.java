@@ -4,7 +4,6 @@ import com.tongji.movie.model.AmazonFact;
 import com.tongji.movie.repository.AmazonFactRepository;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,29 +14,20 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Component
-public class SearchMovieWithCombination {
+public class SearchMovieWithRunTime {
+
     @Autowired
     private ConToHive conObj;
 
     @Autowired
     private AmazonFactRepository amazonFactRepository;
 
-    public JSONArray search(String date,String name,String actor,String director,String genre) throws SQLException {
+    public JSONArray search(String time1, String time2) throws SQLException {
         Connection con = conObj.getConnection();
         JSONArray movies = new JSONArray();
-        String nameLike = '%' + name + '%';
-        String actorLike = '%' + actor + '%';
-        String directorLike = '%' + director + '%';
-        PreparedStatement pstmt = con.prepareStatement("select * from AmazonFact a " +
-                                                            "left join Actor ac on (a.movieid = ac.movieid) " +
-                                                            "left join director d on (a.movieid = d.movieid) " +
-                                                            "left join Generes g on (a.movieid = g.movieid) " +
-                                                            "where a.releaseDate = ? and a.title = ? and ac.name = ? and d.name = ? and g.name = ?");
-        pstmt.setString(1,date);
-        pstmt.setString(2,nameLike);
-        pstmt.setString(3,actorLike);
-        pstmt.setString(4,directorLike);
-        pstmt.setString(5,genre);
+        PreparedStatement pstmt = con.prepareStatement("select * from AmazonFact a  WHERE a.runTime BETWEEN ? and ?");
+        pstmt.setString(1,time1);
+        pstmt.setString(2,time2);
         ResultSet set =  pstmt.executeQuery();
         while(set.next()){
             JSONObject movie = new JSONObject();
@@ -53,13 +43,10 @@ public class SearchMovieWithCombination {
         return movies;
     }
 
-    public JSONArray searchInOracle(String date,String name,String actor,String director,String genre) throws SQLException {
+    public JSONArray searchInOracle(String time1, String time2) throws SQLException {
         JSONArray movies = new JSONArray();
-        String nameLike = '%' + name + '%';
-        String actorLike = '%' + actor + '%';
-        String directorLike = '%' + director + '%';
-        List<AmazonFact> amazonFacts = amazonFactRepository.findAmazonFactsByCombination(date,nameLike,actorLike,directorLike,genre);
-        if(!amazonFacts.isEmpty()) {
+        List<AmazonFact> amazonFacts =  amazonFactRepository.findAmazonFactsByRunTimeBetween(time1, time2);
+        if(amazonFacts != null) {
             for (AmazonFact a : amazonFacts) {
                 JSONObject movie = new JSONObject();
                 movie.put("movieId", a.getMovieId());
@@ -74,7 +61,4 @@ public class SearchMovieWithCombination {
         }
         return movies;
     }
-
-
-
 }
