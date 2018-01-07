@@ -704,17 +704,17 @@ function Table(id,type) {
             var actorName = $("#sjw-search-actor").val();
             var url;
 
-            if(type==='lead')
-                url="/movie/actor/search?actorName=";
-            if(type==='none')
-                url="/movie/actor/search?actorName=";
+            if (type === 'lead')
+                url = "/movie/actor/starring?actorName=";
+            if (type === 'none')
+                url = "/movie/actor/search?actorName=";
             if (mvActortb == null) {
 
                 mvActortb = $('#actor').DataTable({
                     ajax: {
                         type: "post",
-                        url: url +actorName,
-                        dataSrc:""
+                        url: url + actorName,
+                        dataSrc: ""
                     },
                     columns: [
                         {data: "movieId"},
@@ -752,10 +752,10 @@ function Table(id,type) {
                         dataSrc = data[0];
                         $('#actorrelation').text(dataSrc.relation);
                         $('#actormix').text(dataSrc.mix);
-                        if(actorchart!==undefined){
+                        if (actorchart !== undefined) {
                             actorchart.destroy();
                         }
-                        actorchart =  Highcharts.chart('actorcontainer',{
+                        actorchart = Highcharts.chart('actorcontainer', {
                             chart: {
                                 type: 'column'
                             },
@@ -811,10 +811,10 @@ function Table(id,type) {
                         dataSrc = data[0];
                         $('#actorrelation').text(dataSrc.relation);
                         $('#actormix').text(dataSrc.mix);
-                        if(actorchart!==undefined){
+                        if (actorchart !== undefined) {
                             actorchart.destroy();
                         }
-                        actorchart =  Highcharts.chart('actorcontainer',{
+                        actorchart = Highcharts.chart('actorcontainer', {
                             chart: {
                                 type: 'column'
                             },
@@ -858,8 +858,8 @@ function Table(id,type) {
                         });
                     }
                 });
-               }
             }
+        }
         if (id === 'category') {
                 category.style.display = 'block';
                 $.fn.dataTable.ext.errMode = 'throw';
