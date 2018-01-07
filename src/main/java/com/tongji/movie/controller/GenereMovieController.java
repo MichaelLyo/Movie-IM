@@ -17,7 +17,7 @@ public class GenereMovieController {
     public JSONArray searchMovieWithGenere(String genere){
         JSONArray jsonArray;
         try {
-            jsonArray = searchMovieWithGenere.searchInOracle('%'+genere+'%');
+            jsonArray = searchMovieWithGenere.searchInOracle(genere);
         } catch (SQLException e) {
             System.out.println("按类型查询电影失败");
             jsonArray = null;

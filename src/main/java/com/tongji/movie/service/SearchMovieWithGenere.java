@@ -49,7 +49,7 @@ public class SearchMovieWithGenere {
 
     public JSONArray searchInOracle(String typeName) throws SQLException {
         JSONArray movies = new JSONArray();
-        List<AmazonFact> amazonFacts =  amazonFactRepository.findAmazonFactsByGenre(typeName);
+        List<AmazonFact> amazonFacts =  amazonFactRepository.findAmazonFactsByGenre("%"+typeName+"%");
         int i = 0;
         if(amazonFacts != null) {
             for (AmazonFact a : amazonFacts) {
@@ -57,13 +57,16 @@ public class SearchMovieWithGenere {
                 if (i > 100)
                     break;
                 JSONObject movie = new JSONObject();
-                movie.put("movieId", a.getMovieId());
-                movie.put("title", a.getTitle());
-                movie.put("releaseDate", a.getReleaseDate());
-                movie.put("studio", a.getStudio());
-                movie.put("publicationDate", a.getPublicationDate());
-                movie.put("publisher", a.getPublishier());
-                movie.put("type", typeName);
+
+                movie.put("movieId",a.getMovieId());
+                movie.put("title",a.getTitle());
+                movie.put("releaseDate",a.getReleaseDate());
+                movie.put("studio",a.getStudio());
+                movie.put("runTime",a.getRunTime());
+                movie.put("publicationDate",a.getPublicationDate());
+                movie.put("publisher",a.getPublishier());
+                movie.put("type",typeName);
+
                 movies.add(movie);
             }
         }

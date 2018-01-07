@@ -46,7 +46,6 @@ public class GetBothWayTime
 			searchMovieWithLanguage.searchLanuage(operation);
 			oracleTime =System.currentTimeMillis();
 			searchMovieWithLanguage.search(operation);
-
 		}
 		else if(operation.indexOf("director")>0)
 		{
