@@ -134,9 +134,9 @@ public class GetBothWayTime
 		long startTime = System.currentTimeMillis();
 		JSONArray result = new JSONArray();
 		long oracleTime =0;
-		searchMovieWithCombination.searchInOracle(date,name,actor,director,genre);
+		searchMovieWithCombination.search(1,date,name,actor,director,genre);
 		oracleTime =System.currentTimeMillis();
-		searchMovieWithCombination.search(date,name,actor,director,genre);
+		searchMovieWithCombination.search(0,date,name,actor,director,genre);
 		long endTime = System.currentTimeMillis();
 
 		JSONObject time = new JSONObject();

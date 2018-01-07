@@ -560,102 +560,102 @@ function Table(id,type) {
             });
         }
 
-        if (true) {
-            director2.style.display = 'block';
-            if (mvDirectortb2 === null) {
-                mvDirectortb2 = $('#director2').DataTable({
-                    ajax: {
-                        type: "post",
-                        url: "/movie/director/actor?directorName=" + direcorName,
 
-                        dataSrc: ""
-                    },
-                    columns: [
-                        {data: "movieId"},
-                        {data: "title"},
-                        {data: "director"},
-                        {data: "actor"},
-                        {data: "genre"}
-                    ],
-                    "bPaginage": true,
-                    "sPaginationType": "full_numbers",
-                    "oLanguage": {
-                        "sLengthMenu": "每页显示 _MENU_ 条",
-                        "sZeroRecords": "没有找到符合条件的数据",
-                        "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-                        "sInfoEmpty": "没有记录",
-                        "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
-                        "sSearch": "搜索",
-                        "sProcessing": "数据加载中...",
-                        "oPaginate": {
-                            "sFirst": "首页",
-                            "sPrevious": "上一页",
-                            "sNext": "下一页",
-                            "sLast": "尾页"
-                        }
+        director2.style.display = 'block';
+        if (mvDirectortb2 === null) {
+            mvDirectortb2 = $('#director2').DataTable({
+                ajax: {
+                    type: "post",
+                    url: "/movie/director/actor?directorName=" + direcorName,
+
+                    dataSrc: ""
+                },
+                columns: [
+                    {data: "movieId"},
+                    {data: "title"},
+                    {data: "director"},
+                    {data: "actor"},
+                    {data: "genre"}
+                ],
+                "bPaginage": true,
+                "sPaginationType": "full_numbers",
+                "oLanguage": {
+                    "sLengthMenu": "每页显示 _MENU_ 条",
+                    "sZeroRecords": "没有找到符合条件的数据",
+                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+                    "sInfoEmpty": "没有记录",
+                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
+                    "sSearch": "搜索",
+                    "sProcessing": "数据加载中...",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上一页",
+                        "sNext": "下一页",
+                        "sLast": "尾页"
                     }
-                });
-                $.ajax({
-                    url: '/movie/ajax/showdirectorcoactor',
-                    dataSrc: '',
-                    success: function (data) {
-                        var dataSrc;
-                        dataSrc = data[0];
-                        $('#directorrelation2').text(dataSrc.relation);
-                        $('#directormix2').text(dataSrc.mix);
-                        if (directorchart2 !== undefined) {
-                            directorchart2.destroy();
-                        }
-                        directorchart2 = Highcharts.chart('directorcontainer2', {
-                            chart: {
-                                type: 'column'
-                            },
+                }
+            });
+            $.ajax({
+                url: '/movie/ajax/showdirectorcoactor',
+                dataSrc: '',
+                success: function (data) {
+                    var dataSrc;
+                    dataSrc = data[0];
+                    $('#directorrelation2').text(dataSrc.relation);
+                    $('#directormix2').text(dataSrc.mix);
+                    if (directorchart2 !== undefined) {
+                        directorchart2.destroy();
+                    }
+                    directorchart2 = Highcharts.chart('directorcontainer2', {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: '两种模型执行时间比较'
+                        },
+                        data: {
+                            columns: [
+                                [null, '执行时间'], // 分类
+                                ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+                                ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+                            ]
+                        },
+                        yAxis: {
+                            allowDecimals: false,
                             title: {
-                                text: '两种模型执行时间比较'
-                            },
-                            data: {
-                                columns: [
-                                    [null, '执行时间'], // 分类
-                                    ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
-                                    ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
-                                ]
-                            },
-                            yAxis: {
-                                allowDecimals: false,
-                                title: {
-                                    text: 's',
-                                    rotation: 0
-                                }
-                            },
-                            tooltip: {
-                                formatter: function () {
-                                    return '<b>' + this.series.name
+                                text: 's',
+                                rotation: 0
+                            }
+                        },
+                        tooltip: {
+                            formatter: function () {
+                                return '<b>' + this.series.name
 
-                                        + '</b><br/>' +
-                                        this.point.y + 's ' + this.point.name
+                                    + '</b><br/>' +
+                                    this.point.y + 's ' + this.point.name
 
-                                            .toLowerCase();
-                                }
-                            },
-                            plotOptions: {
-                                column: {
-                                    dataLabels: {
-                                        enabled: true, // dataLabels设为true
-                                        style: {
-                                            color: '#42abf8'
-                                        }
+                                        .toLowerCase();
+                            }
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: true, // dataLabels设为true
+                                    style: {
+                                        color: '#42abf8'
                                     }
                                 }
                             }
-                        });
-                    }
-                });
-            }
+                        }
+                    });
+                }
+            });
         }
+
         else {
-            mvDirectortb2.ajax.url("/movie/director/search?directorName=" + direcorName).load();
+            mvDirectortb2.ajax.url("/movie/director/actor?directorName=" + direcorName).load();
             $.ajax({
-                url: '/movie/ajax/showdirector',
+                url: '/movie/ajax/showdirectorcoactor',
                 dataSrc: '',
                 success: function (data) {
                     var dataSrc;
