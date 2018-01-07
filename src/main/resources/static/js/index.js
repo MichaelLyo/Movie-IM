@@ -78,12 +78,11 @@ function Table(id,type) {
             time.style.display = 'block';
             $.fn.dataTable.ext.errMode = 'throw';
             timeChoice();
-
             if (mvTimetb === null) {
                 mvTimetb = $('#time').DataTable({
                     ajax: {
                         type: "post",
-                        url: '/movie/ajax/showtime',
+                        url: '/movie/time/search',
                         data : {
                             "year":String(year),
                             "month":String(monthArray),
@@ -699,7 +698,6 @@ function Table(id,type) {
                     });
                 }
         }
-
         if (id === 'actor') {
             actor.style.display = 'block';
             $.fn.dataTable.ext.errMode = 'throw';
@@ -1120,25 +1118,84 @@ function Table(id,type) {
 
                 });
             }
+            else {
+                mvGenretb.ajax.url('/movie/ajax/showcombination').load();
+                $.ajax({
+                    url: '/movie/ajax/showcombination',
+                    dataSrc: '',
+                    success: function (data) {
+
+                        var dataSrc;
+                        dataSrc = data[0];
+                        $('#combinationrelation').text(dataSrc.relation);
+                        $('#combinationmix').text(dataSrc.mix);
+                        if (combinationchart !== undefined) {
+                            combinationchart.destroy();
+                        }
+                        combinationchart = Highcharts.chart('conbinationcontainer', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+
+                                text: '两种模型执行时间比较'
+                            },
+                            data: {
+                                columns: [
+                                    [null, '执行时间'], // 分类
+                                    ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+                                    ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+                                ]
+                            },
+                            yAxis: {
+                                allowDecimals: false,
+                                title: {
+                                    text: 'ms',
+                                    rotation: 0
+                                }
+                            },
+                            tooltip: {
+                                formatter: function () {
+                                    return '<b>' + this.series.name
+
+                                        + '</b><br/>' +
+                                        this.point.y + 'ms ' + this.point.name
+                                            .toLowerCase();
+                                }
+                            },
+                            plotOptions: {
+                                column: {
+                                    dataLabels: {
+                                        enabled: true, // dataLabels设为true
+                                        style: {
+                                            color: '#42abf8'
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                });
+            }
             }
         if (id === 'language') {
+            var languagename = $("#sjw-search-language").val();
                 language.style.display = 'block';
                 $.fn.dataTable.ext.errMode = 'throw';
                 if(mvLanguagetb === null){
                     $('#language').DataTable({
                     ajax: {
-
-                        url: '/movie/ajax/showlanguage',
+                        url: '/movie/language/search?language=' + languagename,
                         dataSrc:"",
                         type: "post"
-
                     },
-                    columns: [{data: "movieName"},
-                        {data: "releaseTime"},
+                    columns: [{data: "movieID"},
+                        {data: "movieName"},
                         {data: "genre"},
-                        {data: "director"},
-                        {data: "actor"},
-                        {data: "edition"}],
+                        {data: "releaseDate"},
+                        {data: "studio"},
+                        {data: "releaseDate"}],
                     "bPaginage": true,
                     "sPaginationType": "full_numbers",
                     "oLanguage": {
@@ -1157,7 +1214,7 @@ function Table(id,type) {
                         }
                     }
                 });
-            $.ajax({
+                    $.ajax({
                 url: '/movie/ajax/showlanguage',
                 dataSrc: '',
                 success: function (data) {
@@ -1213,7 +1270,66 @@ function Table(id,type) {
                     });
                 }
             });
-            }
+                }
+                else {
+                    mvGenretb.ajax.url('/movie/language/search?language=' + languagename).load();
+                    $.ajax({
+                        url: '/movie/ajax/showlanguage',
+                        dataSrc: '',
+                        success: function (data) {
+
+                            var dataSrc;
+                            dataSrc = data[0];
+                            $('#languagerelation').text(dataSrc.relation);
+                            $('#languagemix').text(dataSrc.mix);
+                            if(languagechart!==undefined){
+                                languagechart.destroy();
+                            }
+                            languagechart =  Highcharts.chart('languagecontainer',{
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: '两种模型执行时间比较'
+                                },
+                                data: {
+                                    columns: [
+                                        [null, '执行时间'], // 分类
+                                        ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+                                        ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+                                    ]
+                                },
+                                yAxis: {
+                                    allowDecimals: false,
+                                    title: {
+                                        text: 'ms',
+                                        rotation: 0
+                                    }
+                                },
+                                tooltip: {
+                                    formatter: function () {
+                                        return '<b>' + this.series.name
+
+                                            + '</b><br/>' +
+                                            this.point.y + 'ms ' + this.point.name
+
+                                                .toLowerCase();
+                                    }
+                                },
+                                plotOptions: {
+                                    column: {
+                                        dataLabels: {
+                                            enabled: true, // dataLabels设为true
+                                            style: {
+                                                color: '#42abf8'
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
         }
 }
 var seasonArray,dayArray,monthArray,date,year,dateType;
