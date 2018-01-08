@@ -1065,7 +1065,7 @@ function Table(id,type) {
     if (id === 'combination') {
         combination.style.display = 'block';
         $.fn.dataTable.ext.errMode = 'throw';
-        var cdate = $("#lsl-cactor").val();
+        var cdate = $("#lsl-cdate").val();
         var cname = $("#lsl-cname").val();
         var cactor = $("#lsl-cactor").val();
         var cdirector = $("#lsl-cdirector").val();

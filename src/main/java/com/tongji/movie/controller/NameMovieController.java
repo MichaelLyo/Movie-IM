@@ -1,5 +1,4 @@
 package com.tongji.movie.controller;
-import com.tongji.movie.model.AjaxBean;
 import com.tongji.movie.service.SearchMovieWithName;
 import jdk.nashorn.internal.parser.JSONParser;
 import net.minidev.json.JSONArray;
