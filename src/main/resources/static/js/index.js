@@ -1114,6 +1114,13 @@ function Table(id,type) {
             });
             $.ajax({
                 url: '/movie/multiple/showcombination',
+                data: {
+                    "date": String(cdate),
+                    "name": String(cname),
+                    "actor": String(cactor),
+                    "director": String(cdirector),
+                    "genre": String(cgenre)
+                },
                 dataSrc: '',
                 success: function (data) {
                     var dataSrc;
@@ -1176,6 +1183,13 @@ function Table(id,type) {
             mvCombinationtb.ajax.url('/movie/combination/search').load();
             $.ajax({
                 url: '/movie/multiple/showcombination',
+                data: {
+                    "date": String(cdate),
+                    "name": String(cname),
+                    "actor": String(cactor),
+                    "director": String(cdirector),
+                    "genre": String(cgenre)
+                },
                 dataSrc: '',
                 success: function (data) {
 
