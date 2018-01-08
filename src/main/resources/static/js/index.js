@@ -1065,22 +1065,22 @@ function Table(id,type) {
     if (id === 'combination') {
         combination.style.display = 'block';
         $.fn.dataTable.ext.errMode = 'throw';
-        var cdate = document.getElementById('cdate').value;
-        var cname = document.getElementById('cname').value;
-        var cactor = document.getElementById('cactor').value;
-        var cdirector = document.getElementById('cdirector').value;
-        var cgenre = document.getElementById('cgenre').value;
+        var cdate = $("#lsl-cactor").val();
+        var cname = $("#lsl-cname").val();
+        var cactor = $("#lsl-cactor").val();
+        var cdirector = $("#lsl-cdirector").val();
+        var cgenre = $("#lsl-cgenre").val();
         if (mvCombinationtb === null) {
             mvCombinationtb = $('#combination').DataTable({
                 ajax: {
                     url: '/movie/combination/search',
                     type: 'post',
                     data: {
-                        "date": String(cdate),
-                        "name": String(cname),
-                        "actor": String(cactor),
-                        "director": String(cdirector),
-                        "genre": String(cgenre)
+                        "date": cdate,
+                        "name": cname,
+                        "actor": cactor,
+                        "director": cdirector,
+                        "genre": cgenre
                     },
                     dataSrc: ""
 
@@ -1115,11 +1115,11 @@ function Table(id,type) {
             $.ajax({
                 url: '/movie/multiple/showcombination',
                 data: {
-                    "date": String(cdate),
-                    "name": String(cname),
-                    "actor": String(cactor),
-                    "director": String(cdirector),
-                    "genre": String(cgenre)
+                    "date": cdate,
+                    "name": cname,
+                    "actor": cactor,
+                    "director": cdirector,
+                    "genre": cgenre
                 },
                 dataSrc: '',
                 success: function (data) {
@@ -1130,7 +1130,7 @@ function Table(id,type) {
                     if (combinationchart !== undefined) {
                         combinationchart.destroy();
                     }
-                    combinationchart = Highcharts.chart('conbinationcontainer', {
+                    combinationchart = Highcharts.chart('combinationcontainer', {
                         chart: {
                             type: 'column'
                         },
@@ -1180,15 +1180,19 @@ function Table(id,type) {
             });
         }
         else {
-            mvCombinationtb.ajax.url('/movie/combination/search').load();
+            mvCombinationtb.ajax.url('/movie/combination/search?'+"date="+cdate+
+                "&name="+cname+
+                "&actor="+cactor+
+                "&director="+cdirector+
+                "&genre="+cgenre).load();
             $.ajax({
                 url: '/movie/multiple/showcombination',
                 data: {
-                    "date": String(cdate),
-                    "name": String(cname),
-                    "actor": String(cactor),
-                    "director": String(cdirector),
-                    "genre": String(cgenre)
+                    "date": cdate,
+                    "name": cname,
+                    "actor": cactor,
+                    "director": cdirector,
+                    "genre": cgenre
                 },
                 dataSrc: '',
                 success: function (data) {
@@ -1200,7 +1204,7 @@ function Table(id,type) {
                     if (combinationchart !== undefined) {
                         combinationchart.destroy();
                     }
-                    combinationchart = Highcharts.chart('conbinationcontainer', {
+                    combinationchart = Highcharts.chart('combinationcontainer', {
                         chart: {
                             type: 'column'
                         },
