@@ -29,16 +29,23 @@ public class SearchMovieWithRunTime {
         pstmt.setString(1,time1);
         pstmt.setString(2,time2);
         ResultSet set =  pstmt.executeQuery();
-        while(set.next()){
-            JSONObject movie = new JSONObject();
-            movie.put("movieId",set.getString("movieId"));
-            movie.put("title",set.getString("title"));
-            movie.put("releaseDate",set.getString("releaseDate"));
-            movie.put("runTime",set.getString("runTime"));
-            movie.put("studio",set.getString("studio"));
-            movie.put("publicationDate",set.getString("publicationDate"));
-            movie.put("publisher",set.getString("publisher"));
-            movies.add(movie);
+        try
+        {
+            while(set.next()){
+                JSONObject movie = new JSONObject();
+                movie.put("movieId",set.getString("movieId"));
+                movie.put("title",set.getString("title"));
+                movie.put("releaseDate",set.getString("releaseDate"));
+                movie.put("runTime",set.getString("runTime"));
+                movie.put("studio",set.getString("studio"));
+                movie.put("publicationDate",set.getString("publicationDate"));
+                movie.put("publisher",set.getString("publisher"));
+                movies.add(movie);
+            }
+        }
+        catch (Exception e)
+        {
+            
         }
         return movies;
     }
