@@ -102,9 +102,9 @@ function Table(id,type) {
                 columns: [
                     {data: "movieId",},
                     {data: "title",width:'30%'},
+                    {data: "publicationDate",width:'10%'},
                     {data: "releaseDate",width:'10%'},
                     {data: "runTime",width:'10%'},
-                    {data: "studio"},
                     {data: "publisher"}
                 ],
                 "bProcessing": true,
@@ -213,9 +213,9 @@ function Table(id,type) {
                 columns: [
                     {data: "movieId",},
                     {data: "title",width:'30%'},
+                    {data: "publicationDate",width:'10%'},
                     {data: "releaseDate",width:'10%'},
                     {data: "runTime",width:'10%'},
-                    {data: "studio"},
                     {data: "publisher"}
                 ],
                 "bProcessing": true,
@@ -1131,7 +1131,7 @@ function Table(id,type) {
                     {data: "director"},
                     {data: "actor"},
                     {data: "genre"},
-                    {data: "releaseDate"},
+                    {data: "releaseDate",width:"10%"},
                     {data: "runTime"}
                     ],
                 "bProcessing": true,
@@ -1241,7 +1241,7 @@ function Table(id,type) {
                     {data: "director"},
                     {data: "actor"},
                     {data: "genre"},
-                    {data: "releaseDate"},
+                    {data: "releaseDate",width:"10%"},
                     {data: "runTime"}
                 ],
                 "bProcessing": true,
@@ -1511,7 +1511,7 @@ function Table(id,type) {
                     columns: [
                         {data: "movieId"},
                         {data: "title"},
-                        {data: "releaseDate"},
+                        {data: "releaseDate",width:"10%"},
                         {data: "runTime"},
                         {data: "studio"},
                         {data: "publisher"}
@@ -1537,7 +1537,12 @@ function Table(id,type) {
                 });
                 $.ajax({
                     url: '/movie/multiple/showruntime',
+                    data: {
+                        "time1": String(time1),
+                        "time2": String(time2)
+                    },
                     dataSrc: '',
+
                     success: function (data) {
 
                         var dataSrc;
@@ -1595,9 +1600,13 @@ function Table(id,type) {
                 });
             }
             else {
-                mvNametb.ajax.url("/movie/runtime/search").load();
+                mvRunTimetb.ajax.url("/movie/runtime/search?time1="+String(time1)+"&time2="+String(time2)).load();
                 $.ajax({
                     url: '/movie/multiple/showruntime',
+                    data: {
+                        "time1": String(time1),
+                        "time2": String(time2)
+                    },
                     dataSrc: '',
                     success: function (data) {
 
