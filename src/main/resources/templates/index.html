@@ -46,6 +46,9 @@
                 <a onClick="toggle('runtime')">电影时长查询</a>
             </li>
             <li>
+                <a onClick="toggle('comment')">电影评论查询</a>
+            </li>
+            <li>
                 <a onClick="toggle('combination')">高级查询</a>
             </li>
         </ul>
@@ -56,7 +59,7 @@
 <!--Start 按照时间进行查询统计-->
 <div class="search bar6" id="search-time" style="display: none">
     <div class="container">
-    <div class="inquirebox" style="height:670px;">
+    <div class="inquirebox" style="height:580px;">
         <label class="title">根据时间查询</label>
         <form class="search-form" style="top:15px;width: 800px">
         <div class="year">年份</div><select class="select" id="myYear"></select>
@@ -115,12 +118,12 @@
                         <div class="year" style="margin-top: 10px;margin-bottom: 10px;">具体日期</div>
                         <div class="dream-controls">
                             <input placeholder="点击输入具体日期" id="myID">
-                            <button type="reset" style="height: 35px;top: 461px;left: 134px;border-radius: 0;">重置</button>
+                            <button class="ratio-button" style="border-radius: 0" type="reset" >重置</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <button type="button" onclick="Table('time')" style="border-radius: 0;left:0;top:530px;">搜索</button>
+            <button class="ratio-button" style="border-radius: 0" type="button" onclick="Table('time')" >搜索</button>
         </form>
     </div>
     </div>
@@ -131,9 +134,9 @@
         </div>
         <div id="container" class="result-container"></div>
         <div class="result-text">
-            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要  </label><label id="timerelation"></label><label>ms</label>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="timerelation" class="font-load">加载中……</label><label>ms</label>
             <br><br>
-            <label>使用混合型存储数据模型进行此次查询统计，需要  </label><label id="timemix"></label><label>ms</label>
+            <label>使用混合型存储数据模型进行此次查询统计，需要</label><label id="timemix" class="font-load">加载中……</label><label>ms</label>
             <br><br>
             <label >下表为查询到的数据详细内容，右图为两种查询方式的执行时间比较图</label>
         </div>
@@ -182,8 +185,8 @@
         </div>
         <div id="namecontainer" class="result-container"></div>
         <div class="result-text">
-            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要  </label><label id="namerelation"></label><label>ms</label><br><br>
-            <label >使用混合型存储数据模型进行此次查询统计，需要  </label><label id="namemix"></label><label>ms</label><br><br>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="namerelation" class="font-load">加载中……</label><label>ms</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="namemix" class="font-load">加载中……</label><label>ms</label><br><br>
             <label >下表为查询到的数据详细内容，右图为两种查询方式的执行时间比较图</label>
         </div>
         <table id="name" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
@@ -231,8 +234,8 @@
         </div>
         <div id="directorcontainer" class="result-container"></div>
         <div class="result-text">
-            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要  </label><label id="directorrelation"></label><label>ms</label><br><br>
-            <label >使用混合型存储数据模型进行此次查询统计，需要  </label><label id="directormix"></label><label>ms</label><br><br>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="directorrelation" class="font-load">加载中……</label><label>ms</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="directormix" class="font-load">加载中……</label><label>ms</label><br><br>
             <label >下表为数据详细内容，右图两种方式的执行时间比较</label>
         </div>
         <table id="director" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
@@ -268,8 +271,8 @@
             </div>
             <div id="directorcontainer2" class="result-container"></div>
             <div class="result-text">
-                <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要  </label><label id="directorrelation2"></label><label>ms</label><br><br>
-                <label >使用混合型存储数据模型进行此次查询统计，需要  </label><label id="directormix2"></label><label>ms</label><br><br>
+                <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="directorrelation2" class="font-load">加载中……</label><label>ms</label><br><br>
+                <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="directormix2" class="font-load">加载中……</label><label>ms</label><br><br>
                 <label >下表为数据详细内容，右图两种方式的执行时间比较</label>
             </div>
             <table id="director2" class="display datatable" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
@@ -318,8 +321,8 @@
         </div>
         <div id="actorcontainer" class="result-container"></div>
         <div class="result-text">
-            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要  </label><label id="actorrelation"></label><label>ms</label><br><br>
-            <label >使用混合型存储数据模型进行此次查询统计，需要  </label><label id="actormix"></label><label>ms</label><br><br>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="actorrelation" class="font-load">加载中……</label><label>ms</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="actormix" class="font-load">加载中……</label><label>ms</label><br><br>
             <label >下表为数据详细内容，右图两种方式的执行时间比较</label>
             <div id="actorInfo" style="margin-top:15px;margin-bottom:15px"></div>
         </div>
@@ -367,8 +370,8 @@
         </div>
         <div id="categorycontainer" class="result-container"></div>
         <div class="result-text">
-            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要  </label><label id="genrerelation"></label><label>ms</label><br><br>
-            <label >使用混合型存储数据模型进行此次查询统计，需要  </label><label id="genremix"></label><label>ms</label><br><br>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="genrerelation" class="font-load">加载中……</label><label>ms</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="genremix" class="font-load">加载中……</label><label>ms</label><br><br>
             <label >下表为查询到的数据详细内容，右图为两种查询方式的执行时间比较图</label>
         </div>
         <table id="category" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
@@ -417,8 +420,8 @@
         </div>
         <div id="languagecontainer" class="result-container"></div>
         <div class="result-text">
-            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要  </label><label id="languagerelation"></label><label>ms</label><br><br>
-            <label >使用混合型存储数据模型进行此次查询统计，需要  </label><label id="languagemix"></label><label>ms</label><br><br>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="languagerelation" class="font-load">加载中……</label><label>ms</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="languagemix" class="font-load">加载中……</label><label>ms</label><br><br>
             <label >下表为数据详细内容，右图两种方式的执行时间比较</label>
         </div>
         <table id="language" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
@@ -458,7 +461,7 @@
                 <div class="year">时长范围（单位分钟）</div><select class="select" id="time1"></select>
                 <label>～</label>
                 <select class="select" id="time2"></select>
-                <button type="button" style="top: 46px;left: 180px;height: 30px;border-radius: 0" onclick="Table('runtime')">搜索</button>
+                <button type="button" class="ratio-button" style="height: 32px;border-radius: 0" onclick="Table('runtime')">搜索</button>
             </form>
         </div>
     </div>
@@ -469,8 +472,8 @@
             </div>
             <div id="runtimecontainer" class="result-container"></div>
             <div class="result-text">
-                <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要  </label><label id="runtimerelation"></label><label>ms</label><br><br>
-                <label >使用混合型存储数据模型进行此次查询统计，需要  </label><label id="runtimemix"></label><label>ms</label><br><br>
+                <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="runtimerelation" class="font-load">加载中……</label><label>ms</label><br><br>
+                <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="runtimemix" class="font-load">加载中……</label><label>ms</label><br><br>
                 <label >下表为数据详细内容，右图两种方式的执行时间比较</label>
             </div>
             <table id="rtime" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
@@ -501,6 +504,58 @@
     </div>
 </div>
 <!--End 电影时长进行查询统计-->
+<!--Start 电影评论进行查询统计-->
+<div  class="search bar6" id="search-comment" style="display: none">
+    <div class="container">
+        <div class="inquirebox">
+            <label class="title">查询电影评论</label>
+            <form class="search-form" style="width:600px;">
+                <input id="sjw-search-comment" style="width: 240px" type="text" placeholder="请输入电影名" class="input-button"/>
+                <button class="ratio-button" style="width:80px;border-radius: 0" type="button" onclick="Table('comment','positive')">查看好评</button>
+                <button class="ratio-button" style="width:80px;border-radius: 0" type="button" onclick="Table('comment','moderate')">查看中评</button>
+                <button class="ratio-button" style="width:80px;border-radius: 0" type="button" onclick="Table('comment','negative')">查看差评</button>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div id="commentTable" class="table-display">
+            <div style="margin-left: 20px;padding-top: 20px;">
+                <label class="title">评论查询结果</label>
+            </div>
+            <div id="commentcontainer" class="result-container"></div>
+            <div class="result-text">
+                <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="commentrelation" class="font-load">加载中……</label><label>ms</label><br><br>
+                <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="commentmix" class="font-load">加载中……</label><label>ms</label><br><br>
+                <label >下表为查询到的数据详细内容，右图为两种查询方式的执行时间比较图</label>
+            </div>
+            <table id="comment" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+                <thead>
+                <tr>
+                    <th>产品ID</th>
+                    <th>电影名</th>
+                    <th>发行时间</th>
+                    <th>片长</th>
+                    <th>音频类型</th>
+                    <th>电影评分</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>产品ID</th>
+                    <th>电影名</th>
+                    <th>发行时间</th>
+                    <th>片长</th>
+                    <th>音频类型</th>
+                    <th>电影评分</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--End 电影评论进行查询统计-->
 <!--Start 组合查询进行查询统计-->
 <div  class="search bar6" id="search-combination" style="display: none">
     <div class="container">
@@ -528,8 +583,8 @@
         </div>
         <div id="combinationcontainer" class="result-container"></div>
         <div class="result-text">
-            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要  </label><label id="combinationrelation"></label><label>ms</label><br><br>
-            <label >使用混合型存储数据模型进行此次查询统计，需要  </label><label id="combinationmix"></label><label>ms</label><br><br>
+            <label >使用关系型数据仓库存储数据模型进行此次查询统计，需要</label><label id="combinationrelation" class="font-load">加载中……</label><label>ms</label><br><br>
+            <label >使用混合型存储数据模型进行此次查询统计，需要</label><label id="combinationmix" class="font-load">加载中……</label><label>ms</label><br><br>
             <label >下表为查询到的数据详细内容，右图为两种查询方式的执行时间比较图</label>
         </div>
         <table id="combination" class="display" style="text-align: center;" width="100%" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
