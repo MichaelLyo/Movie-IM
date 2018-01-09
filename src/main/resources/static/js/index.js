@@ -5,11 +5,11 @@ var mvDirectortb =null;
 var mvDirectortb2 = null;
 var mvActortb = null;
 var mvTimetb = null;
-var mvGenretb = null;
 var mvLanguagetb = null;
 var mvCombinationtb = null;
 var mvRunTimetb = null;
-var timechart,namechart,directorchart,directorchart2,actorchart,categorychart,languagechart,combinationchart,runtimechart; //柱状图
+var mvCommenttb = null;
+var timechart,namechart,directorchart,directorchart2,actorchart,categorychart,languagechart,combinationchart,runtimechart,commentchart; //柱状图
 function Time () {
     var season=document.getElementsByName('season');
     var month=document.getElementsByName('month');
@@ -60,14 +60,16 @@ function toggle(id){
     var combination=document.getElementById('search-combination');
     var language=document.getElementById('search-language');
     var runtime=document.getElementById('search-runtime');
-    if(id==='time') {runtime.style.display='none';language.style.display='none';combination.style.display='none';category.style.display='none';name.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='block';}
-    if(id==='name') {runtime.style.display='none';language.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='none';name.style.display='block';}
-    if(id==='director') {runtime.style.display='none';language.style.display='none';combination.style.display='none';category.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';director.style.display='block';}
-    if(id==='actor'){runtime.style.display='none';language.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='block';}
-    if(id==='category'){runtime.style.display='none';language.style.display='none';combination.style.display='none';category.style.display='block';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
-    if(id==='combination'){runtime.style.display='none';language.style.display='none';combination.style.display='block';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
-    if(id==='language'){runtime.style.display='none';language.style.display='block';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
-    if(id==='runtime'){runtime.style.display='block';language.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+    var comment = document.getElementById('search-comment');
+    if(id==='time') {comment.style.display='none';runtime.style.display='none';language.style.display='none';combination.style.display='none';category.style.display='none';name.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='block';}
+    if(id==='name') {comment.style.display='none';runtime.style.display='none';language.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';actor.style.display='none';time.style.display='none';name.style.display='block';}
+    if(id==='director') {comment.style.display='none';runtime.style.display='none';language.style.display='none';combination.style.display='none';category.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';director.style.display='block';}
+    if(id==='actor'){comment.style.display='none';runtime.style.display='none';language.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='block';}
+    if(id==='category'){comment.style.display='none';runtime.style.display='none';language.style.display='none';combination.style.display='none';category.style.display='block';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+    if(id==='combination'){comment.style.display='none';runtime.style.display='none';language.style.display='none';combination.style.display='block';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+    if(id==='language'){comment.style.display='none';runtime.style.display='none';language.style.display='block';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+    if(id==='runtime'){comment.style.display='none';runtime.style.display='block';language.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
+    if(id==='comment'){comment.style.display='block';runtime.style.display='none';language.style.display='none';combination.style.display='none';category.style.display='none';director.style.display='none';name.style.display='none';time.style.display='none';actor.style.display='none';}
 }
 function Table(id,type) {
     var time = document.getElementById('timeTable');
@@ -79,6 +81,7 @@ function Table(id,type) {
     var combination = document.getElementById('combinationTable');
     var language = document.getElementById('languageTable');
     var runtime = document.getElementById('runtimeTable');
+    var comment = document.getElementById('commentTable');
 
     if (id === 'time') {
         time.style.display = 'block';
@@ -100,7 +103,7 @@ function Table(id,type) {
                     dataSrc: ""
                 },
                 columns: [
-                    {data: "movieId",},
+                    {data: "movieId"},
                     {data: "title",width:'30%'},
                     {data: "publicationDate",width:'10%'},
                     {data: "releaseDate",width:'10%'},
@@ -785,7 +788,7 @@ function Table(id,type) {
             url = "/movie/actor/starring?actorName=";
         if (type === 'none')
             url = "/movie/actor/search?actorName=";
-        if (mvActortb == null) {
+        if (mvActortb === null) {
 
             mvActortb = $('#actor').DataTable({
                 ajax: {
@@ -1665,6 +1668,173 @@ function Table(id,type) {
                 });
             }
         }
+    if (id === 'comment') {
+        comment.style.display = 'block';
+        $.fn.dataTable.ext.errMode = 'throw';
+        var movieName = $("#sjw-search-comment").val();
+        var commenturl;
+        if (type === 'positive')
+            commenturl = "/movie/comment/positive?movieName=";
+        if (type === 'moderate')
+            commenturl = "/movie/comment/moderate?movieName=";
+        if (type === 'negative')
+            commenturl = "/movie/comment/negative?movieName=";
+        if (mvCommenttb=== null) {
+            mvCommenttb = $('#comment').DataTable({
+                ajax: {
+                    type: "post",
+                    url: commenturl+movieName,
+                    dataSrc: ""
+                },
+                columns: [
+                    {data: "movieId"},
+                    {data: "title"},
+                    {data: "releaseDate",width:"10%"},
+                    {data: "runTime"},
+                    {data: "studio"},
+                    {data: "publisher"}
+                ],
+                "bProcessing": true,
+                "bPaginage": true,
+                "sPaginationType": "full_numbers",
+                "oLanguage": {
+                    "sLengthMenu": "每页显示 _MENU_ 条",
+                    "sZeroRecords": "没有找到符合条件的数据",
+                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+                    "sInfoEmpty": "没有记录",
+                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
+                    "sSearch": "搜索",
+                    "sProcessing": "数据加载中...",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上一页",
+                        "sNext": "下一页",
+                        "sLast": "尾页"
+                    }
+                }
+            });
+            $.ajax({
+                url: '/movie/multiple/showcomment',
+                dataSrc: '',
+                success: function (data) {
+                    var dataSrc;
+                    dataSrc = data[0];
+                    $('#commentrelation').text(dataSrc.relation);
+                    $('#commentmix').text(dataSrc.mix);
+                    if (commentchart !== undefined) {
+                        commentchart.destroy();
+                    }
+                    commentchart = Highcharts.chart('commentcontainer', {
+                        chart: {
+                            type: 'column'
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        title: {
+                            text: '两种模型执行时间比较'
+                        },
+                        data: {
+                            columns: [
+                                [null, '执行时间'], // 分类
+                                ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+                                ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+                            ]
+                        },
+                        yAxis: {
+                            allowDecimals: false,
+                            title: {
+                                text: '单位(ms)  '
+
+                            }
+                        },
+                        tooltip: {
+                            formatter: function () {
+                                return '<b>' + this.series.name
+
+                                    + '</b><br/>' +
+                                    this.point.y + 'ms ' + this.point.name
+                                        .toLowerCase();
+                            }
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: true, // dataLabels设为true
+                                    style: {
+                                        color: '#42abf8'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        }
+        else {
+            mvCommenttb.ajax.url(commenturl + movieName).load();
+            $.ajax({
+                url: '/movie/ajax/showcomment',
+                dataSrc: '',
+                success: function (data) {
+
+                    var dataSrc;
+                    dataSrc = data[0];
+                    $('#commentrelation').text(dataSrc.relation);
+                    $('#commentmix').text(dataSrc.mix);
+                    if (commentchart !== undefined) {
+                        commentchart.destroy();
+                    }
+                    commentchart = Highcharts.chart('commentcontainer', {
+                        chart: {
+                            type: 'column'
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        title: {
+                            text: '两种模型执行时间比较'
+                        },
+                        data: {
+                            columns: [
+                                [null, '执行时间'], // 分类
+                                ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+                                ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+                            ]
+                        },
+                        yAxis: {
+                            allowDecimals: false,
+                            title: {
+                                text: '单位(ms)  '
+
+                            }
+                        },
+                        tooltip: {
+                            formatter: function () {
+                                return '<b>' + this.series.name
+
+                                    + '</b><br/>' +
+                                    this.point.y + 'ms ' + this.point.name
+
+                                        .toLowerCase();
+                            }
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: true, // dataLabels设为true
+                                    style: {
+                                        color: '#42abf8'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    }
+
     }
     var seasonArray, dayArray, monthArray, date, year, dateType;
 

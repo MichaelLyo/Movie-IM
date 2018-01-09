@@ -72,9 +72,11 @@
     right: 0;
 }
 .animenu__nav > li > a {
-    padding: 10px 30px;
+    padding: 10px 10px;
     height: 50px;
     line-height: 30px;
+    width: 110px;
+    text-align: center;
 }
 .animenu__nav > li > button {
 
