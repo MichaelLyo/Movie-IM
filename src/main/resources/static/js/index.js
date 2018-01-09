@@ -195,9 +195,58 @@ function Table(id,type) {
             });
         }
         else {
-            mvTimetb.ajax.url("/movie/time/search").load();
+            mvTimetb.destroy();
+            mvTimetb = $('#time').DataTable({
+                ajax: {
+                    type: "post",
+                    url: '/movie/time/search',
+                    data: {
+                        "year": String(year),
+                        "month": String(monthArray),
+                        "dateType": String(dateType),
+                        "day": String(dayArray),
+                        "date": String(date),
+                        "season": String(seasonArray)
+                    },
+                    dataSrc: ""
+                },
+                columns: [
+                    {data: "movieId"},
+                    {data: "title"},
+                    {data: "releaseDate"},
+                    {data: "runTime"},
+                    {data: "studio"},
+                    {data: "publisher"}
+                ],
+                "bProcessing": true,
+                "bPaginage": true,
+                "sPaginationType": "full_numbers",
+                "oLanguage": {
+                    "sLengthMenu": "每页显示 _MENU_ 条",
+                    "sZeroRecords": "没有找到符合条件的数据",
+                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+                    "sInfoEmpty": "没有记录",
+                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
+                    "sSearch": "搜索",
+                    "sProcessing": "数据加载中...",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上一页",
+                        "sNext": "下一页",
+                        "sLast": "尾页"
+                    }
+                }
+            });
             $.ajax({
                 url: '/movie/multiple/showtime',
+                data: {
+                    "year": String(year),
+                    "month": String(monthArray),
+                    "dateType": String(dateType),
+                    "day": String(dayArray),
+                    "date": String(date),
+                    "season": String(seasonArray)
+                },
                 dataSrc: '',
                 success: function (data) {
                     var dataSrc;
@@ -671,7 +720,6 @@ function Table(id,type) {
         }
 
         else {
-
             mvDirectortb2.ajax.url("/movie/director/actor?directorName=" + direcorName).load();
             $.ajax({
                 url: '/movie/ajax/showdirectorcoactor',
@@ -737,7 +785,7 @@ function Table(id,type) {
                                     }
                                 }
                             }
-                        });
+                        }});
                     }
                 });
             }
