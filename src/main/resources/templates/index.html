@@ -59,7 +59,7 @@
 <!--Start 按照时间进行查询统计-->
 <div class="search bar6" id="search-time" style="display: none">
     <div class="container">
-    <div class="inquirebox" style="height:640px;">
+    <div class="inquirebox" style="height:560px;">
         <label class="title">根据时间查询</label>
         <form class="search-form" style="top:15px;width: 800px">
         <div class="year">年份</div><select class="select" id="myYear"></select>
@@ -104,16 +104,6 @@
                             <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="10" name="month"><span> 10</span></label>
                             <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="11" name="month"><span> 11</span></label>
                             <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="12" name="month"><span> 12</span></label>
-                        </div>
-                        <div class="year" style="margin-top: 10px;margin-bottom: 10px;">天</div>
-                        <div class="dream-controls" id="day">
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="6" name="day"><span> 周日</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="0" name="day"><span> 周一</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="1" name="day"><span> 周二</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="2" name="day"><span> 周三</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="3" name="day"><span> 周四</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="4" name="day"><span> 周五</span></label>
-                            <label class="ui-checkbox" onclick="Time()"><input type="checkbox" value="5" name="day"><span> 周六</span></label>
                         </div>
                         <div class="year" style="margin-top: 10px;margin-bottom: 10px;">具体日期</div>
                         <div class="dream-controls">
@@ -306,10 +296,10 @@
             <label class="title">根据演员名查询</label>
         <form class="search-form">
             <input id="sjw-search-actor" type="text" placeholder="可查询单个演员或一起合作的演员，如“Tom”或“Tom,Jack”" class="input-button" style="width: 350px"/>
-            <button type="button" onclick="Table('actor','none')" style="left:380px;border-radius: 0;width:80px">参演查询</button>
-            <button type="button" onclick="Table('actor','lead')" style="left:470px;border-radius: 0;width:80px">主演查询</button>
+            <button type="button" onclick="Table('actor','none')" style="left:120%">搜索</button>
         </form>
     </div>
+
     </div>
     <div class="container">
     <div id="actorTable" class="table-display">
