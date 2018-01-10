@@ -22,7 +22,6 @@ public class NameMovieController {
     @RequestMapping(value = "/search",method = RequestMethod.POST)
     public JSONArray searchByName(String name){
         JSONArray jsonArray;
-
             try {
                 jsonArray = searchMovieWithName.searchInOracle('%'+name+'%');
             } catch (SQLException e) {
