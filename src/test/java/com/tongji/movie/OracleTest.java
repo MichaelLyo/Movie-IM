@@ -1,10 +1,14 @@
 package com.tongji.movie;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import com.tongji.movie.service.ConToOracle;
 import com.tongji.movie.service.SearchMovieWithDirector;
+import com.tongji.movie.service.procTool;
+import net.minidev.json.JSONArray;
 import oracle.jdbc.internal.OracleTypes;
 import org.hsqldb.lib.HsqlHeap;
 import org.junit.Test;
+import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication;
@@ -37,65 +41,87 @@ public class OracleTest {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	@Test
-	public void createTable() {
-		Connection con = conObj.getConnection();
-	}
 
-	@Test
-	public void searchBylanguage(){
+
+	public JSONArray searchBylanguage(){
 		try{
 			Connection con = conObj.getConnection();
 			CallableStatement proc = con.prepareCall("{call search_by_language_p(?)}");
 			proc.registerOutParameter(1,OracleTypes.CURSOR);
 			proc.execute();
+
 			ResultSet set =(ResultSet)proc.getObject(1);
-			while(set.next()){
-				System.out.println(set.getString("title"));
-			}
+			return procTool.getResult(set,"");
+
 		}
 		catch(Exception e){
-
+				System.out.println("searchByLanguage");
+				e.printStackTrace();
+				return null;
 		}
 	}
 
 
-	public void selectByGenre(){
+	public JSONArray selectByGenre(){
 		try{
 			Connection con = conObj.getConnection();
 			CallableStatement proc = con.prepareCall("{call	search_by_genre_p(?)}");
 			proc.registerOutParameter(1,OracleTypes.CURSOR);
 			proc.execute();
+
+
 			ResultSet set = (ResultSet) proc.getObject(1);
-			while(set.next()){
-				System.out.println(set.getString(1));
-			}
-			set.close();
+			return procTool.getResult(set,"");
 		}
 		catch (Exception e){
 			System.out.println("selectByGenre");
 			e.printStackTrace();
+			return null;
 		}
 	}
 
-	public void insertActor() {
-		try {
-			Connection con = conObj.getConnection();
-			CallableStatement proc = con.prepareCall("{call	select_actor(?,?)}");
-			proc.setString(1, "jonathan");
-			proc.registerOutParameter(2, OracleTypes.CURSOR);
+
+	public JSONArray searchByDuration(int minDuration, int maxDuraion)
+	{
+		try{
+			Connection con =  conObj.getConnection();
+			CallableStatement proc = con.prepareCall("{call search_by_duration_p(?,?,?)}");
+
+			proc.setInt("minDuration",minDuration);
+			proc.setInt("maxDuration",maxDuraion);
+			proc.registerOutParameter("movies_out",OracleTypes.CURSOR);
 			proc.execute();
-			ResultSet set = (ResultSet) proc.getObject(2);
-			while (set.next()) {
-				System.out.println(set.getString(1));
-				System.out.println(set.getString(2));
-			}
-			set.close();
-		} catch (Exception e) {
-			System.out.println("insert_actor");
+
+			ResultSet set = (ResultSet) proc.getObject("movies_out");
+			return procTool.getResult(set,"title","title","duration","duration","director_name","director_name","release_date","release_date");
+	}
+	catch (Exception e){
+			System.out.println("searchByDuration");
 			e.printStackTrace();
-		}
+			return null;
+	}
 	}
 
+	public JSONArray searchAdvance(String i_pubdate, String i_title, String i_director, String i_actor, String i_genre){
+		try{
+			Connection con = conObj.getConnection();
+			CallableStatement proc = con.prepareCall("{call	search_advanced_p(?,?,?,?,?,?)}");
 
+			proc.setString("i_pubdate",i_pubdate);
+			proc.setString("i_title",i_title);
+			proc.setString("i_director",i_director);
+			proc.setString("i_actor",i_actor);
+			proc.setString("i_genre",i_genre);
+			proc.registerOutParameter("movies",OracleTypes.CURSOR);
+			proc.execute();
+
+			ResultSet set = (ResultSet)proc.getObject("movies");
+			return procTool.getResult(set,"title","title","director_name","director_name","actor_name","actor_name","genre_name","genre_name","release_date","release_date");
+		}
+		catch (Exception e){
+			System.out.println("searchAdvance");
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
