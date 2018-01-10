@@ -1,7 +1,5 @@
 package com.tongji.movie.service;
 import com.tongji.movie.configure.OracleConnector;
-import com.tongji.movie.model.AmazonFact;
-import com.tongji.movie.repository.AmazonFactRepository;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import oracle.jdbc.internal.OracleTypes;
@@ -32,8 +30,6 @@ public class SearchMovieWithDirector {
     @Autowired
     OracleConnector oracleConnector;
 
-    @Autowired
-    private AmazonFactRepository amazonFactRepository;
 
     public JSONArray search(String directorName) throws SQLException {
         Connection con = conObj.getConnection();
@@ -62,23 +58,6 @@ public class SearchMovieWithDirector {
 
     public JSONArray searchInOracle(String directorName) throws SQLException {
         JSONArray movies = new JSONArray();
-
-        List<AmazonFact> amazonFacts =  amazonFactRepository.findAmazonFactsByDirector(directorName);
-        if(amazonFacts != null) {
-            for (AmazonFact a : amazonFacts) {
-                JSONObject movie = new JSONObject();
-                movie.put("movieId", a.getMovieId());
-                movie.put("title", a.getTitle());
-                movie.put("releaseDate", a.getReleaseDate());
-                movie.put("runTime", a.getRunTime());
-                movie.put("studio", a.getStudio());
-                movie.put("publicationDate", a.getPublicationDate());
-                movie.put("publisher", a.getPublishier());
-                movie.put("director", directorName);
-                movies.add(movie);
-            }
-
-        }
         return movies;
     }
 

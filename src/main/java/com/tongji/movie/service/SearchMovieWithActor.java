@@ -1,7 +1,4 @@
 package com.tongji.movie.service;
-
-import com.tongji.movie.model.AmazonFact;
-import com.tongji.movie.repository.AmazonFactRepository;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +16,7 @@ public class SearchMovieWithActor
     @Autowired
     private ConToHive conObj;
 
-    @Autowired
-    private AmazonFactRepository amazonFactRepository;
+
 
     public JSONArray search(String actorName) throws SQLException {
         Connection con = conObj.getConnection();
@@ -45,40 +41,12 @@ public class SearchMovieWithActor
 
     public JSONArray searchInOracle(String actorName) throws SQLException {
         JSONArray movies = new JSONArray();
-        List<AmazonFact> amazonFacts =  amazonFactRepository.findAmazonFactsByActor(actorName);
-        if(amazonFacts != null) {
-            for (AmazonFact a : amazonFacts) {
-                JSONObject movie = new JSONObject();
-                movie.put("movieId", a.getMovieId());
-                movie.put("title", a.getTitle());
-                movie.put("releaseDate", a.getReleaseDate());
-                movie.put("runTime", a.getRunTime());
-                movie.put("studio", a.getStudio());
-                movie.put("publicationDate", a.getPublicationDate());
-                movie.put("publisher", a.getPublishier());
-                movies.add(movie);
-            }
-        }
         return movies;
     }
 
 
     public JSONArray searchStarringInOracle(String starringName) throws SQLException{
         JSONArray movies = new JSONArray();
-        List<AmazonFact> amazonFacts =  amazonFactRepository.findAmazonFactsByStarring(starringName);
-        if(amazonFacts != null) {
-            for (AmazonFact a : amazonFacts) {
-                JSONObject movie = new JSONObject();
-                movie.put("movieId", a.getMovieId());
-                movie.put("title", a.getTitle());
-                movie.put("releaseDate", a.getReleaseDate());
-                movie.put("runTime", a.getRunTime());
-                movie.put("studio", a.getStudio());
-                movie.put("publicationDate", a.getPublicationDate());
-                movie.put("publisher", a.getPublishier());
-                movies.add(movie);
-            }
-        }
         return movies;
     }
 

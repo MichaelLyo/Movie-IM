@@ -1,7 +1,7 @@
 package com.tongji.movie.controller;
 
 import com.sun.org.apache.regexp.internal.RE;
-import com.tongji.movie.model.AmazonFact;
+
 
 import com.tongji.movie.service.GetBothWayTime;
 
@@ -57,6 +57,7 @@ public class OperationController
                                               @RequestParam(value = "director",required = true) String director,
                                               @RequestParam(value = "genre", required = true) String genre) throws SQLException
     {
+        System.out.println("compare:"+date+"-"+name+"-"+actor+"-"+director+"-"+genre);
         return getBothWayTime.getBothWayTimeOfCombination(date,name,actor,director,genre);
     }
     @RequestMapping(value = "/multiple/test")

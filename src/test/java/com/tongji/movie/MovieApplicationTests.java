@@ -1,8 +1,6 @@
 package com.tongji.movie;
 
 import com.google.gson.JsonArray;
-import com.tongji.movie.model.AmazonFact;
-import com.tongji.movie.repository.AmazonFactRepository;
 import com.tongji.movie.service.SearchMovieWithActor;
 import com.tongji.movie.service.SearchMovieWithTime;
 import net.minidev.json.JSONArray;
@@ -27,10 +25,6 @@ import java.util.Map;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MovieApplicationTests {
-
-
-	@Autowired
-	AmazonFactRepository amazonFactRepository;
 
 	@Autowired
 	SearchMovieWithActor searchMovieWithActor;
