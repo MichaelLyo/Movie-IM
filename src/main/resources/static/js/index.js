@@ -979,124 +979,124 @@ function Table(id,type) {
                     }
                 }
             });
-            $.ajax({
-                url: '/movie/ajax/showcategory',
-                dataSrc: '',
-                success: function (data) {
-                    dataSrc = data[0];
-                    if (categorychart !== undefined) {
-                        categorychart.destroy();
-                    }
-                    $('#genrerelation').text(dataSrc.relation);
-                    $('#genremix').text(dataSrc.mix);
-                    categorychart = Highcharts.chart('categorycontainer', {
-                        chart: {
-                            type: 'column'
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        title: {
-                            text: '两种模型执行时间比较'
-                        },
-                        data: {
-                            columns: [
-                                [null, '执行时间'], // 分类
-                                ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
-                                ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
-                            ]
-                        },
-                        yAxis: {
-                            allowDecimals: false,
-                            title: {
-                                text: '单位(ms)  '
-                                
-                            }
-                        },
-                        tooltip: {
-                            formatter: function () {
-                                return '<b>' + this.series.name
-
-                                    + '</b><br/>' +
-                                    this.point.y + 'ms ' + this.point.name
-
-                                        .toLowerCase();
-                            }
-                        },
-                        plotOptions: {
-                            column: {
-                                dataLabels: {
-                                    enabled: true, // dataLabels设为true
-                                    style: {
-                                        color: '#42abf8'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                }
-            });
+            // $.ajax({
+            //     url: '/movie/ajax/showcategory',
+            //     dataSrc: '',
+            //     success: function (data) {
+            //         dataSrc = data[0];
+            //         if (categorychart !== undefined) {
+            //             categorychart.destroy();
+            //         }
+            //         $('#genrerelation').text(dataSrc.relation);
+            //         $('#genremix').text(dataSrc.mix);
+            //         categorychart = Highcharts.chart('categorycontainer', {
+            //             chart: {
+            //                 type: 'column'
+            //             },
+            //             credits: {
+            //                 enabled: false
+            //             },
+            //             title: {
+            //                 text: '两种模型执行时间比较'
+            //             },
+            //             data: {
+            //                 columns: [
+            //                     [null, '执行时间'], // 分类
+            //                     ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+            //                     ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+            //                 ]
+            //             },
+            //             yAxis: {
+            //                 allowDecimals: false,
+            //                 title: {
+            //                     text: '单位(ms)  '
+            //
+            //                 }
+            //             },
+            //             tooltip: {
+            //                 formatter: function () {
+            //                     return '<b>' + this.series.name
+            //
+            //                         + '</b><br/>' +
+            //                         this.point.y + 'ms ' + this.point.name
+            //
+            //                             .toLowerCase();
+            //                 }
+            //             },
+            //             plotOptions: {
+            //                 column: {
+            //                     dataLabels: {
+            //                         enabled: true, // dataLabels设为true
+            //                         style: {
+            //                             color: '#42abf8'
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         });
+            //     }
+            // });
         }
         else {
             mvTypetb.ajax.url("/movie/genere/search?genere=" + typename).load();
-            $.ajax({
-                url: '/movie/ajax/showcategory',
-                dataSrc: '',
-                success: function (data) {
-                    var dataSrc;
-                    dataSrc = data[0];
-                    $('#genrerelation').text(dataSrc.relation);
-                    $('#genremix').text(dataSrc.mix);
-                    if (categorychart !== undefined) {
-                        categorychart.destroy();
-                    }
-                    categorychart = Highcharts.chart('categorycontainer', {
-                        chart: {
-                            type: 'column'
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        title: {
-                            text: '两种模型执行时间比较'
-                        },
-                        data: {
-                            columns: [
-                                [null, '执行时间'], // 分类
-                                ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
-                                ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
-                            ]
-                        },
-                        yAxis: {
-                            allowDecimals: false,
-                            title: {
-                                text: '单位(ms)  '
-                                
-                            }
-                        },
-                        tooltip: {
-                            formatter: function () {
-                                return '<b>' + this.series.name
-
-                                    + '</b><br/>' +
-                                    this.point.y + 'ms ' + this.point.name
-
-                                        .toLowerCase();
-                            }
-                        },
-                        plotOptions: {
-                            column: {
-                                dataLabels: {
-                                    enabled: true, // dataLabels设为true
-                                    style: {
-                                        color: '#42abf8'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                }
-            });
+            // $.ajax({
+            //     url: '/movie/ajax/showcategory',
+            //     dataSrc: '',
+            //     success: function (data) {
+            //         var dataSrc;
+            //         dataSrc = data[0];
+            //         $('#genrerelation').text(dataSrc.relation);
+            //         $('#genremix').text(dataSrc.mix);
+            //         if (categorychart !== undefined) {
+            //             categorychart.destroy();
+            //         }
+            //         categorychart = Highcharts.chart('categorycontainer', {
+            //             chart: {
+            //                 type: 'column'
+            //             },
+            //             credits: {
+            //                 enabled: false
+            //             },
+            //             title: {
+            //                 text: '两种模型执行时间比较'
+            //             },
+            //             data: {
+            //                 columns: [
+            //                     [null, '执行时间'], // 分类
+            //                     ['关系型数据仓库存储模型', dataSrc.relation],           // 第一个数据列
+            //                     ['混合型数据存储模型', dataSrc.mix]            // 第二个数据列
+            //                 ]
+            //             },
+            //             yAxis: {
+            //                 allowDecimals: false,
+            //                 title: {
+            //                     text: '单位(ms)  '
+            //
+            //                 }
+            //             },
+            //             tooltip: {
+            //                 formatter: function () {
+            //                     return '<b>' + this.series.name
+            //
+            //                         + '</b><br/>' +
+            //                         this.point.y + 'ms ' + this.point.name
+            //
+            //                             .toLowerCase();
+            //                 }
+            //             },
+            //             plotOptions: {
+            //                 column: {
+            //                     dataLabels: {
+            //                         enabled: true, // dataLabels设为true
+            //                         style: {
+            //                             color: '#42abf8'
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         });
+            //     }
+            // });
         }
 
     }
