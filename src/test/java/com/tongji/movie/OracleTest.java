@@ -6,6 +6,7 @@ import com.tongji.movie.service.SearchMovieWithDirector;
 import com.tongji.movie.service.procTool;
 import net.minidev.json.JSONArray;
 import oracle.jdbc.internal.OracleTypes;
+import org.apache.derby.iapi.sql.execute.ExecAggregator;
 import org.hsqldb.lib.HsqlHeap;
 import org.junit.Test;
 import org.junit.runner.Result;
@@ -38,7 +39,7 @@ public class OracleTest {
 
 	@Autowired
 	ConToOracle conObj;
-	@Test
+
 	public void searchBylanguage(){
 		try{
 			Connection con = conObj.getConnection();
@@ -282,5 +283,32 @@ public class OracleTest {
                      e.printStackTrace();
 //                     return null;
 			}
+	}
+
+
+	@Test
+	public void searchReview(){
+		try{
+			Connection con = conObj.getConnection();
+			CallableStatement proc = con.prepareCall("{call search_review_p(?,?)}");
+
+			proc.setFloat(1,1.0f);
+			proc.registerOutParameter(2,OracleTypes.CURSOR);
+
+			proc.execute();
+			ResultSet set = (ResultSet)proc.getObject(2);
+			while(set.next()){
+				System.out.println(set.getString("title"));
+				System.out.println(set.getString("duration"));
+				System.out.println(set.getString("reviewer_name"));
+				System.out.println(set.getString("summary"));
+				System.out.println(set.getString("score"));
+				System.out.println(set.getString("agree_rate"));
+			}
+		}
+		catch (Exception e){
+			System.out.println("searchRview");
+			e.printStackTrace();
+		}
 	}
 }
