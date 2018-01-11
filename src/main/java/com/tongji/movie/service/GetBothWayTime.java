@@ -102,7 +102,7 @@ public class GetBothWayTime
 		long oracleTime =0;
 		searchMovieWithTime.searchInOracle(dateType,date,year,seasonArray,monthArray,dayArray);
 		oracleTime =System.currentTimeMillis();
-		searchMovieWithTime.search(dateType,date,year,seasonArray,monthArray,dayArray);
+		//searchMovieWithTime.search(dateType,date,year,seasonArray,monthArray,dayArray);
 		long endTime = System.currentTimeMillis();
 
 		JSONObject time = new JSONObject();
@@ -119,7 +119,7 @@ public class GetBothWayTime
 		long oracleTime =0;
 		searchMovieWithRunTime.searchInOracle(time1,time2);
 		oracleTime =System.currentTimeMillis();
-		searchMovieWithRunTime.search(time1,time2);
+		//searchMovieWithRunTime.search(time1,time2);
 		long endTime = System.currentTimeMillis();
 
 		JSONObject time = new JSONObject();
@@ -134,9 +134,9 @@ public class GetBothWayTime
 		long startTime = System.currentTimeMillis();
 		JSONArray result = new JSONArray();
 		long oracleTime =0;
-		JSONArray result1= searchMovieWithCombination.search(1,date,name,actor,director,genre);
+		//JSONArray result1= searchMovieWithCombination.search(1,date,name,actor,director,genre);
 		oracleTime =System.currentTimeMillis();
-		JSONArray result2= searchMovieWithCombination.search(0,date,name,actor,director,genre);
+		//JSONArray result2= searchMovieWithCombination.search(0,date,name,actor,director,genre);
 		long endTime = System.currentTimeMillis();
 
 		JSONObject time = new JSONObject();
