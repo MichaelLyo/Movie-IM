@@ -96,7 +96,6 @@ function Table(id,type) {
                         "year": String(year),
                         "month": String(monthArray),
                         "dateType": String(dateType),
-                        "day": String(dayArray),
                         "date": String(date),
                         "season": String(seasonArray)
                     },
@@ -135,7 +134,6 @@ function Table(id,type) {
                     "year": String(year),
                     "month": String(monthArray),
                     "dateType": String(dateType),
-                    "day": String(dayArray),
                     "date": String(date),
                     "season": String(seasonArray)
                 },
@@ -207,7 +205,6 @@ function Table(id,type) {
                         "year": String(year),
                         "month": String(monthArray),
                         "dateType": String(dateType),
-                        "day": String(dayArray),
                         "date": String(date),
                         "season": String(seasonArray)
                     },
@@ -1828,7 +1825,7 @@ function Table(id,type) {
         }
     }
     }
-    var seasonArray, dayArray, monthArray, date, year, dateType;
+    var seasonArray,  monthArray, date, year, dateType;
 
 function timeChoice() {
     date = document.getElementById('myID').value;
@@ -1861,14 +1858,6 @@ function timeChoice() {
         for (var i = 0, j = 0; i < month.length; i++) {
             if (month[i].checked) {
                 monthArray[j] = month[i].value;
-                j++;
-            }
-        }
-        var day = document.getElementsByName('day');
-        dayArray = [];
-        for (var i = 0, j = 0; i < day.length; i++) {
-            if (day[i].checked) {
-                dayArray[j] = day[i].value;
                 j++;
             }
         }
