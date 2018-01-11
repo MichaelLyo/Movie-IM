@@ -40,34 +40,34 @@ public class GetBothWayTime
 		{
 			searchMovieWithActor.searchInOracle(operation);
 			oracleTime =System.currentTimeMillis();
-			searchMovieWithActor.search(operation);
+			//searchMovieWithActor.search(operation);
 
 		}
 		else if(operation.indexOf("language")>0)
 		{
 			searchMovieWithLanguage.searchLanuage(operation);
 			oracleTime =System.currentTimeMillis();
-			searchMovieWithLanguage.search(operation);
+			//searchMovieWithLanguage.search(operation);
 		}
 		else if(operation.indexOf("director")>0)
 		{
 			searchMovieWithDirector.searchInOracle(operation);
 			oracleTime =System.currentTimeMillis();
-			searchMovieWithDirector.search(operation);
+			//searchMovieWithDirector.search(operation);
 
 		}
 		else if(operation.indexOf("category")>0)
 		{
 			searchMovieWithGenere.searchInOracle(operation);
 			oracleTime =System.currentTimeMillis();
-			searchMovieWithGenere.search(operation);
+			//searchMovieWithGenere.search(operation);
 
 		}
 		else if(operation.indexOf("movieName")>0)
 		{
 			searchMovieWithName.searchInOracle(operation);
 			oracleTime =System.currentTimeMillis();
-			searchMovieWithName.search(operation);
+			//searchMovieWithName.search(operation);
 
 		}
 		//else if(operation.indexOf("combination")>0)
@@ -80,7 +80,7 @@ public class GetBothWayTime
 		{
 			searchMovieWithDirector.searchCoActorInOracle(operation);
 			oracleTime =System.currentTimeMillis();
-			searchMovieWithDirector.searchCoActor(operation);
+			//searchMovieWithDirector.searchCoActor(operation);
 
 		}
 

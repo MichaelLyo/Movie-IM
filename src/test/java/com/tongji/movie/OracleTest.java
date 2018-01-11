@@ -65,6 +65,7 @@ public class OracleTest {
 		}
 	}
 
+	@Test
 	public void selectByGenre(){
 		try{
 			Connection con = conObj.getConnection();
@@ -82,7 +83,6 @@ public class OracleTest {
 				System.out.println(set.getString("director_name"));
 				System.out.println(set.getString("duration"));
 			}
-//			return procTool.getResult(set,"");
 		}
 		catch (Exception e){
 			System.out.println("selectByGenre");

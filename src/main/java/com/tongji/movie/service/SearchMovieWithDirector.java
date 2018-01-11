@@ -3,22 +3,12 @@ import com.tongji.movie.configure.OracleConnector;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import oracle.jdbc.internal.OracleTypes;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.SqlOutParameter;
-import org.springframework.jdbc.core.SqlParameter;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.*;
 
 @Component
 public class SearchMovieWithDirector {
@@ -29,6 +19,9 @@ public class SearchMovieWithDirector {
     JdbcTemplate jdbcTemplate;
     @Autowired
     OracleConnector oracleConnector;
+
+    @Autowired
+    ConToOracle conToOracle;
 
 
     public JSONArray search(String directorName) throws SQLException {
@@ -56,8 +49,26 @@ public class SearchMovieWithDirector {
         return movies;
     }
 
+
     public JSONArray searchInOracle(String directorName) throws SQLException {
+
         JSONArray movies = new JSONArray();
+        try{
+            Connection con = conObj.getConnection();
+            CallableStatement proc = con.prepareCall("{call select_director(?,?)}");
+            proc.setString(1,directorName);
+            proc.registerOutParameter(2, OracleTypes.CURSOR);
+            proc.execute();
+
+            ResultSet set = (ResultSet) proc.getObject(2);
+            movies = procTool.getResult(set,"title","title","director","director_name","runTime","duration","formatName","format_name");
+            //			return procTool.getResult(set,"");
+        }
+        catch (Exception e){
+            System.out.println("selectDirector");
+            e.printStackTrace();
+            //			return null;
+        }
         return movies;
     }
 
