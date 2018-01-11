@@ -10,10 +10,13 @@ public class procTool {
     public static JSONArray getResult(ResultSet set, String... p){
         try{
             JSONArray jsonArray = new JSONArray();
-            for(int i=0 ;i<p.length;i=i+2)
+            while (set.next())
             {
                 JSONObject object = new JSONObject();
-                object.put(p[i], set.getString(p[i+1]));
+                for(int i=0 ;i<p.length;i=i+2)
+                {
+                    object.put(p[i], set.getString(p[i+1]));
+                }
                 jsonArray.add(object);
             }
             set.close();
