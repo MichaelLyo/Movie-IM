@@ -29,8 +29,6 @@ public class ActorMovieController {
         try {
             String[] nameList = actorName.split("\\,");
             HashSet<Object> set = new HashSet<>();
-
-
             for(int i =0; i<nameList.length;i++){
                 JSONArray temp = searchMovieWithActor.searchInOracle(nameList[i]);
                 HashSet tempSet = new HashSet();

@@ -40,7 +40,6 @@ public class SearchMovieWithName {
 
     public JSONArray searchInOracle(String title) throws SQLException {
         JSONArray movies = new JSONArray();
-
         return movies;
     }
 

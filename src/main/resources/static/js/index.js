@@ -306,13 +306,12 @@ function Table(id,type) {
                 ajax: {
                     type: "post",
                     url: "/movie/name/search?name=" + moviename,
-
                     dataSrc: ""
                 },
                 columns: [
                     {data: "title"},
                     {data: "releaseDate", width: "20%"},
-                    {data: "runTime",width: "10%"},
+                    {data: "duration",width: "10%"},
                     {data: "director"},
                     {data: "actor"},
                     {data:"studio"}
