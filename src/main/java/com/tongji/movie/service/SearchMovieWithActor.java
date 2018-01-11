@@ -1,20 +1,18 @@
 package com.tongji.movie.service;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
+import oracle.jdbc.internal.OracleTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 @Component
 public class SearchMovieWithActor
 {
     @Autowired
-    private ConToHive conObj;
+    ConToOracle conObj;
 
 
 
@@ -40,8 +38,14 @@ public class SearchMovieWithActor
     }
 
     public JSONArray searchInOracle(String actorName) throws SQLException {
-        JSONArray movies = new JSONArray();
-        return movies;
+        System.out.println(actorName);
+        Connection con = conObj.getConnection();
+        CallableStatement proc = con.prepareCall("{call select_actor(?,?)}");
+        proc.setString(1,actorName);
+        proc.registerOutParameter(2, OracleTypes.CURSOR);
+        proc.execute();
+        ResultSet set = (ResultSet) proc.getObject(2);
+        return procTool.getResult(set,"title","title","actor","actor_name","releaseDate","release_date","runTime","duration","type","genre_name");
     }
 
 

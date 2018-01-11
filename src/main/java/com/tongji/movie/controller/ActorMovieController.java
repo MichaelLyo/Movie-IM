@@ -30,6 +30,7 @@ public class ActorMovieController {
             String[] nameList = actorName.split("\\,");
             HashSet<Object> set = new HashSet<>();
             for(int i =0; i<nameList.length;i++){
+                System.out.println(nameList[i]);
                 JSONArray temp = searchMovieWithActor.searchInOracle(nameList[i]);
                 HashSet tempSet = new HashSet();
                 for(Object o:temp){
@@ -55,27 +56,5 @@ public class ActorMovieController {
         }
     }
 
-    @RequestMapping(value = "/starring",method = RequestMethod.POST)
-    public JSONArray searchByStarring(String actorName)
-    {
-        JSONArray jsonArray = new JSONArray();
 
-        try {
-            JSONArray tempArray = new JSONArray();
-            tempArray = searchMovieWithActor.searchStarringInOracle(actorName);
-            HashSet<Object> set = new HashSet<>();
-            for(Object o : tempArray){
-                if(!set.contains(o))
-                    set.add(o);
-            }
-            jsonArray.addAll(set);
-            return jsonArray;
-
-        } catch (SQLException e) {
-            System.out.println("按名字查询电影失败");
-            jsonArray = null;
-            e.printStackTrace();
-            return jsonArray;
-        }
-    }
 }
