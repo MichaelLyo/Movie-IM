@@ -38,6 +38,7 @@ public class OracleTest {
 
 	@Autowired
 	ConToOracle conObj;
+	@Test
 	public void searchBylanguage(){
 		try{
 			Connection con = conObj.getConnection();
