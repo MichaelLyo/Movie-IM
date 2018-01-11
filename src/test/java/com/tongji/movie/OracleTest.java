@@ -150,6 +150,7 @@ public class OracleTest {
 		}
 	}
 
+	@Test
 	public void selectActor()
 	{
 		try{
@@ -286,7 +287,7 @@ public class OracleTest {
 	}
 
 
-	@Test
+
 	public void searchReview(){
 		try{
 			Connection con = conObj.getConnection();
