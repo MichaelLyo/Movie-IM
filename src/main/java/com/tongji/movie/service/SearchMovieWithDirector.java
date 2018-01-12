@@ -3,22 +3,12 @@ import com.tongji.movie.configure.OracleConnector;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import oracle.jdbc.internal.OracleTypes;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.SqlOutParameter;
-import org.springframework.jdbc.core.SqlParameter;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.*;
 
 @Component
 public class SearchMovieWithDirector {
@@ -29,6 +19,9 @@ public class SearchMovieWithDirector {
     JdbcTemplate jdbcTemplate;
     @Autowired
     OracleConnector oracleConnector;
+
+    @Autowired
+    ConToOracle conToOracle;
 
 
     public JSONArray search(String directorName) throws SQLException {
@@ -56,8 +49,26 @@ public class SearchMovieWithDirector {
         return movies;
     }
 
+
     public JSONArray searchInOracle(String directorName) throws SQLException {
+
         JSONArray movies = new JSONArray();
+        try{
+            Connection con = conToOracle.getConnection();
+            CallableStatement proc = con.prepareCall("{call select_director(?,?)}");
+            proc.setString(1,directorName);
+            proc.registerOutParameter(2, OracleTypes.CURSOR);
+            proc.execute();
+
+            ResultSet set = (ResultSet) proc.getObject(2);
+            movies = procTool.getResult(set,"title","title","director","director_name","releaseDate","release_date","runTime","duration","formatName","format_name");
+            //			return procTool.getResult(set,"");
+        }
+        catch (Exception e){
+            System.out.println("selectDirector");
+            e.printStackTrace();
+            //			return null;
+        }
         return movies;
     }
 
@@ -88,21 +99,20 @@ public class SearchMovieWithDirector {
     public JSONArray searchCoActorInOracle(String directorName) throws SQLException
     {
         JSONArray movies = new JSONArray();
-        Connection con = oracleConnector.getConnection();
-        PreparedStatement pstmt = con.prepareStatement("select a.movie_id,a.title,d.name as director_name,g.name as genre_name,ac.name as actor_name from amazon_fact a inner join director d on (a.movie_id = d.movie_id) inner JOIN genre g on (a.movie_id = g.movie_id) inner join actor ac on (a.movie_id = ac.movie_id) WHERE d.name=?");
-        pstmt.setString(1,directorName);
-        ResultSet set =  pstmt.executeQuery();
+        try{
+            Connection con = conToOracle.getConnection();
+            CallableStatement proc = con.prepareCall("{call select_coactor(?,?)}");
+            proc.setString(1,directorName);
+            proc.registerOutParameter(2,OracleTypes.CURSOR);
+            proc.execute();
 
-        while(set.next()){
-
-            JSONObject jsonObject = new JSONObject();
-
-            jsonObject.put("movieId",set.getString("movie_id"));
-            jsonObject.put("title",set.getString("title"));
-            jsonObject.put("director",set.getString("director_name"));
-            jsonObject.put("actor",set.getString("actor_name"));
-            jsonObject.put("genre",set.getString("genre_name"));
-            movies.add(jsonObject);
+            ResultSet set = (ResultSet) proc.getObject(2);
+            movies = procTool.getResult(set,"title","title","director","director_name","actor","actor_name","genre","genre_name");
+        }
+        catch (Exception e){
+            System.out.println("selectCoActor");
+            e.printStackTrace();
+            //			return null;
         }
         return movies;
     }

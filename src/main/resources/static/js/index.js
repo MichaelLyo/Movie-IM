@@ -1235,7 +1235,7 @@ function Table(id,type) {
                     columns: [
                         {data: "title"},
                         {data: "runTime"},
-                        {data: "publisher"},
+                        {data: "director"},
                         {data: "releaseDate",width:"10%"}
                     ],
                     "bProcessing": true,
@@ -1398,6 +1398,8 @@ function Table(id,type) {
             commenturl = "/movie/comment/moderate?movieName=";
         if (type === 'negative')
             commenturl = "/movie/comment/negative?movieName=";
+        if (type === 'all')
+            commenturl = "/movie/comment/all?movieName=";
         if (mvCommenttb=== null) {
             mvCommenttb = $('#comment').DataTable({
                 ajax: {
