@@ -20,14 +20,12 @@ public class TimeMovieController {
     @RequestMapping(value = "/search",method = RequestMethod.POST)
     public JSONArray searchByTime(@RequestParam(value = "year", required = true) String year,
                                   @RequestParam(value = "month",required = true) String[]monthArray,
-                                  @RequestParam(value = "day", required = true) String[] dayArray,
                                   @RequestParam(value = "dateType",required = true) String dateType,
-                                  @RequestParam(value = "date", required = true) String date,
-                                  @RequestParam(value = "season", required = true) String[] seasonArray)
+                                  @RequestParam(value = "date", required = true) String date)
     {
         JSONArray jsonArray;
         try {
-            jsonArray = searchMovieWithTime.searchInOracle(dateType,date,year,seasonArray,monthArray,dayArray);
+            jsonArray = searchMovieWithTime.searchInOracle(dateType,date,year,monthArray);
         } catch (SQLException e) {
             System.out.println("按时间查询电影失败");
             jsonArray = null;
