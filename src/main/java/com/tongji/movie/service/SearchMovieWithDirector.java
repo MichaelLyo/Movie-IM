@@ -54,14 +54,14 @@ public class SearchMovieWithDirector {
 
         JSONArray movies = new JSONArray();
         try{
-            Connection con = conObj.getConnection();
+            Connection con = conToOracle.getConnection();
             CallableStatement proc = con.prepareCall("{call select_director(?,?)}");
             proc.setString(1,directorName);
             proc.registerOutParameter(2, OracleTypes.CURSOR);
             proc.execute();
 
             ResultSet set = (ResultSet) proc.getObject(2);
-            movies = procTool.getResult(set,"title","title","director","director_name","runTime","duration","formatName","format_name");
+            movies = procTool.getResult(set,"title","title","director","director_name","releaseDate","release_date","runTime","duration","formatName","format_name");
             //			return procTool.getResult(set,"");
         }
         catch (Exception e){
@@ -99,21 +99,20 @@ public class SearchMovieWithDirector {
     public JSONArray searchCoActorInOracle(String directorName) throws SQLException
     {
         JSONArray movies = new JSONArray();
-        Connection con = oracleConnector.getConnection();
-        PreparedStatement pstmt = con.prepareStatement("select a.movie_id,a.title,d.name as director_name,g.name as genre_name,ac.name as actor_name from amazon_fact a inner join director d on (a.movie_id = d.movie_id) inner JOIN genre g on (a.movie_id = g.movie_id) inner join actor ac on (a.movie_id = ac.movie_id) WHERE d.name=?");
-        pstmt.setString(1,directorName);
-        ResultSet set =  pstmt.executeQuery();
+        try{
+            Connection con = conToOracle.getConnection();
+            CallableStatement proc = con.prepareCall("{call select_coactor(?,?)}");
+            proc.setString(1,directorName);
+            proc.registerOutParameter(2,OracleTypes.CURSOR);
+            proc.execute();
 
-        while(set.next()){
-
-            JSONObject jsonObject = new JSONObject();
-
-            jsonObject.put("movieId",set.getString("movie_id"));
-            jsonObject.put("title",set.getString("title"));
-            jsonObject.put("director",set.getString("director_name"));
-            jsonObject.put("actor",set.getString("actor_name"));
-            jsonObject.put("genre",set.getString("genre_name"));
-            movies.add(jsonObject);
+            ResultSet set = (ResultSet) proc.getObject(2);
+            movies = procTool.getResult(set,"title","title","director","director_name","actor","actor_name","genre","genre_name");
+        }
+        catch (Exception e){
+            System.out.println("selectCoActor");
+            e.printStackTrace();
+            //			return null;
         }
         return movies;
     }

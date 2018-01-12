@@ -2,13 +2,11 @@ package com.tongji.movie.service;
 
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
+import oracle.jdbc.internal.OracleTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 @Component
@@ -48,6 +46,23 @@ public class SearchMovieWithRunTime {
 
     public JSONArray searchInOracle(String time1, String time2) throws SQLException {
         JSONArray movies = new JSONArray();
+        try{
+            Connection con =  conObj.getConnection();
+            CallableStatement proc = con.prepareCall("{call search_by_duration_p(?,?,?)}");
+
+            proc.setInt(1,Integer.parseInt(time1));
+            proc.setInt(2,Integer.parseInt(time2));
+            proc.registerOutParameter(3, OracleTypes.CURSOR);
+            proc.execute();
+
+            ResultSet set = (ResultSet) proc.getObject(3);
+            movies = procTool.getResult(set,"title","title","runTime","duration","director","director_name","releaseDate","release_date");
+        }
+        catch (Exception e){
+            System.out.println("searchByDuration");
+            e.printStackTrace();
+            //			return null;
+        }
         return movies;
     }
 }

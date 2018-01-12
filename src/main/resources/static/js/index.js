@@ -1278,7 +1278,7 @@ function Table(id,type) {
                     columns: [
                         {data: "title"},
                         {data: "runTime"},
-                        {data: "publisher"},
+                        {data: "director"},
                         {data: "releaseDate",width:"10%"}
                     ],
                     "bProcessing": true,
