@@ -18,7 +18,7 @@ public class LanguageMovieController {
         System.out.println(language);
         JSONArray jsonArray;
         try {
-            jsonArray = searchMovieWithLanguage.searchInOracle('%'+language+'%');
+            jsonArray = searchMovieWithLanguage.searchInOracle(language);
         } catch (SQLException e) {
             System.out.println("按语种查询电影失败");
             jsonArray = null;

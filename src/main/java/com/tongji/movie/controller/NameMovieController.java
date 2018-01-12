@@ -23,7 +23,7 @@ public class NameMovieController {
     public JSONArray searchByName(String name){
         JSONArray jsonArray;
             try {
-                jsonArray = searchMovieWithName.searchInOracle('%'+name+'%');
+                jsonArray = searchMovieWithName.searchInOracle(name);
             } catch (SQLException e) {
             System.out.println("按名字查询电影失败");
             jsonArray = null;

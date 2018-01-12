@@ -100,7 +100,7 @@ public class GetBothWayTime
 		long startTime = System.currentTimeMillis();
 		JSONArray result = new JSONArray();
 		long oracleTime =0;
-		searchMovieWithTime.searchInOracle(dateType,date,year,seasonArray,monthArray,dayArray);
+		searchMovieWithTime.searchInOracle(dateType,date,year,monthArray);
 		oracleTime =System.currentTimeMillis();
 		//searchMovieWithTime.search(dateType,date,year,seasonArray,monthArray,dayArray);
 		long endTime = System.currentTimeMillis();
