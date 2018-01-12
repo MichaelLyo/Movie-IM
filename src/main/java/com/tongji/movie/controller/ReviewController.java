@@ -32,6 +32,9 @@ public class ReviewController
 			case "negative":
 				level=1;
 				break;
+			case "all":
+				level = 2;
+				break;
 			default:
 				break;
 		}

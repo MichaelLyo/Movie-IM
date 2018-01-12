@@ -1441,6 +1441,8 @@ function Table(id,type) {
             commenturl = "/movie/comment/moderate?movieName=";
         if (type === 'negative')
             commenturl = "/movie/comment/negative?movieName=";
+        if (type === 'all')
+            commenturl = "/movie/comment/all?movieName=";
         if (mvCommenttb=== null) {
             mvCommenttb = $('#comment').DataTable({
                 ajax: {
