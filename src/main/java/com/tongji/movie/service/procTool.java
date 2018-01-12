@@ -8,9 +8,12 @@ import java.util.HashSet;
 
 public class procTool {
     public static JSONArray getResult(ResultSet set, String... p){
+        int index=0;
         try{
             JSONArray jsonArray = new JSONArray();
             while(set.next()){
+                if( index++>1000)
+                    break;
                 JSONObject object = new JSONObject();
                 for(int i=0 ;i<p.length;i=i+2)
                 {

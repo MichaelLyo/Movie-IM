@@ -1,18 +1,16 @@
 package com.tongji.movie.service;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
+import oracle.jdbc.internal.OracleTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 @Component
 public class SearchMovieWithLanguage {
     @Autowired
-    private ConToHive conObj;
+    private ConToOracle conObj;
 
 
     public JSONArray search(String language) throws SQLException {
@@ -36,8 +34,13 @@ public class SearchMovieWithLanguage {
     }
 
     public JSONArray searchInOracle(String language) throws SQLException {
-        JSONArray movies = new JSONArray();
-        return movies;
+        Connection con = conObj.getConnection();
+        CallableStatement proc = con.prepareCall("{call search_by_language_p(?,?)}");
+        proc.setString(1,language);
+        proc.registerOutParameter(2, OracleTypes.CURSOR);
+        proc.execute();
+        ResultSet set =(ResultSet)proc.getObject(2);
+        return procTool.getResult(set,"title","title","language","language_name","releaseDate","release_date","director","director_name");
     }
 
 
