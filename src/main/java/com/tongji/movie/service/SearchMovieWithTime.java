@@ -219,7 +219,7 @@ public class SearchMovieWithTime {
 
             proc.execute();
             set = (ResultSet) proc.getObject(5);
-            movies.addAll(procTool.getResult(set, "title", "title", "publicationDate", "publication_date", "releaseDate", "release_date", "runtime", "duration", "director", "director_name","formatName","format_name"));
+            movies.addAll(procTool.getResult(set, "title", "title", "publicationDate", "publication_date", "releaseDate", "release_date", "runTime", "duration", "director", "director_name","formatName","format_name"));
         }
 
         if (0 == monthArray.length && !date.isEmpty()) {
@@ -231,7 +231,7 @@ public class SearchMovieWithTime {
 
             proc.execute();
             set = (ResultSet) proc.getObject(5);
-            movies.addAll(procTool.getResult(set, "title", "title", "publicationDate", "publication_date", "releaseDate", "release_date", "runtime", "duration", "director", "director_name","formatName","format_name"));
+            movies.addAll(procTool.getResult(set, "title", "title", "publicationDate", "publication_date", "releaseDate", "release_date", "runTime", "duration", "director", "director_name","formatName","format_name"));
         }
         return movies;
     }
