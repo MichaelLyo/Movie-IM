@@ -5,6 +5,7 @@ import com.sun.org.apache.regexp.internal.RE;
 
 import com.tongji.movie.service.GetBothWayTime;
 
+import com.tongji.movie.service.OperationTool;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
@@ -28,10 +29,10 @@ public class OperationController
     GetBothWayTime getBothWayTime;
 
     @RequestMapping(value = "/ajax/{operation}",method = {RequestMethod.GET, RequestMethod.POST})
-    public JSONArray showHistogram(@PathVariable String operation) throws SQLException
+    public JSONArray showHistogram(@PathVariable String operation,String searchStr) throws SQLException
     {
-        //System.out.println(operation);
-        return getBothWayTime.getBothWayTime(operation);
+        System.out.println(searchStr);
+        return getBothWayTime.getBothWayTime(operation,searchStr);
     }
 
     @RequestMapping(value = "/multiple/showtime")
@@ -69,6 +70,12 @@ public class OperationController
         time.put("relation", 30);
         time.put("mix",40);
         result.add(time);
+        return result;
+    }
+    @RequestMapping(value = "/multiple/showcomment")
+    public JSONArray showCommentTime(String type,String movieName)
+    {
+        JSONArray result = getBothWayTime.getBothWayTimeOfComment(movieName, OperationTool.getLevelOfReview(type));
         return result;
     }
 }

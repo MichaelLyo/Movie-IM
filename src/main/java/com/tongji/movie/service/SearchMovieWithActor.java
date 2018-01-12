@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
-import java.util.List;
 
 @Component
 public class SearchMovieWithActor
@@ -45,7 +44,7 @@ public class SearchMovieWithActor
         proc.registerOutParameter(2, OracleTypes.CURSOR);
         proc.execute();
         ResultSet set = (ResultSet) proc.getObject(2);
-        return procTool.getResult(set,"title","title","actor","actor_name","releaseDate","release_date","runTime","duration","type","genre_name");
+        return OperationTool.getResult(set,"title","title","actor","actor_name","releaseDate","release_date","runTime","duration","type","genre_name");
     }
 
 

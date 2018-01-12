@@ -6,7 +6,8 @@ import net.minidev.json.JSONObject;
 import java.sql.ResultSet;
 import java.util.HashSet;
 
-public class procTool {
+public class OperationTool
+{
     public static JSONArray getResult(ResultSet set, String... p){
         int index=0;
         try{
@@ -25,9 +26,31 @@ public class procTool {
             return jsonArray;
         }
         catch (Exception e){
-            System.out.println("procTool");
+            System.out.println("OperationTool");
             e.printStackTrace();
             return null;
         }
+    }
+    public static int getLevelOfReview(String type)
+    {
+        int level=-2;
+        switch (type)
+        {
+            case "positive":
+                level =1;
+                break;
+            case "moderate":
+                level=0;
+                break;
+            case "negative":
+                level=1;
+                break;
+            case "all":
+                level = 2;
+                break;
+            default:
+                break;
+        }
+        return level;
     }
 }

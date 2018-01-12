@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
-import java.util.List;
 
 @Component
 public class SearchMovieWithTime {
@@ -219,7 +218,7 @@ public class SearchMovieWithTime {
 
             proc.execute();
             set = (ResultSet) proc.getObject(5);
-            movies.addAll(procTool.getResult(set, "title", "title", "publicationDate", "publication_date", "releaseDate", "release_date", "runTime", "duration", "director", "director_name","formatName","format_name"));
+            movies.addAll(OperationTool.getResult(set, "title", "title", "publicationDate", "publication_date", "releaseDate", "release_date", "runTime", "duration", "director", "director_name","formatName","format_name"));
         }
 
         if (0 == monthArray.length && !date.isEmpty()) {
@@ -231,7 +230,7 @@ public class SearchMovieWithTime {
 
             proc.execute();
             set = (ResultSet) proc.getObject(5);
-            movies.addAll(procTool.getResult(set, "title", "title", "publicationDate", "publication_date", "releaseDate", "release_date", "runTime", "duration", "director", "director_name","formatName","format_name"));
+            movies.addAll(OperationTool.getResult(set, "title", "title", "publicationDate", "publication_date", "releaseDate", "release_date", "runTime", "duration", "director", "director_name","formatName","format_name"));
         }
         return movies;
     }

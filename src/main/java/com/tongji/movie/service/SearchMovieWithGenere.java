@@ -2,12 +2,10 @@ package com.tongji.movie.service;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import oracle.jdbc.internal.OracleTypes;
-import org.mortbay.util.ajax.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
-import java.util.List;
 
 @Component
 public class SearchMovieWithGenere {
@@ -46,7 +44,7 @@ public class SearchMovieWithGenere {
         proc.execute();
 
         ResultSet set = (ResultSet) proc.getObject(2);
-        movies = procTool.getResult(set,"title","title","releaseDate","release_date","director","director_name","runTime","duration","type","genre_name");
+        movies = OperationTool.getResult(set,"title","title","releaseDate","release_date","director","director_name","runTime","duration","type","genre_name");
         return movies;
     }
 }

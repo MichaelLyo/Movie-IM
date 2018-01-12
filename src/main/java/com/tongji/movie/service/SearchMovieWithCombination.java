@@ -4,12 +4,10 @@ import com.tongji.movie.configure.OracleConnector;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import oracle.jdbc.internal.OracleTypes;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
-import java.util.List;
 
 @Component
 public class SearchMovieWithCombination {
@@ -142,7 +140,7 @@ public class SearchMovieWithCombination {
         proc.execute();
 
         ResultSet set = (ResultSet)proc.getObject(6);
-        return procTool.getResult(set,"title","title","actor","actor_name" ,"director","director_name", "genre","genre_name","releaseDate","release_date","runTime","duration");
+        return OperationTool.getResult(set,"title","title","actor","actor_name" ,"director","director_name", "genre","genre_name","releaseDate","release_date","runTime","duration");
     }
 
 

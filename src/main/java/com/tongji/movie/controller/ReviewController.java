@@ -1,6 +1,7 @@
 package com.tongji.movie.controller;
 
 import com.tongji.movie.service.SearchReview;
+import com.tongji.movie.service.OperationTool;
 import net.minidev.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,24 +21,7 @@ public class ReviewController
 
 	@RequestMapping(value = "/{type}",method = RequestMethod.POST)
 	public JSONArray searchByMovieName(String movieName,@PathVariable String type){
-		int level=-2;
-		switch (type)
-		{
-			case "positive":
-				level =1;
-				break;
-			case "moderate":
-				level=0;
-				break;
-			case "negative":
-				level=1;
-				break;
-			case "all":
-				level = 2;
-				break;
-			default:
-				break;
-		}
-		return searchReview.searchReview(movieName, level);
+		int level = OperationTool.getLevelOfReview(type);
+		return searchReview.searchReviewInOracle(movieName, level);
 	}
 }

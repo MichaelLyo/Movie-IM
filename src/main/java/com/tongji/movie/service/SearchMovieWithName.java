@@ -3,13 +3,10 @@ package com.tongji.movie.service;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import oracle.jdbc.internal.OracleTypes;
-import org.hibernate.secure.internal.JaccSecurityListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.xml.transform.Result;
 import java.sql.*;
-import java.util.List;
 
 @Component
 public class SearchMovieWithName {
@@ -45,7 +42,7 @@ public class SearchMovieWithName {
 
         proc.execute();
         ResultSet set = (ResultSet)proc.getObject(2);
-        return procTool.getResult(set, "title","title","releaseDate","release_date","duration","duration","director","director_name","actor","actor_name","studio","studio_name");
+        return OperationTool.getResult(set, "title","title","releaseDate","release_date","duration","duration","director","director_name","actor","actor_name","studio","studio_name");
     }
 
 }

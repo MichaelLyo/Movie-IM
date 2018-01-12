@@ -1,37 +1,17 @@
 package com.tongji.movie;
 
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import com.tongji.movie.service.ConToOracle;
-import com.tongji.movie.service.SearchMovieWithDirector;
-import com.tongji.movie.service.procTool;
-import net.minidev.json.JSONArray;
 import oracle.jdbc.internal.OracleTypes;
-import org.apache.derby.iapi.sql.execute.ExecAggregator;
-import org.hsqldb.lib.HsqlHeap;
 import org.junit.Test;
-import org.junit.runner.Result;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.SqlOutParameter;
-import org.springframework.jdbc.core.SqlParameter;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * Created by LSL on 2018/1/6
  */
 import java.sql.*;
-import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -55,7 +35,7 @@ public class OracleTest {
 				System.out.println(set.getString("release_date"));
 				System.out.println(set.getString("director_name"));
 			}
-//			return procTool.getResult(set,"");
+//			return OperationTool.getResult(set,"");
 
 		}
 		catch(Exception e){
@@ -109,7 +89,7 @@ public class OracleTest {
 				System.out.println(set.getString("director_name"));
 				System.out.println(set.getString("release_date"));
 			}
-//			return procTool.getResult(set,"title","title","duration","duration","director_name","director_name","release_date","release_date");
+//			return OperationTool.getResult(set,"title","title","duration","duration","director_name","director_name","release_date","release_date");
 	}
 	catch (Exception e){
 			System.out.println("searchByDuration");
@@ -141,7 +121,7 @@ public class OracleTest {
 				System.out.println(set.getString("duration"));
 
 			}
-//			return procTool.getResult(set,"title","title","director_name","director_name","actor_name","actor_name","genre_name","genre_name","release_date","release_date");
+//			return OperationTool.getResult(set,"title","title","director_name","director_name","actor_name","actor_name","genre_name","genre_name","release_date","release_date");
 		}
 		catch (Exception e){
 			System.out.println("searchAdvance");
@@ -168,7 +148,7 @@ public class OracleTest {
 				System.out.println(set.getString("duration"));
 				System.out.println(set.getString("genre_name"));
 			}
-//			return procTool.getResult(set,"");
+//			return OperationTool.getResult(set,"");
 		}
 		catch (Exception e){
 			System.out.println("selectActor");
@@ -193,7 +173,7 @@ public class OracleTest {
 				System.out.println(set.getString("actor_name"));
 				System.out.println(set.getString("genre_name"));
 			}
-//			return procTool.getResult(set,"");
+//			return OperationTool.getResult(set,"");
 		}
 		catch (Exception e){
 			System.out.println("selectCoActor");
@@ -219,7 +199,7 @@ public class OracleTest {
 				System.out.println(set.getString("duration"));
 				System.out.println(set.getString("format_name"));
 			}
-//			return procTool.getResult(set,"");
+//			return OperationTool.getResult(set,"");
 		}
 		catch (Exception e){
 			System.out.println("selectDirector");
@@ -249,7 +229,7 @@ public class OracleTest {
 				System.out.println(set.getString("director_name"));
 				System.out.println(set.getString("format_name"));
 			}
-//			return procTool.getResult(set,"title","title","release_date","release_date","duration","duration","director","director","studio","studio");
+//			return OperationTool.getResult(set,"title","title","release_date","release_date","duration","duration","director","director","studio","studio");
 		}
 		catch (Exception e){
 			System.out.println("selectTime");
@@ -277,7 +257,7 @@ public class OracleTest {
 					System.out.println(set.getString("actor_name"));
 					System.out.println(set.getString("studio_name"));
 				}
-//				return procTool.getResult(set, "title","title","release_date","release_date","duration","duration","director","director","studio","studio");
+//				return OperationTool.getResult(set, "title","title","release_date","release_date","duration","duration","director","director","studio","studio");
 			}
 			catch (Exception e){
                      System.out.println("selectMovieByName");

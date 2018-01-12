@@ -3,7 +3,6 @@ import com.tongji.movie.configure.OracleConnector;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import oracle.jdbc.internal.OracleTypes;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -61,8 +60,8 @@ public class SearchMovieWithDirector {
             proc.execute();
 
             ResultSet set = (ResultSet) proc.getObject(2);
-            movies = procTool.getResult(set,"title","title","director","director_name","releaseDate","release_date","runTime","duration","formatName","format_name");
-            //			return procTool.getResult(set,"");
+            movies = OperationTool.getResult(set,"title","title","director","director_name","releaseDate","release_date","runTime","duration","formatName","format_name");
+            //			return OperationTool.getResult(set,"");
         }
         catch (Exception e){
             System.out.println("selectDirector");
@@ -107,7 +106,7 @@ public class SearchMovieWithDirector {
             proc.execute();
 
             ResultSet set = (ResultSet) proc.getObject(2);
-            movies = procTool.getResult(set,"title","title","director","director_name","actor","actor_name","genre","genre_name");
+            movies = OperationTool.getResult(set,"title","title","director","director_name","actor","actor_name","genre","genre_name");
         }
         catch (Exception e){
             System.out.println("selectCoActor");

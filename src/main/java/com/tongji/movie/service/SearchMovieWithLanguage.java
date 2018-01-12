@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
-import java.util.List;
+
 @Component
 public class SearchMovieWithLanguage {
     @Autowired
@@ -40,7 +40,7 @@ public class SearchMovieWithLanguage {
         proc.registerOutParameter(2, OracleTypes.CURSOR);
         proc.execute();
         ResultSet set =(ResultSet)proc.getObject(2);
-        return procTool.getResult(set,"title","title","language","language_name","releaseDate","release_date","director","director_name");
+        return OperationTool.getResult(set,"title","title","language","language_name","releaseDate","release_date","director","director_name");
     }
 
 

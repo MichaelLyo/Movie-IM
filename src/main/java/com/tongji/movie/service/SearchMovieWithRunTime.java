@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
-import java.util.List;
 
 @Component
 public class SearchMovieWithRunTime {
@@ -56,7 +55,7 @@ public class SearchMovieWithRunTime {
             proc.execute();
 
             ResultSet set = (ResultSet) proc.getObject(3);
-            movies = procTool.getResult(set,"title","title","runTime","duration","director","director_name","releaseDate","release_date");
+            movies = OperationTool.getResult(set,"title","title","runTime","duration","director","director_name","releaseDate","release_date");
         }
         catch (Exception e){
             System.out.println("searchByDuration");

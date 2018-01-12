@@ -18,7 +18,7 @@ public class SearchReview
 	@Autowired
 	ConToOracle conToOracle;
 
-	public JSONArray searchReview(String movieName,int level){
+	public JSONArray searchReviewInOracle(String movieName, int level){
 		JSONArray result = new JSONArray();
 		try{
 			Connection con = conToOracle.getConnection();
@@ -30,10 +30,10 @@ public class SearchReview
 
 			proc.execute();
 			ResultSet set = (ResultSet)proc.getObject(3);
-			result = procTool.getResult(set,"title","title","userName","reviewer_name","summary","summary","score","score","helpfulness","agree_rate");
+			result = OperationTool.getResult(set,"title","title","userName","reviewer_name","summary","summary","score","score","helpfulness","agree_rate");
 		}
 		catch (Exception e){
-			System.out.println("searchReview error!");
+			System.out.println("searchReviewInOracle error!");
 			e.printStackTrace();
 		}
 		return result;
