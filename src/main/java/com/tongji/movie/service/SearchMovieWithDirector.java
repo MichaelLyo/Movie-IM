@@ -21,39 +21,22 @@ public class SearchMovieWithDirector {
 
     @Autowired
     ConToOracle conToOracle;
+    @Autowired
+    ConnectToTimesten connectToTimesten;
 
 
-    public JSONArray search(String directorName) throws SQLException {
-        Connection con = conObj.getConnection();
-        JSONArray movies = new JSONArray();
-        PreparedStatement pstmt = con.prepareStatement("select * from AmazonFact  a join director g on (a.movieid = g.movieid)   WHERE g.name=?");
-        pstmt.setString(1,directorName);
-        ResultSet set =  pstmt.executeQuery();
-        int i = 0;
-        while(set.next()){
-            i++;
-            if(i>100)
-                break;
-            JSONObject movie = new JSONObject();
-            movie.put("movieId",set.getString("movieId"));
-            movie.put("title",set.getString("title"));
-            movie.put("releaseDate",set.getString("releaseDate"));
-            movie.put("runTime",set.getString("runTime"));
-            movie.put("studio",set.getString("studio"));
-            movie.put("publicationDate",set.getString("publicationDate"));
-            movie.put("publisher",set.getString("publisher"));
-            movie.put("director",directorName);
-            movies.add(movie);
+
+    public JSONArray searchInOracle(String directorName, Boolean isOracle) throws SQLException {
+        Connection con = null;
+        if(isOracle){
+            con = conObj.getConnection();
         }
-        return movies;
-    }
-
-
-    public JSONArray searchInOracle(String directorName) throws SQLException {
+        else{
+            con = connectToTimesten.getConnection();
+        }
 
         JSONArray movies = new JSONArray();
         try{
-            Connection con = conToOracle.getConnection();
             CallableStatement proc = con.prepareCall("{call select_director(?,?)}");
             proc.setString(1,directorName);
             proc.registerOutParameter(2, OracleTypes.CURSOR);
@@ -71,35 +54,20 @@ public class SearchMovieWithDirector {
         return movies;
     }
 
-    public JSONArray searchCoActor(String directorName) throws SQLException
-    {
-        Connection con = conObj.getConnection();
-        JSONArray movies = new JSONArray();
-        PreparedStatement pstmt = con.prepareStatement("select * from AmazonFact a inner join director d on (a.movieid = d.movieid) inner JOIN Generes g on (a.movieid = g.movieid) inner join actor ac on (a.movieid = ac.movieid) WHERE d.name=?");
-        pstmt.setString(1,directorName);
-        ResultSet set =  pstmt.executeQuery();
-        int i = 0;
-        while(set.next()){
-            i++;
-            if(i>100)
-                break;
-            JSONObject movie = new JSONObject();
 
-            movie.put("movieId",set.getString("movieId"));
-            movie.put("title",set.getString("title"));
-            movie.put("director",set.getString("d.name"));
-            movie.put("actor",set.getString("ac.name"));
-            movie.put("genre",set.getString("g.name"));
-            movies.add(movie);
+
+    public JSONArray searchCoActorInOracle(String directorName,Boolean isOracle) throws SQLException
+    {
+        Connection con = null;
+        JSONArray movies = new JSONArray();
+        if(isOracle){
+            con = conObj.getConnection();
         }
-        return movies;
-    }
-
-    public JSONArray searchCoActorInOracle(String directorName) throws SQLException
-    {
-        JSONArray movies = new JSONArray();
+        else {
+            con = connectToTimesten.getConnection();
+        }
         try{
-            Connection con = conToOracle.getConnection();
+
             CallableStatement proc = con.prepareCall("{call select_coactor(?,?)}");
             proc.setString(1,directorName);
             proc.registerOutParameter(2,OracleTypes.CURSOR);

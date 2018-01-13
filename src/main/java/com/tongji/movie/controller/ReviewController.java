@@ -22,6 +22,6 @@ public class ReviewController
 	@RequestMapping(value = "/{type}",method = RequestMethod.POST)
 	public JSONArray searchByMovieName(String movieName,@PathVariable String type){
 		int level = OperationTool.getLevelOfReview(type);
-		return searchReview.searchReviewInOracle(movieName, level);
+		return searchReview.searchReviewInOracle(movieName, level,true);
 	}
 }

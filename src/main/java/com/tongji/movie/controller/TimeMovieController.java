@@ -25,7 +25,7 @@ public class TimeMovieController {
     {
         JSONArray jsonArray;
         try {
-            jsonArray = searchMovieWithTime.searchInOracle(dateType,date,year,monthArray);
+            jsonArray = searchMovieWithTime.searchInOracle(dateType,date,year,monthArray,true);
         } catch (SQLException e) {
             System.out.println("按时间查询电影失败");
             jsonArray = null;

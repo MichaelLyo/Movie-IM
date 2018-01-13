@@ -43,7 +43,7 @@ public class OperationController
                                          @RequestParam(value = "date", required = true) String date,
                                          @RequestParam(value = "season", required = true) String[] seasonArray) throws SQLException
     {
-        return getBothWayTime.getBothWayTimeOfDate(dateType,date,year,seasonArray,monthArray,dayArray);
+        return getBothWayTime.getBothWayTimeOfDate(dateType,date,year,monthArray);
     }
 
     @RequestMapping(value = "/multiple/showruntime")

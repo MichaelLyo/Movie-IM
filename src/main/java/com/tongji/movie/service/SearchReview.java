@@ -17,11 +17,20 @@ public class SearchReview
 {
 	@Autowired
 	ConToOracle conToOracle;
+	@Autowired
+	ConnectToTimesten connectToTimesten;
 
-	public JSONArray searchReviewInOracle(String movieName, int level){
+	public JSONArray searchReviewInOracle(String movieName, int level, Boolean isOracle){
 		JSONArray result = new JSONArray();
+		Connection con = null;
+		if(isOracle){
+			con = conToOracle.getConnection();
+		}
+		else {
+			con = connectToTimesten.getConnection();
+		}
 		try{
-			Connection con = conToOracle.getConnection();
+
 			CallableStatement proc = con.prepareCall("{call search_review_p(?,?,?)}");
 
 			proc.setInt(1,level);
