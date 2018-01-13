@@ -40,49 +40,45 @@ public class GetBothWayTime
 		long oracleTime =0;
 		if(operation.indexOf("actor")>0)
 		{
-			JSONArray actor = searchMovieWithActor.searchInOracle(searchStr);
+			searchMovieWithActor.searchInOracle(searchStr,true);
 			oracleTime =System.currentTimeMillis();
-			//searchMovieWithActor.search(operation);
+			searchMovieWithActor.searchInOracle(operation,false);
 
 		}
 		else if(operation.indexOf("language")>0)
 		{
-			searchMovieWithLanguage.searchLanuage(searchStr);
+			searchMovieWithLanguage.searchInOracle(searchStr,true	);
 			oracleTime =System.currentTimeMillis();
-			//searchMovieWithLanguage.search(operation);
+			searchMovieWithLanguage.searchInOracle(searchStr,false	);
 		}
 		else if(operation.indexOf("director")>0)
 		{
-			searchMovieWithDirector.searchInOracle(searchStr);
+			searchMovieWithDirector.searchInOracle(searchStr,true);
 			oracleTime =System.currentTimeMillis();
-			//searchMovieWithDirector.search(operation);
+			searchMovieWithDirector.searchInOracle(searchStr,false);
+
 
 		}
 		else if(operation.indexOf("category")>0)
 		{
-			searchMovieWithGenere.searchInOracle(searchStr);
+			searchMovieWithGenere.searchInOracle(searchStr,true);
 			oracleTime =System.currentTimeMillis();
-			//searchMovieWithGenere.search(operation);
+			searchMovieWithGenere.searchInOracle(searchStr,false);
+
 
 		}
 		else if(operation.indexOf("movieName")>0)
 		{
-			searchMovieWithName.searchInOracle(searchStr);
+			searchMovieWithName.searchInOracle(searchStr,true);
 			oracleTime =System.currentTimeMillis();
-			//searchMovieWithName.search(operation);
+			searchMovieWithName.searchInOracle(searchStr,false);
 
 		}
-		//else if(operation.indexOf("combination")>0)
-		//{
-		//	searchMovieWithCombination.searchInOracle(operation);
-		//	oracleTime =System.currentTimeMillis();
-		//	//searchMovieWithCombination.search(operation);
-		//}
 		else if(operation.indexOf("coactor")>0)
 		{
-			searchMovieWithDirector.searchCoActorInOracle(searchStr);
+			searchMovieWithDirector.searchCoActorInOracle(searchStr,true);
 			oracleTime =System.currentTimeMillis();
-			//searchMovieWithDirector.searchCoActor(operation);
+			searchMovieWithDirector.searchCoActorInOracle(searchStr,false);
 
 		}
 
@@ -97,14 +93,14 @@ public class GetBothWayTime
 		return result;
 
 	}
-	public JSONArray getBothWayTimeOfDate(String dateType,String date,String year,String[] seasonArray,String[] monthArray,String[] dayArray) throws SQLException
+	public JSONArray getBothWayTimeOfDate(String dateType,String date,String year,String[] monthArray) throws SQLException
 	{
 		long startTime = System.currentTimeMillis();
 		JSONArray result = new JSONArray();
 		long oracleTime =0;
-		searchMovieWithTime.searchInOracle(dateType,date,year,monthArray);
+		searchMovieWithTime.searchInOracle(dateType,date,year,monthArray,true);
 		oracleTime =System.currentTimeMillis();
-		//searchMovieWithTime.search(dateType,date,year,seasonArray,monthArray,dayArray);
+		searchMovieWithTime.searchInOracle(dateType,date,year,monthArray,false);
 		long endTime = System.currentTimeMillis();
 
 		JSONObject time = new JSONObject();
@@ -119,9 +115,9 @@ public class GetBothWayTime
 		long startTime = System.currentTimeMillis();
 		JSONArray result = new JSONArray();
 		long oracleTime =0;
-		searchMovieWithRunTime.searchInOracle(time1,time2);
+		searchMovieWithRunTime.searchInOracle(time1,time2,true);
 		oracleTime =System.currentTimeMillis();
-		//searchMovieWithRunTime.search(time1,time2);
+		searchMovieWithRunTime.searchInOracle(time1,time2,false);
 		long endTime = System.currentTimeMillis();
 
 		JSONObject time = new JSONObject();
@@ -136,9 +132,9 @@ public class GetBothWayTime
 		long startTime = System.currentTimeMillis();
 		JSONArray result = new JSONArray();
 		long oracleTime =0;
-		//JSONArray result1= searchMovieWithCombination.search(1,date,name,actor,director,genre);
+		searchMovieWithCombination.searchInOracle(date,name,actor,director,genre,true);
 		oracleTime =System.currentTimeMillis();
-		//JSONArray result2= searchMovieWithCombination.search(0,date,name,actor,director,genre);
+		searchMovieWithCombination.searchInOracle(date,name,actor,director,genre,false);
 		long endTime = System.currentTimeMillis();
 
 		JSONObject time = new JSONObject();
@@ -153,10 +149,10 @@ public class GetBothWayTime
 		long startTime = System.currentTimeMillis();
 		JSONArray result = new JSONArray();
 		long oracleTime =0;
-		searchReview.searchReviewInOracle(movieName,level);
+		searchReview.searchReviewInOracle(movieName,level,true);
 		oracleTime =System.currentTimeMillis();
+		searchReview.searchReviewInOracle(movieName,level,true);
 		long endTime = System.currentTimeMillis();
-		//
 		JSONObject time = new JSONObject();
 		time.put("relation", oracleTime - startTime);
 		time.put("mix", endTime - oracleTime);

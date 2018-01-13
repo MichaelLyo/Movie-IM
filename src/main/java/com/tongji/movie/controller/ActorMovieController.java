@@ -31,7 +31,7 @@ public class ActorMovieController {
             HashSet<Object> set = new HashSet<>();
             for(int i =0; i<nameList.length;i++){
                 System.out.println(nameList[i]);
-                JSONArray temp = searchMovieWithActor.searchInOracle(nameList[i]);
+                JSONArray temp = searchMovieWithActor.searchInOracle(nameList[i],true);
                 HashSet tempSet = new HashSet();
                 for(Object o:temp){
                     tempSet.add(o);

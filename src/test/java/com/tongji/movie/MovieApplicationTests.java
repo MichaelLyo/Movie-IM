@@ -105,7 +105,7 @@ public class MovieApplicationTests {
 	@Test
 	public void testCountTime() throws SQLException
 	{
-		JSONArray array =searchMovieWithTime.searchInOracle("0", "2014-05-07", "2014", null);
+		JSONArray array =searchMovieWithTime.searchInOracle("0", "2014-05-07", "2014", null,true);
 		System.out.println(array);
 	}
 

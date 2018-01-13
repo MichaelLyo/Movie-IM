@@ -18,7 +18,7 @@ public class DirectorMovieController {
     public JSONArray searchMovieWithDirector(String directorName){
         JSONArray jsonArray;
         try {
-            jsonArray =searchMovieWithDirector.searchInOracle(directorName);
+            jsonArray =searchMovieWithDirector.searchInOracle(directorName,true);
         } catch (SQLException e) {
             System.out.println("按导演查询电影失败");
             jsonArray = null;
@@ -32,7 +32,7 @@ public class DirectorMovieController {
         JSONArray jsonArray;
         try
         {
-            jsonArray =searchMovieWithDirector.searchCoActorInOracle(directorName);
+            jsonArray =searchMovieWithDirector.searchCoActorInOracle(directorName,true);
         }catch (SQLException e) {
             System.out.println("按导演合作演员类型查询电影失败");
             jsonArray = null;

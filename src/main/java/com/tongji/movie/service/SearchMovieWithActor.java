@@ -5,6 +5,7 @@ import oracle.jdbc.internal.OracleTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
 import java.sql.*;
 
 @Component
@@ -12,33 +13,17 @@ public class SearchMovieWithActor
 {
     @Autowired
     ConToOracle conObj;
-
-
-
-    public JSONArray search(String actorName) throws SQLException {
-        Connection con = conObj.getConnection();
-        JSONArray movies = new JSONArray();
-        PreparedStatement pstmt = con.prepareStatement("select * from AmazonFact a join actor b on (a.movieid = b.movieid ) WHERE b.name = ?");
-        pstmt.setString(1,actorName);
-        ResultSet set =  pstmt.executeQuery();
-        while(set.next()){
-            JSONObject movie = new JSONObject();
-            movie.put("movieId",set.getString("movieId"));
-            movie.put("title",set.getString("title"));
-            movie.put("actor",set.getString("b.name"));
-            movie.put("releaseDate",set.getString("releaseDate"));
-            movie.put("runTime",set.getString("runTime"));
-            movie.put("studio",set.getString("studio"));
-            movie.put("publicationDate",set.getString("publicationDate"));
-            movie.put("publisher",set.getString("publisher"));
-            movies.add(movie);
+    @Autowired
+    ConnectToTimesten connectToTimesten;
+    public JSONArray searchInOracle(String actorName,Boolean isOracle) throws SQLException {
+        Connection con = null;
+        if(isOracle){
+           con = conObj.getConnection();
         }
-        return movies;
-    }
-
-    public JSONArray searchInOracle(String actorName) throws SQLException {
+        else{
+            con = connectToTimesten.getConnection();
+        }
         System.out.println(actorName);
-        Connection con = conObj.getConnection();
         CallableStatement proc = con.prepareCall("{call select_actor(?,?)}");
         proc.setString(1,actorName);
         proc.registerOutParameter(2, OracleTypes.CURSOR);
@@ -46,13 +31,5 @@ public class SearchMovieWithActor
         ResultSet set = (ResultSet) proc.getObject(2);
         return OperationTool.getResult(set,"title","title","actor","actor_name","releaseDate","release_date","runTime","duration","type","genre_name");
     }
-
-
-    public JSONArray searchStarringInOracle(String starringName) throws SQLException{
-        JSONArray movies = new JSONArray();
-        return movies;
-    }
-
-
 
 }

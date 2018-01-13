@@ -16,6 +16,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.util.NestedServletException;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,57 +37,30 @@ public class RepositoryTest {
 
     public void testAmazonFact() throws Exception
     {
-        JSONArray array = searchMovieWithCombination.searchInOracle("2000-12-03","Fire on the Amazon","Luis Llosa","Craig Sheffer","Adventure");
+        JSONArray array = searchMovieWithCombination.searchInOracle("2000-12-03","Fire on the Amazon","Luis Llosa","Craig Sheffer","Adventure",true);
     }
     @Test
-    public void getConnection()
+    public  void  getConnection()
     {
-        //try {
-        // Class.forName ("com.timesten.jdbc.TimesTenDriver");
-        //} catch (ClassNotFoundException ex)
-        //{
-        // // 输出错误信息
-        //}
-        //
-        //try {
-        //
-        // String URL = "jdbc:timesten:direct:DSN=movie_IM;uid=movies;pwd=movies";
-        //
-        // Connection conn = DriverManager.getConnection (URL);
-        //
-        // // 执行SQL语句
-        //
-        // //return conn;
-        //
-        // conn.close();
-        //
-        //} catch (SQLException ex) {
-        // // 输出错误信息
-        // ex.printStackTrace();
-        //}
-        ////return null;
         try {
-            // create the TimesTen data source and set the connection URL
-
-            System.load("/Users/lsl/Documents/Study/Timesten/TimesTen/IM_movie/lib/ttjdbc6.jar");
             TimesTenDataSource ttds = new TimesTenDataSource();
-            //ttds.setUrl("jdbc:timesten:direct:DSN=movie_IM;uid=movies;pwd=movies");
-            ttds.setUrl("jdbc:timesten:client:ttc_sever_dsn=movie_IM;ttc_server=192.168.118.198;tcp_port=53397;uid=movies;pwd=movies");
+            ttds.setUrl("jdbc:timesten:client:TTC_SERVER_DSN=movie_IM;TTC_SERVER=192.168.1.106;TCP_PORT=53393;uid=movies;pwd=movies");
 
             // connect to the TimesTen database
-            TimesTenConnection ttcon = (TimesTenConnection) ttds.getConnection();
-
+            Connection ttcon = ttds.getConnection();
+//            return ttcon;
             // create and execute the statement
-            Statement stmt = ttcon.createStatement();
-            ResultSet rset = stmt.executeQuery("select * from ACTOR");
-
-            // process the result set
-            while(rset.next()) {
-                System.out.println("Value: " + rset.getInt(1));
-            }
+//			 Statement stmt = ttcon.createStatement();
+//			 ResultSet rset = stmt.executeQuery("select * from ACTOR");
+//
+//			 // process the result set
+//			 while(rset.next()) {
+//				 System.out.println("Value: " + rset.getInt(1));
+//			 }
         } catch(SQLException e) {
+            System.out.println("ConnectToTimesten");
             e.printStackTrace();
+//            return null;
         }
     }
-
 }

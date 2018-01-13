@@ -86,72 +86,71 @@ function Table(id,type) {
                     }
                 }
             });
-            // $.ajax({
-            //     url: '/movie/multiple/showtime',
-            //     data: {
-            //         "year": String(year),
-            //         "month": String(monthArray),
-            //         "dateType": String(dateType),
-            //         "date": String(date),
-            //         "season": String(seasonArray)
-            //     },
-            //     dataSrc: '',
-            //     success: function (data) {
-            //
-            //         var dataSrc;
-            //         dataSrc = data[0];
-            //         $('#timerelation').text(dataSrc.relation);
-            //         $('#timemix').text(dataSrc.mix);
-            //         if (timechart !== undefined) {
-            //             timechart.destroy();
-            //         }
-            //         timechart = Highcharts.chart('container', {
-            //             chart: {
-            //                 type: 'column'
-            //             },
-            //             credits: {
-            //                 enabled: false
-            //             },
-            //             title: {
-            //                 text: '两种查询执行时间比较'
-            //             },
-            //             data: {
-            //                 columns: [
-            //                     [null, '执行时间'], // 分类
-            //                     ['Oracle', dataSrc.relation],           // 第一个数据列
-            //                     ['Timesten', dataSrc.mix]            // 第二个数据列
-            //                 ]
-            //             },
-            //             yAxis: {
-            //                 allowDecimals: false,
-            //                 title: {
-            //                     text: '单位(ms)  '
-            //
-            //                 }
-            //             },
-            //             tooltip: {
-            //                 formatter: function () {
-            //                     return '<b>' + this.series.name
-            //
-            //                         + '</b><br/>' +
-            //                         this.point.y + 'ms ' + this.point.name
-            //
-            //                             .toLowerCase();
-            //                 }
-            //             },
-            //             plotOptions: {
-            //                 column: {
-            //                     dataLabels: {
-            //                         enabled: true, // dataLabels设为true
-            //                         style: {
-            //                             color: '#42abf8'
-            //                         }
-            //                     }
-            //                 }
-            //             }
-            //         });
-            //     }
-            // });
+            $.ajax({
+                url: '/movie/multiple/showtime',
+                data: {
+                    "year": String(year),
+                    "month": String(monthArray),
+                    "dateType": String(dateType),
+                    "date": String(date),
+                },
+                dataSrc: '',
+                success: function (data) {
+
+                    var dataSrc;
+                    dataSrc = data[0];
+                    $('#timerelation').text(dataSrc.relation);
+                    $('#timemix').text(dataSrc.mix);
+                    if (timechart !== undefined) {
+                        timechart.destroy();
+                    }
+                    timechart = Highcharts.chart('container', {
+                        chart: {
+                            type: 'column'
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        title: {
+                            text: '两种查询执行时间比较'
+                        },
+                        data: {
+                            columns: [
+                                [null, '执行时间'], // 分类
+                                ['Oracle', dataSrc.relation],           // 第一个数据列
+                                ['Timesten', dataSrc.mix]            // 第二个数据列
+                            ]
+                        },
+                        yAxis: {
+                            allowDecimals: false,
+                            title: {
+                                text: '单位(ms)  '
+
+                            }
+                        },
+                        tooltip: {
+                            formatter: function () {
+                                return '<b>' + this.series.name
+
+                                    + '</b><br/>' +
+                                    this.point.y + 'ms ' + this.point.name
+
+                                        .toLowerCase();
+                            }
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: true, // dataLabels设为true
+                                    style: {
+                                        color: '#42abf8'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            });
         }
         else {
             mvTimetb.destroy();
@@ -194,64 +193,70 @@ function Table(id,type) {
                     }
                 }
             });
-            // $.ajax({
-            //     url: '/movie/multiple/showtime',
-            //     dataSrc: '',
-            //     success: function (data) {
-            //         var dataSrc;
-            //         dataSrc = data[0];
-            //         $('#timerelation').text(dataSrc.relation);
-            //         $('#timemix').text(dataSrc.mix);
-            //         if (timechart !== undefined) {
-            //             timechart.destroy();
-            //         }
-            //         timechart = Highcharts.chart('container', {
-            //             chart: {
-            //                 type: 'column'
-            //             },
-            //             credits: {
-            //                 enabled: false
-            //             },
-            //             title: {
-            //                 text: '两种查询执行时间比较'
-            //             },
-            //             data: {
-            //                 columns: [
-            //                     [null, '执行时间'], // 分类
-            //                     ['Oracle', dataSrc.relation],           // 第一个数据列
-            //                     ['Timesten', dataSrc.mix]            // 第二个数据列
-            //                 ]
-            //             },
-            //             yAxis: {
-            //                 allowDecimals: false,
-            //                 title: {
-            //                     text: '单位(ms)  '
-            //
-            //                 }
-            //             },
-            //             tooltip: {
-            //                 formatter: function () {
-            //                     return '<b>' + this.series.name
-            //
-            //                         + '</b><br/>' +
-            //                         this.point.y + 'ms ' + this.point.name
-            //
-            //                             .toLowerCase();
-            //                 }
-            //             },
-            //             plotOptions: {
-            //                 column: {
-            //                     dataLabels: {
-            //                         enabled: true, // dataLabels设为true
-            //                         style: {
-            //                             color: '#42abf8'
-            //                         }
-            //                     }
-            //                 }
-            //             }
-            //         });
-            //     }
-            // });
+            $.ajax({
+                url: '/movie/multiple/showtime',
+                data: {
+                    "year": String(year),
+                    "month": String(monthArray),
+                    "dateType": String(dateType),
+                    "date": String(date),
+                },
+                dataSrc: '',
+                success: function (data) {
+                    var dataSrc;
+                    dataSrc = data[0];
+                    $('#timerelation').text(dataSrc.relation);
+                    $('#timemix').text(dataSrc.mix);
+                    if (timechart !== undefined) {
+                        timechart.destroy();
+                    }
+                    timechart = Highcharts.chart('container', {
+                        chart: {
+                            type: 'column'
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        title: {
+                            text: '两种查询执行时间比较'
+                        },
+                        data: {
+                            columns: [
+                                [null, '执行时间'], // 分类
+                                ['Oracle', dataSrc.relation],           // 第一个数据列
+                                ['Timesten', dataSrc.mix]            // 第二个数据列
+                            ]
+                        },
+                        yAxis: {
+                            allowDecimals: false,
+                            title: {
+                                text: '单位(ms)  '
+
+                            }
+                        },
+                        tooltip: {
+                            formatter: function () {
+                                return '<b>' + this.series.name
+
+                                    + '</b><br/>' +
+                                    this.point.y + 'ms ' + this.point.name
+
+                                        .toLowerCase();
+                            }
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: true, // dataLabels设为true
+                                    style: {
+                                        color: '#42abf8'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            });
         }
     }
     if (id === 'name') {
