@@ -65,6 +65,12 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.timesten</groupId>
+			<artifactId>ttjdbc6</artifactId>
+			<version>11.2.2.1.0</version>
+		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/net.sourceforge.nekohtml/nekohtml -->
 		<dependency>
