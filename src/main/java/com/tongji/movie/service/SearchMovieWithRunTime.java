@@ -13,7 +13,7 @@ import java.sql.*;
 public class SearchMovieWithRunTime {
 
     @Autowired
-    private ConToHive conObj;
+    private ConToOracle conObj;
     @Autowired
     private ConnectToTimesten connectToTimesten;
 
