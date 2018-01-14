@@ -12,6 +12,7 @@ import java.sql.*;
 public class SearchMovieWithTime {
     @Autowired
     private ConToOracle conObj;
+    @Autowired
     private ConnectToTimesten connectToTimesten;
 
     public String generateSQLParameter(Integer[] item)
@@ -81,22 +82,23 @@ public class SearchMovieWithTime {
             con = connectToTimesten.getConnection();
         }
         CallableStatement proc = con.prepareCall("{call select_time(?,?,?,?,?)}");
+        if(monthArray.length != 0)
+        {
+            for (int i = 0; i < monthArray.length; i++) {
+                proc.setString(1, date);
+                proc.setString(2, year);
+                proc.setString(3, monthArray[i]);
+                proc.setString(4, dateType);
+                proc.registerOutParameter(5, OracleTypes.CURSOR);
 
-        for (int i = 0; i < monthArray.length; i++) {
-            proc.setString(1, date);
-            proc.setString(2, year);
-            proc.setString(3, monthArray[i]);
-            proc.setString(4, dateType);
-            proc.registerOutParameter(5, OracleTypes.CURSOR);
-
-            proc.execute();
-            set = (ResultSet) proc.getObject(5);
-            movies.addAll(OperationTool.getResult(set, "title", "title", "publicationDate", "publication_date", "releaseDate", "release_date", "runTime", "duration", "director", "director_name","formatName","format_name"));
+                proc.execute();
+                set = (ResultSet) proc.getObject(5);
+                movies.addAll(OperationTool.getResult(set, "title", "title", "publicationDate", "publication_date", "releaseDate", "release_date", "runTime", "duration", "director", "director_name","formatName","format_name"));
+            }
         }
-
-        if (0 == monthArray.length && !date.isEmpty()) {
+       else {
             proc.setString(1,date);
-            proc.setString(2, "");
+            proc.setString(2, year);
             proc.setString(3, "");
             proc.setString(4, dateType);
             proc.registerOutParameter(5, OracleTypes.CURSOR);
@@ -107,5 +109,6 @@ public class SearchMovieWithTime {
         }
         return movies;
     }
+
 }
 

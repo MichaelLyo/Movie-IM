@@ -1503,14 +1503,13 @@ function Table(id,type) {
         else {
             mvCommenttb.ajax.url(commenturl + movieName).load();
             $.ajax({
-                url: '/movie/ajax/showcomment',
+                url: '/movie/multiple/showcomment',
                 data:{
                     "type":type,
                     "movieName":movieName
                 },
                 dataSrc: '',
                 success: function (data) {
-
                     var dataSrc;
                     dataSrc = data[0];
                     $('#commentrelation').text(dataSrc.relation);
@@ -1548,7 +1547,6 @@ function Table(id,type) {
 
                                     + '</b><br/>' +
                                     this.point.y + 'ms ' + this.point.name
-
                                         .toLowerCase();
                             }
                         },

@@ -38,10 +38,8 @@ public class OperationController
     @RequestMapping(value = "/multiple/showtime")
     public JSONArray showHistogramOfDate(@RequestParam(value = "year", required = true) String year,
                                          @RequestParam(value = "month",required = true) String[]monthArray,
-                                         @RequestParam(value = "day", required = true) String[] dayArray,
                                          @RequestParam(value = "dateType",required = true) String dateType,
-                                         @RequestParam(value = "date", required = true) String date,
-                                         @RequestParam(value = "season", required = true) String[] seasonArray) throws SQLException
+                                         @RequestParam(value = "date", required = true) String date) throws SQLException
     {
         return getBothWayTime.getBothWayTimeOfDate(dateType,date,year,monthArray);
     }

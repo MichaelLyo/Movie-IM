@@ -12,7 +12,7 @@ import java.sql.*;
 @Component
 public class SearchMovieWithDirector {
     @Autowired
-    private ConToHive conObj;
+    private ConToOracle conObj;
 
     @Autowired
     JdbcTemplate jdbcTemplate;

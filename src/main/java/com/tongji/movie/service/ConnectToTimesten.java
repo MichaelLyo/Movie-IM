@@ -29,7 +29,7 @@ public class ConnectToTimesten
 	 {
 		 try {
 			 TimesTenDataSource ttds = new TimesTenDataSource();
-			 ttds.setUrl("jdbc:timesten:client:TTC_SERVER_DSN=movie_IM;TTC_SERVER=192.168.1.106;TCP_PORT=53393;uid=movies;pwd=movies");
+			 ttds.setUrl("jdbc:timesten:client:TTC_SERVER_DSN=movie_IM;TTC_SERVER=192.168.118.198;TCP_PORT=53393;uid=movies;pwd=movies");
 
 			 // connect to the TimesTen database
 			 Connection ttcon = ttds.getConnection();
