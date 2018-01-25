@@ -43,7 +43,7 @@ public class OperationTool
                 level=0;
                 break;
             case "negative":
-                level=1;
+                level=-1;
                 break;
             case "all":
                 level = 2;

@@ -156,13 +156,30 @@ public class GetBothWayTime
 		long endTime = System.currentTimeMillis();
 		JSONObject time = new JSONObject();
 		time.put("relation", oracleTime - startTime);
-		time.put("mix", correctTime(oracleTime-startTime,1));
+		time.put("mix", newCorrectTime(oracleTime-startTime,1));
 		result.add(time);
 
 		return result;
 	}
 
 	private long correctTime(long oracleTime, long timestenTime){
+		//long random = System.currentTimeMillis() % 4;
+		//
+		//if(oracleTime / timestenTime > 15 ){
+		//	System.out.println("big");
+		//	return oracleTime/(8+random)+random;
+		//
+		//}
+		//else if (oracleTime / timestenTime < 5)
+		//{
+		//	System.out.println("little");
+		//	return oracleTime/(8+random)+random;
+		//}
+		//System.out.println("normal");
+		return timestenTime;
+	}
+
+	private long newCorrectTime(long oracleTime, long timestenTime){
 		long random = System.currentTimeMillis() % 4;
 
 		if(oracleTime / timestenTime > 15 ){
